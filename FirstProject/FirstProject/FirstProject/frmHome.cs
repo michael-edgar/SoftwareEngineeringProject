@@ -24,7 +24,26 @@ namespace FirstProject
         {
             DataSet ds = new DataSet();
 
-            //grdData.DataSource = Clients.getClient(ds).Tables["ss"];
+            grdData.DataSource = Clients.getClients(ds).Tables["ss"];
+
+            txtNextClientID.Text = Clients.getNextClientID().ToString("00000"); //00000 are a mask
+        }
+
+        private void rdoForename_CheckedChanged(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            String source;
+
+            if(rdoForename.Checked)
+            {
+                source = "Forename";
+            }
+            else
+            {
+                source = "Client_ID";
+            }
+
+           grdData.DataSource = Clients.getClients(ds, source).Tables["ss"];
         }
     }
 }
