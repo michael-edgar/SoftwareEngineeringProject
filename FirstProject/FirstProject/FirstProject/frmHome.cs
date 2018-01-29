@@ -26,7 +26,7 @@ namespace FirstProject
 
             grdData.DataSource = Clients.getClients(ds).Tables["ss"];
 
-            txtNextClientID.Text = Clients.getNextClientID().ToString("00000"); //00000 are a mask
+            txtNextClientID.Text = Clients.getNextClientID().ToString("00000"); //00000 is a mask
         }
 
         private void rdoForename_CheckedChanged(object sender, EventArgs e)
@@ -44,6 +44,12 @@ namespace FirstProject
             }
 
            grdData.DataSource = Clients.getClients(ds, source).Tables["ss"];
+        }
+
+        private void btnNewClient_Click(object sender, EventArgs e)
+        {
+            //Clients newClient = new Clients(txtNextClientID, txtSurname, txtSurname, txtForename, txtStreet, txtTown, txtCounty);
+
         }
     }
 }

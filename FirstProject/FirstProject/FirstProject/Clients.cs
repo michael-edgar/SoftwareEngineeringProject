@@ -13,12 +13,55 @@ namespace FirstProject
         private int clientID;
         private String surname;
         private String forename;
+        private String street;
+        private String town;
+        private String county;
 
         public Clients()
         {
             clientID = 0;
             surname = "unknown";
             forename = "unknown";
+        }
+
+        public Clients(int clientID, String surname, String forename)
+        {
+            setClientID(clientID);
+            setSurname(surname);
+            setForename(forename);
+            setStreet(street);
+            setTown(town);
+            setCounty(county);
+        }
+
+        public void setClientID(int clientID)
+        {
+            this.clientID = clientID;
+        }
+
+        public void setSurname(String surname)
+        {
+            this.surname = surname;
+        }
+
+        public void setForename(String forename)
+        {
+            this.forename = forename;
+        }
+
+        public void setStreet(String street)
+        {
+            this.street = street;
+        }
+
+        public void setTown(String town)
+        {
+            this.town = town;
+        }
+
+        public void setCounty(String county)
+        {
+            this.county = county;
         }
 
         public static DataSet getClients(DataSet ds)
@@ -79,6 +122,16 @@ namespace FirstProject
             conn.Close();
 
             return nextClientID;
+        }
+
+        public void regClient()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "INSERT INTO Clients VALUES(" +this.clientID.ToString() +
+                ",'" +this.surname.ToUpper() + "','" +this.forename.ToUpper() + "','" +
+                this.street.ToUpper()+ "','" +this.town.ToUpper()+ "','" + this.county.ToUpper() + "')";
         }
     }
 }
