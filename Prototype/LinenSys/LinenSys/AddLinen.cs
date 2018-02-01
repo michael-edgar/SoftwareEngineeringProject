@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
 {
     public partial class frmAddLinen : Form
     {
+        OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
 
         public frmAddLinen(frmMainMenu Parent)
@@ -22,7 +24,7 @@ namespace LinenSys
 
         private void frmAddLinen_Load(object sender, EventArgs e)
         {
-
+            //DataSet ds = new DataSet();
         }
 
         private void btnAddLinen_Click(object sender, EventArgs e)
@@ -38,12 +40,67 @@ namespace LinenSys
                 return;
             }
 
+            foreach (char item in txtLinenName.Text)
+            {
+                if (char.IsDigit(item))
+                {
+                    MessageBox.Show("Linen Name must only contain letters", "Error");
+                    txtLinenName.Focus();
+                    return;
+                }
+            }
+
             if (txtLinenCode.Text.Equals(""))
             {
-                MessageBox.Show("Linen Name must be entered", "Error");
+                MessageBox.Show("Linen Code must be entered", "Error");
                 txtLinenName.Focus();
                 return;
             }
+
+            foreach (char item in txtLinenName.Text)
+            {
+                if (char.IsDigit(item))
+                {
+                    MessageBox.Show("Linen Code must only contain letters", "Error");
+                    txtLinenName.Focus();
+                    return;
+                }
+            }
+      
+            if (Linen.alreadyExists("DB"))
+            {
+                MessageBox.Show("alrady exists");
+                return;
+            }
+
+            /* int numberOfValues = Convert.ToInt32(dr.GetValue(0));
+
+            if(numberOfValues > 0)
+            {
+                String strSQL = "SELECT linen_code FROM Linen";
+                OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+                OracleDataReader dr = cmd.ExecuteReader();
+
+                dr.Read();
+
+                for(int i = 0; i < numberOfValues; i++)
+                {
+                        if(txtLinenCode.Text.Equals(dr.GetValue(i)))
+                        {
+                            MessageBox.Show("Linen Code must be unique", "Error");
+                            txtLinenName.Focus();
+                            return;
+                        }
+                }
+
+                
+            }
+            */
+
+            
+
+            conn.Close();
 
             if (!float.TryParse(txtHirePrice.Text, out check))
             {

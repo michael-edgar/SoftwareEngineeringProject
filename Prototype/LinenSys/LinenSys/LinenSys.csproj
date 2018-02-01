@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -81,12 +85,14 @@
     <Compile Include="CollectLaundry.Designer.cs">
       <DependentUpon>CollectLaundry.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBConnect.cs" />
     <Compile Include="DispatchDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DispatchDelivery.Designer.cs">
       <DependentUpon>DispatchDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linen.cs" />
     <Compile Include="LogOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,7 @@
     <EmbeddedResource Include="UpdateLinen.resx">
       <DependentUpon>UpdateLinen.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
