@@ -57,7 +57,7 @@ namespace LinenSys
                 return;
             }
 
-            foreach (char item in txtLinenName.Text)
+            foreach (char item in txtLinenCode.Text)
             {
                 if (char.IsDigit(item))
                 {
@@ -67,40 +67,11 @@ namespace LinenSys
                 }
             }
       
-            if (Linen.alreadyExists("DB"))
+            if (Linen.alreadyExists(txtLinenCode.Text))
             {
                 MessageBox.Show("alrady exists");
                 return;
             }
-
-            /* int numberOfValues = Convert.ToInt32(dr.GetValue(0));
-
-            if(numberOfValues > 0)
-            {
-                String strSQL = "SELECT linen_code FROM Linen";
-                OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-                OracleDataReader dr = cmd.ExecuteReader();
-
-                dr.Read();
-
-                for(int i = 0; i < numberOfValues; i++)
-                {
-                        if(txtLinenCode.Text.Equals(dr.GetValue(i)))
-                        {
-                            MessageBox.Show("Linen Code must be unique", "Error");
-                            txtLinenName.Focus();
-                            return;
-                        }
-                }
-
-                
-            }
-            */
-
-            
-
-            conn.Close();
 
             if (!float.TryParse(txtHirePrice.Text, out check))
             {
@@ -132,12 +103,24 @@ namespace LinenSys
 
             else
             {
+                Linen newLinen = new Linen();
+
+                newLinen.setLinen_code(txtLinenCode.Text);
+                newLinen.setLinen_name(txtLinenName.Text);
+                newLinen.setHire_price(Convert.ToDouble(txtHirePrice.Text));
+                newLinen.setCleaning_price(Convert.ToDouble(txtCleaningPrice.Text));
+                newLinen.setReject_price(Convert.ToDouble(txtRejectPrice.Text));
+                newLinen.setPack_size(Convert.ToInt32(txtPackSize.Text));
+
+                newLinen.regLinen();
+
                 String addedLinen;
                 addedLinen = "\nLinen Name: " + txtLinenName.Text + "\nLinen Code: " + txtLinenCode.Text + 
                              "\nHire Price: " + txtHirePrice.Text + "\nCleaning Price: " + 
                              txtCleaningPrice.Text + "\nReject Price: " + txtRejectPrice.Text+ "\nPack Size: " +txtPackSize.Text;
 
                 MessageBox.Show("The new Linen has been added to the system." +addedLinen , "Added Linen");
+
                 txtLinenName.Clear();
                 txtLinenCode.Clear();
                 txtHirePrice.Clear();

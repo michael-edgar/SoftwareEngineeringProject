@@ -12,9 +12,9 @@ namespace LinenSys
     {
         private String linen_code;
         private String linen_name;
-        private float hire_price;
-        private float cleaning_price;
-        private float reject_price;
+        private double hire_price;
+        private double cleaning_price;
+        private double reject_price;
         private int pack_size;
         private char linen_status;
 
@@ -26,11 +26,11 @@ namespace LinenSys
             setCleaning_price(0);
             setReject_price(0);
             setPack_size(0);
-            setLinen_status('N');
+            setLinen_status('A');
         }
 
-        public Linen(String linen_code, String linen_name, float hire_price, float cleaning_price,
-                     float reject_price, int pack_size, char linen_status)
+        public Linen(String linen_code, String linen_name, double hire_price, double cleaning_price,
+                     double reject_price, int pack_size, char linen_status)
         {
             setLinen_code(linen_code);
             setLinen_name(linen_name);
@@ -51,17 +51,17 @@ namespace LinenSys
             this.linen_name = linen_name;
         }
 
-        public void setHire_price(float hire_price)
+        public void setHire_price(double hire_price)
         {
             this.hire_price = hire_price;
         }
 
-        public void setCleaning_price(float cleaning_price)
+        public void setCleaning_price(double cleaning_price)
         {
             this.cleaning_price = cleaning_price;
         }
 
-        public void setReject_price(float reject_price)
+        public void setReject_price(double reject_price)
         {
             this.reject_price = reject_price;
         }
@@ -86,17 +86,17 @@ namespace LinenSys
             return linen_name;
         }
 
-        public float getHire_price()
+        public double getHire_price()
         {
             return hire_price;
         }
 
-        public float getCleaning_price()
+        public double getCleaning_price()
         {
             return cleaning_price;
         }
 
-        public float getReject_price()
+        public double getReject_price()
         {
             return reject_price;
         }
@@ -148,9 +148,14 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSET INTO Linen VALUES(" + this.linen_code.ToString() +
-                ",'" + this.linen_name + "'," + this.hire_price.ToString() + "," + this.cleaning_price.ToString() +
-                "," + this.reject_price.ToString() + "," + this.pack_size.ToString() + ",'" + this.linen_status + "')";
+            String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
+                "','" + this.linen_name + "'," + this.hire_price + "," + this.cleaning_price +
+                "," + this.reject_price + "," + this.pack_size + ",'" + this.linen_status + "')";
+
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
         public static Boolean alreadyExists(string Code)
         {
