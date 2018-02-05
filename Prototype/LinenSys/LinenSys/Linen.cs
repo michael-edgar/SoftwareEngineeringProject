@@ -157,6 +157,21 @@ namespace LinenSys
 
             conn.Close();
         }
+
+        public void updateLinen()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
+                "','" + this.linen_name + "'," + this.hire_price + "," + this.cleaning_price +
+                "," + this.reject_price + "," + this.pack_size + ",'" + this.linen_status + "')";
+
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
         public static Boolean alreadyExists(string Code)
         {
             Boolean answer = false;

@@ -241,6 +241,7 @@
             this.Controls.Add(this.txtLinenCode);
             this.Name = "frmUpdateLinen";
             this.Text = "UpdateLinen";
+            this.Load += new System.EventHandler(this.frmUpdateLinen_Load);
             this.grpLinen.ResumeLayout(false);
             this.grpLinen.PerformLayout();
             this.mnuUpdateLinen.ResumeLayout(false);

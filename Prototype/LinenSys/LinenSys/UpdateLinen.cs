@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
 {
     public partial class frmUpdateLinen : Form
     {
+        OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
         public frmUpdateLinen(frmMainMenu Parent)
         {
@@ -96,6 +98,16 @@ namespace LinenSys
                 return;
             }
 
+            foreach (char item in txtLinenName.Text)
+            {
+                if (char.IsDigit(item))
+                {
+                    MessageBox.Show("Linen Name must only contain letters", "Error");
+                    txtLinenName.Focus();
+                    return;
+                }
+            }
+
             if (!float.TryParse(txtHirePrice.Text, out check))
             {
                 MessageBox.Show("Hire Price must be numeric", "Error");
@@ -125,12 +137,38 @@ namespace LinenSys
 
             else
             {
+                Linen updatedLinen = new Linen();
+
+                if(!txtLinenName.Text.Equals(""))
+                {
+                    updatedLinen.setLinen_name(txtLinenName.Text);
+                }
+                if (!txtHirePrice.Text.Equals(""))
+                {
+                    updatedLinen.setHire_price(Convert.ToDouble(txtHirePrice.Text));
+                }
+                if (!txtCleaningPrice.Text.Equals(""))
+                {
+                    updatedLinen.setCleaning_price(Convert.ToDouble(txtCleaningPrice.Text));
+                }
+                if (!txtRejectPrice.Text.Equals(""))
+                {
+                    updatedLinen.setReject_price(Convert.ToDouble(txtRejectPrice.Text));
+                }
+                if (!txtPackSize.Text.Equals(""))
+                {
+                    updatedLinen.setPack_size(Convert.ToInt32(txtPackSize.Text));
+                }
+
+                updatedLinen.updateLinen();
+
                 String updateLinen;
                 updateLinen = "\nLinen Name: " + txtLinenName.Text + "\nLinen Code: " + txtLinenCode.Text +
                              "\nHire Price: " + txtHirePrice.Text + "\nCleaning Price: " +
                              txtCleaningPrice.Text + "\nReject Price: " + txtRejectPrice.Text+ "\nPack Size: " +txtPackSize.Text;
 
                 MessageBox.Show("The updated lined has been saved to the system." + updateLinen, "Update Linen");
+
                 txtLinenName.Clear();
                 txtLinenCode.Clear();
                 txtHirePrice.Clear();
@@ -215,6 +253,11 @@ namespace LinenSys
         {
             this.Close();
             parent.Show();
+        }
+
+        private void frmUpdateLinen_Load(object sender, EventArgs e)
+        {
+            //DataSet ds = new DataSet();
         }
     }
 }
