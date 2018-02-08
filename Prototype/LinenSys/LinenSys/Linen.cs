@@ -143,6 +143,22 @@ namespace LinenSys
             return ds;
         }
 
+        public static DataSet getMatchingNames(DataSet ds, String code)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String strSQL = "SELECT Linen_Name FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            da.Fill(ds, "ss");
+
+            conn.Close();
+
+            return ds;
+        }
+
         public void regLinen()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -163,14 +179,14 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
+            /*String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
                 "','" + this.linen_name + "'," + this.hire_price + "," + this.cleaning_price +
                 "," + this.reject_price + "," + this.pack_size + ",'" + this.linen_status + "')";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 
-            conn.Close();
+            conn.Close();*/
         }
         public static Boolean alreadyExists(string Code)
         {

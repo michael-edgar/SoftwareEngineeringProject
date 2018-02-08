@@ -23,18 +23,26 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
-            String linenCode = txtLinenCode.Text;
-            linenCode = linenCode.ToLower();
-            cboLinenNames.Items.Clear();
-
-            if (linenCode.Equals(""))
+  
+            if (txtLinenCode.Text.Equals(""))
             {
                 MessageBox.Show("Linen Name must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
             }
 
-            else if (linenCode.StartsWith("b"))
+            
+            DataSet ds = new DataSet();
+            cboLinenNames.Items.Clear();
+            
+            ds = Linen.getMatchingNames(ds, txtLinenCode.Text.ToUpper());
+
+            cboLinenNames.Text = ds.ToString();
+            
+
+            cboLinenNames.Visible = true;
+
+            /*else if (linenCode.StartsWith("b"))
             {
                 lblLinenNames.Visible = true;
                 cboLinenNames.Visible = true;
@@ -82,7 +90,9 @@ namespace LinenSys
                 MessageBox.Show("No active linen matching linen code was found, please re-enter");
                 txtLinenCode.Focus();
                 return;
-            }
+            }*/
+
+
         }
 
         private void btnUpdateLinen_Click(object sender, EventArgs e)

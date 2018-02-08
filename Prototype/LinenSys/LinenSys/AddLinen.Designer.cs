@@ -64,7 +64,7 @@
             this.grpLinen.Controls.Add(this.lblLinenName);
             this.grpLinen.Location = new System.Drawing.Point(12, 27);
             this.grpLinen.Name = "grpLinen";
-            this.grpLinen.Size = new System.Drawing.Size(273, 286);
+            this.grpLinen.Size = new System.Drawing.Size(361, 286);
             this.grpLinen.TabIndex = 5;
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
@@ -72,9 +72,10 @@
             // txtPackSize
             // 
             this.txtPackSize.Location = new System.Drawing.Point(121, 245);
+            this.txtPackSize.MaxLength = 3;
             this.txtPackSize.Name = "txtPackSize";
-            this.txtPackSize.Size = new System.Drawing.Size(146, 20);
-            this.txtPackSize.TabIndex = 16;
+            this.txtPackSize.Size = new System.Drawing.Size(42, 20);
+            this.txtPackSize.TabIndex = 5;
             // 
             // lblPackSize
             // 
@@ -88,37 +89,48 @@
             // txtRejectPrice
             // 
             this.txtRejectPrice.Location = new System.Drawing.Point(121, 205);
+            this.txtRejectPrice.MaxLength = 7;
             this.txtRejectPrice.Name = "txtRejectPrice";
-            this.txtRejectPrice.Size = new System.Drawing.Size(146, 20);
-            this.txtRejectPrice.TabIndex = 14;
+            this.txtRejectPrice.Size = new System.Drawing.Size(75, 20);
+            this.txtRejectPrice.TabIndex = 4;
+            this.txtRejectPrice.Text = "0.00";
+            this.txtRejectPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtCleaningPrice
             // 
             this.txtCleaningPrice.Location = new System.Drawing.Point(121, 163);
+            this.txtCleaningPrice.MaxLength = 7;
             this.txtCleaningPrice.Name = "txtCleaningPrice";
-            this.txtCleaningPrice.Size = new System.Drawing.Size(146, 20);
-            this.txtCleaningPrice.TabIndex = 13;
+            this.txtCleaningPrice.Size = new System.Drawing.Size(75, 20);
+            this.txtCleaningPrice.TabIndex = 3;
+            this.txtCleaningPrice.Text = "0.00";
+            this.txtCleaningPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHirePrice
             // 
             this.txtHirePrice.Location = new System.Drawing.Point(121, 113);
+            this.txtHirePrice.MaxLength = 7;
             this.txtHirePrice.Name = "txtHirePrice";
-            this.txtHirePrice.Size = new System.Drawing.Size(146, 20);
-            this.txtHirePrice.TabIndex = 12;
+            this.txtHirePrice.Size = new System.Drawing.Size(75, 20);
+            this.txtHirePrice.TabIndex = 2;
+            this.txtHirePrice.Text = "0.00";
+            this.txtHirePrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtLinenCode
             // 
-            this.txtLinenCode.Location = new System.Drawing.Point(121, 62);
+            this.txtLinenCode.Location = new System.Drawing.Point(121, 10);
+            this.txtLinenCode.MaxLength = 3;
             this.txtLinenCode.Name = "txtLinenCode";
-            this.txtLinenCode.Size = new System.Drawing.Size(146, 20);
-            this.txtLinenCode.TabIndex = 11;
+            this.txtLinenCode.Size = new System.Drawing.Size(42, 20);
+            this.txtLinenCode.TabIndex = 0;
             // 
             // txtLinenName
             // 
-            this.txtLinenName.Location = new System.Drawing.Point(121, 13);
+            this.txtLinenName.Location = new System.Drawing.Point(121, 61);
+            this.txtLinenName.MaxLength = 30;
             this.txtLinenName.Name = "txtLinenName";
-            this.txtLinenName.Size = new System.Drawing.Size(146, 20);
-            this.txtLinenName.TabIndex = 10;
+            this.txtLinenName.Size = new System.Drawing.Size(234, 20);
+            this.txtLinenName.TabIndex = 1;
             // 
             // lblRejectPrice
             // 
@@ -150,7 +162,7 @@
             // lblLinenCode
             // 
             this.lblLinenCode.AutoSize = true;
-            this.lblLinenCode.Location = new System.Drawing.Point(6, 65);
+            this.lblLinenCode.Location = new System.Drawing.Point(6, 13);
             this.lblLinenCode.Name = "lblLinenCode";
             this.lblLinenCode.Size = new System.Drawing.Size(64, 13);
             this.lblLinenCode.TabIndex = 6;
@@ -159,7 +171,7 @@
             // lblLinenName
             // 
             this.lblLinenName.AutoSize = true;
-            this.lblLinenName.Location = new System.Drawing.Point(6, 16);
+            this.lblLinenName.Location = new System.Drawing.Point(6, 64);
             this.lblLinenName.Name = "lblLinenName";
             this.lblLinenName.Size = new System.Drawing.Size(67, 13);
             this.lblLinenName.TabIndex = 5;
@@ -167,9 +179,9 @@
             // 
             // btnAddLinen
             // 
-            this.btnAddLinen.Location = new System.Drawing.Point(133, 322);
+            this.btnAddLinen.Location = new System.Drawing.Point(21, 322);
             this.btnAddLinen.Name = "btnAddLinen";
-            this.btnAddLinen.Size = new System.Drawing.Size(75, 23);
+            this.btnAddLinen.Size = new System.Drawing.Size(352, 23);
             this.btnAddLinen.TabIndex = 6;
             this.btnAddLinen.Text = "Save";
             this.btnAddLinen.UseVisualStyleBackColor = true;
@@ -181,7 +193,7 @@
             this.backToolStripMenuItem});
             this.mnuAddLinen.Location = new System.Drawing.Point(0, 0);
             this.mnuAddLinen.Name = "mnuAddLinen";
-            this.mnuAddLinen.Size = new System.Drawing.Size(314, 24);
+            this.mnuAddLinen.Size = new System.Drawing.Size(398, 24);
             this.mnuAddLinen.TabIndex = 7;
             this.mnuAddLinen.Text = "mnuAddLinen";
             // 
@@ -196,7 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 378);
+            this.ClientSize = new System.Drawing.Size(398, 378);
             this.Controls.Add(this.btnAddLinen);
             this.Controls.Add(this.grpLinen);
             this.Controls.Add(this.mnuAddLinen);

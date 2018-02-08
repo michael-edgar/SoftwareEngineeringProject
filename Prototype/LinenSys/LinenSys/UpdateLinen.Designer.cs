@@ -69,7 +69,7 @@
             // 
             // btnGetLinen
             // 
-            this.btnGetLinen.Location = new System.Drawing.Point(112, 104);
+            this.btnGetLinen.Location = new System.Drawing.Point(301, 53);
             this.btnGetLinen.Name = "btnGetLinen";
             this.btnGetLinen.Size = new System.Drawing.Size(75, 23);
             this.btnGetLinen.TabIndex = 2;
