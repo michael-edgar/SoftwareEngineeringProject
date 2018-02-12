@@ -37,54 +37,14 @@ namespace LinenSys
             
             ds = Linen.getMatchingNames(ds, txtLinenCode.Text.ToUpper());
 
+            
+
             cboLinenNames.Text = ds.ToString();
             
 
             cboLinenNames.Visible = true;
 
-            /*else if (linenCode.StartsWith("b"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Bath Mat");
-                cboLinenNames.Items.Add("Bath Sheet");
-                return;
-            }
-
-            else if (linenCode.StartsWith("h"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Hand Towel");
-                return;
-            }
-
-            else if (linenCode.StartsWith("s"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Single Sheet");
-                cboLinenNames.Items.Add("Single Duvet");
-                return;
-            }
-
-            else if (linenCode.StartsWith("k"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("King Sheet");
-                cboLinenNames.Items.Add("King Duvet");
-                return;
-            }
-
-            else if (linenCode.StartsWith("p"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Pillow Slip");
-                return;
-            }
-
+            /*
             else
             {
                 MessageBox.Show("No active linen matching linen code was found, please re-enter");

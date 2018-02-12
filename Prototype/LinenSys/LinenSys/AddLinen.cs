@@ -122,12 +122,15 @@ namespace LinenSys
                 return;
             }
 
-            if (Convert.ToDouble(txtCleaningPrice.Text) <= 0.00)
+             if (Convert.ToDouble(txtCleaningPrice.Text) <= 0.00)
             {
                 MessageBox.Show("Cleaning Price must be greater than 0", "Error");
                 txtCleaningPrice.Focus();
                 return;
             }
+
+            lettersAfterPoint = 0;
+            decimals = false;
 
             foreach (char item in txtCleaningPrice.Text)
             {
@@ -162,6 +165,9 @@ namespace LinenSys
                 return;
             }
 
+            lettersAfterPoint = 0;
+            decimals = false;
+
             foreach (char item in txtRejectPrice.Text)
             {
                 if (item == '.')
@@ -195,14 +201,14 @@ namespace LinenSys
                 return;
             }
 
-            if(Convert.ToDouble(txtHirePrice) <= Convert.ToDouble(txtCleaningPrice))
+            if(Convert.ToDouble(txtHirePrice.Text) <= Convert.ToDouble(txtCleaningPrice.Text))
             {
                 MessageBox.Show("Hire Price must be greater than Cleaning Price", "Error");
                 txtHirePrice.Focus();
                 return;
             }
 
-            if (Convert.ToDouble(txtCleaningPrice) <= Convert.ToDouble(txtRejectPrice))
+            if (Convert.ToDouble(txtCleaningPrice.Text) <= Convert.ToDouble(txtRejectPrice.Text))
             {
                 MessageBox.Show("Cleaning Price must be greater than Reject Price", "Error");
                 txtCleaningPrice.Focus();
