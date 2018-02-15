@@ -68,6 +68,7 @@
             this.grpLinen.TabIndex = 5;
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
+            this.grpLinen.Enter += new System.EventHandler(this.grpLinen_Enter);
             // 
             // txtPackSize
             // 

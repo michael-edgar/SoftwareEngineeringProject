@@ -143,16 +143,17 @@ namespace LinenSys
             return ds;
         }
 
-        public static DataSet getMatchingNames(DataSet ds, String code)
+        public static DataTable getMatchingNames(DataTable ds, String code)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT Linen_Name FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
+            //String strSQL = "SELECT Linen_Name FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
 
-            da.Fill(ds, "ss");
+            da.Fill(ds);
 
             conn.Close();
 

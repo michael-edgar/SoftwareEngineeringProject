@@ -251,5 +251,10 @@ namespace LinenSys
             this.Close();
             parent.Show();
         }
+
+        private void grpLinen_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

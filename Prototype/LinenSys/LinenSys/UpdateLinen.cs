@@ -15,6 +15,9 @@ namespace LinenSys
     {
         OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
+        DataTable dt = new DataTable();
+
+
         public frmUpdateLinen(frmMainMenu Parent)
         {
             InitializeComponent();
@@ -23,35 +26,40 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
-  
+            DataSet ds = new DataSet();
+            cboLinenNames.Items.Clear();
+
+            MessageBox.Show(cboLinenNames.Items.Count + "");
+
+            for(int i = 0; i < cboLinenNames.Items.Count; i++)
+            {
+                cboLinenNames.Items.Remove(i);
+                MessageBox.Show("hi");
+            }
+
             if (txtLinenCode.Text.Equals(""))
             {
                 MessageBox.Show("Linen Name must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
+
+            }
+            
+            dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                cboLinenNames.Items.Add(dt.Rows[i]["LINEN_NAME"]);
             }
 
-            
-            DataSet ds = new DataSet();
-            cboLinenNames.Items.Clear();
-            
-            ds = Linen.getMatchingNames(ds, txtLinenCode.Text.ToUpper());
-
-            
-
-            cboLinenNames.Text = ds.ToString();
-            
-
-            cboLinenNames.Visible = true;
-
-            /*
-            else
+            if (cboLinenNames.Items.Count == 0)
             {
                 MessageBox.Show("No active linen matching linen code was found, please re-enter");
                 txtLinenCode.Focus();
                 return;
-            }*/
+            }
 
+            cboLinenNames.Visible = true;
 
         }
 
@@ -152,8 +160,14 @@ namespace LinenSys
         private void cboLinenNames_SelectedIndexChanged(object sender, EventArgs e)
         {
             grpLinen.Visible = true;
-
-            if(cboLinenNames.SelectedItem.ToString().Equals("Hand Towel"))
+            MessageBox.Show("hi");
+            
+            txtLinenName.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["LINEN_NAME"].ToString();
+            txtHirePrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["HIRE_PRICE"].ToString();
+            txtCleaningPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["CLEANING_PRICE"].ToString();
+            txtRejectPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["REJECT_PRICE"].ToString();
+            txtPackSize.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["PACK_SIZE"].ToString();
+            /*if(cboLinenNames.SelectedItem.ToString().Equals("Hand Towel"))
             {
                 txtLinenName.Text = "Hand Towel";
                 txtHirePrice.Text = "2.00";
@@ -216,7 +230,7 @@ namespace LinenSys
                 txtCleaningPrice.Text = "1.00";
                 txtRejectPrice.Text = "1.25";
                 txtPackSize.Text = "50";
-            }
+            }*/
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
