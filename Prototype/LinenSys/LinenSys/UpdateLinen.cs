@@ -29,7 +29,13 @@ namespace LinenSys
             DataSet ds = new DataSet();
             cboLinenNames.Items.Clear();
 
-            MessageBox.Show(cboLinenNames.Items.Count + "");
+            //MessageBox.Show(cboLinenNames.SelectedIndex.ToString());
+
+            txtLinenName.Clear();
+            txtHirePrice.Clear();
+            txtCleaningPrice.Clear();
+            txtRejectPrice.Clear();
+            txtPackSize.Clear();
 
             for(int i = 0; i < cboLinenNames.Items.Count; i++)
             {
@@ -49,7 +55,10 @@ namespace LinenSys
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cboLinenNames.Items.Add(dt.Rows[i]["LINEN_NAME"]);
+                if(dt.Rows[i]["LINEN_STATUS"].ToString().Equals("A"))
+                {
+                    cboLinenNames.Items.Add(dt.Rows[i]["LINEN_NAME"]);
+                }
             }
 
             if (cboLinenNames.Items.Count == 0)
@@ -160,77 +169,13 @@ namespace LinenSys
         private void cboLinenNames_SelectedIndexChanged(object sender, EventArgs e)
         {
             grpLinen.Visible = true;
-            MessageBox.Show("hi");
+            //MessageBox.Show(cboLinenNames.Items.Count + "");
             
-            txtLinenName.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["LINEN_NAME"].ToString();
-            txtHirePrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["HIRE_PRICE"].ToString();
-            txtCleaningPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["CLEANING_PRICE"].ToString();
-            txtRejectPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["REJECT_PRICE"].ToString();
-            txtPackSize.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedValue)]["PACK_SIZE"].ToString();
-            /*if(cboLinenNames.SelectedItem.ToString().Equals("Hand Towel"))
-            {
-                txtLinenName.Text = "Hand Towel";
-                txtHirePrice.Text = "2.00";
-                txtCleaningPrice.Text = "1.50";
-                txtRejectPrice.Text = "1.75";
-                txtPackSize.Text = "10";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("Bath Sheet"))
-            {
-                txtLinenName.Text = "Bath Sheet";
-                txtHirePrice.Text = "2.50";
-                txtCleaningPrice.Text = "2.00";
-                txtRejectPrice.Text = "2.25";
-                txtPackSize.Text = "10";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("Bath Mat"))
-            {
-                txtLinenName.Text = "Bath Mat";
-                txtHirePrice.Text = "2.25";
-                txtCleaningPrice.Text = "1.75";
-                txtRejectPrice.Text = "2.00";
-                txtPackSize.Text = "10";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("Single Sheet"))
-            {
-                txtLinenName.Text = "Single Sheet";
-                txtHirePrice.Text = "1.75";
-                txtCleaningPrice.Text = "1.25";
-                txtRejectPrice.Text = "1.50";
-                txtPackSize.Text = "10";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("Single Duvet"))
-            {
-                txtLinenName.Text = "Single Duvet";
-                txtHirePrice.Text = "2.00";
-                txtCleaningPrice.Text = "1.50";
-                txtRejectPrice.Text = "1.75";
-                txtPackSize.Text = "10";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("King Sheet"))
-            {
-                txtLinenName.Text = "King Sheet";
-                txtHirePrice.Text = "3.00";
-                txtCleaningPrice.Text = "2.50";
-                txtRejectPrice.Text = "2.75";
-                txtPackSize.Text = "5";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("King Duvet"))
-            {
-                txtLinenName.Text = "King Duvet";
-                txtHirePrice.Text = "3.50";
-                txtCleaningPrice.Text = "3.00";
-                txtRejectPrice.Text = "3.25";
-                txtPackSize.Text = "5";
-            }
-            else if(cboLinenNames.SelectedItem.ToString().Equals("Pillow Slip"))
-            {
-                txtLinenName.Text = "Pillow Slip";
-                txtHirePrice.Text = "1.50";
-                txtCleaningPrice.Text = "1.00";
-                txtRejectPrice.Text = "1.25";
-                txtPackSize.Text = "50";
-            }*/
+            txtLinenName.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["LINEN_NAME"].ToString();
+            txtHirePrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["HIRE_PRICE"].ToString();
+            txtCleaningPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["CLEANING_PRICE"].ToString();
+            txtRejectPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["REJECT_PRICE"].ToString();
+            txtPackSize.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["PACK_SIZE"].ToString();
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
@@ -239,9 +184,7 @@ namespace LinenSys
             parent.Show();
         }
 
-        private void frmUpdateLinen_Load(object sender, EventArgs e)
-        {
-            //DataSet ds = new DataSet();
+        private void frmUpdateLinen_Load(object sender, EventArgs e){
         }
     }
 }
