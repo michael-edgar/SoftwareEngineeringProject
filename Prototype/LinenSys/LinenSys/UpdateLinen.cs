@@ -16,6 +16,7 @@ namespace LinenSys
         OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
         DataTable dt = new DataTable();
+        int numberOfItems = 0;
 
 
         public frmUpdateLinen(frmMainMenu Parent)
@@ -37,7 +38,7 @@ namespace LinenSys
             txtRejectPrice.Clear();
             txtPackSize.Clear();
 
-            for(int i = 0; i < cboLinenNames.Items.Count; i++)
+            for(int i = 0; i < numberOfItems; i++)
             {
                 cboLinenNames.Items.Remove(i);
                 MessageBox.Show("hi");
@@ -69,6 +70,8 @@ namespace LinenSys
             }
 
             cboLinenNames.Visible = true;
+            numberOfItems = cboLinenNames.Items.Count;
+            MessageBox.Show(numberOfItems + "");
 
         }
 
