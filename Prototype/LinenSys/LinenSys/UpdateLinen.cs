@@ -28,10 +28,7 @@ namespace LinenSys
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
-            cboLinenNames.Items.Clear();
-
-            //MessageBox.Show(cboLinenNames.SelectedIndex.ToString());
-
+            
             txtLinenName.Clear();
             txtHirePrice.Clear();
             txtCleaningPrice.Clear();
@@ -40,8 +37,8 @@ namespace LinenSys
 
             for(int i = 0; i < numberOfItems; i++)
             {
-                cboLinenNames.Items.Remove(i);
-                MessageBox.Show("hi");
+                //cboLinenNames.Items.RemoveAt(i);
+                //MessageBox.Show("hi");
             }
 
             if (txtLinenCode.Text.Equals(""))
@@ -51,7 +48,11 @@ namespace LinenSys
                 return;
 
             }
-            
+
+            /*cboLinenNames.ResetText();
+            cboLinenNames.DataSource = null;
+            cboLinenNames.Items.Clear();*/
+
             dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -71,7 +72,7 @@ namespace LinenSys
 
             cboLinenNames.Visible = true;
             numberOfItems = cboLinenNames.Items.Count;
-            MessageBox.Show(numberOfItems + "");
+            //MessageBox.Show(numberOfItems + "");
 
         }
 
@@ -128,6 +129,7 @@ namespace LinenSys
             else
             {
                 Linen updatedLinen = new Linen();
+                updatedLinen.setLinen_code(txtLinenCodeForUpdate.Text);
 
                 if(!txtLinenName.Text.Equals(""))
                 {
@@ -179,6 +181,7 @@ namespace LinenSys
             txtCleaningPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["CLEANING_PRICE"].ToString();
             txtRejectPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["REJECT_PRICE"].ToString();
             txtPackSize.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["PACK_SIZE"].ToString();
+            txtLinenCodeForUpdate.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["LINEN_CODE"].ToString();
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)

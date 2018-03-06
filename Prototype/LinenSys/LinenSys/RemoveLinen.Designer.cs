@@ -36,8 +36,8 @@
             this.lblLinenCode = new System.Windows.Forms.Label();
             this.txtLinenCode = new System.Windows.Forms.TextBox();
             this.btnRemoveLinen = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.cboLinenName = new System.Windows.Forms.ComboBox();
+            this.lblLinenName = new System.Windows.Forms.Label();
             this.mnuUpdateLinen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,7 +100,7 @@
             // 
             // txtLinenCode
             // 
-            this.txtLinenCode.Location = new System.Drawing.Point(167, 67);
+            this.txtLinenCode.Location = new System.Drawing.Point(167, 70);
             this.txtLinenCode.Name = "txtLinenCode";
             this.txtLinenCode.Size = new System.Drawing.Size(123, 20);
             this.txtLinenCode.TabIndex = 10;
@@ -115,26 +115,26 @@
             this.btnRemoveLinen.UseVisualStyleBackColor = true;
             this.btnRemoveLinen.Click += new System.EventHandler(this.btnRemoveLinen_Click);
             // 
-            // comboBox1
+            // cboLinenName
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBox1.Location = new System.Drawing.Point(167, 214);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(123, 21);
-            this.comboBox1.TabIndex = 13;
-            this.comboBox1.Visible = false;
+            this.cboLinenName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLinenName.FormattingEnabled = true;
+            this.cboLinenName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboLinenName.Location = new System.Drawing.Point(167, 214);
+            this.cboLinenName.Name = "cboLinenName";
+            this.cboLinenName.Size = new System.Drawing.Size(123, 21);
+            this.cboLinenName.TabIndex = 13;
+            this.cboLinenName.Visible = false;
             // 
-            // label1
+            // lblLinenName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(66, 217);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Linen Names";
-            this.label1.Visible = false;
+            this.lblLinenName.AutoSize = true;
+            this.lblLinenName.Location = new System.Drawing.Point(66, 217);
+            this.lblLinenName.Name = "lblLinenName";
+            this.lblLinenName.Size = new System.Drawing.Size(69, 13);
+            this.lblLinenName.TabIndex = 14;
+            this.lblLinenName.Text = "Linen Names";
+            this.lblLinenName.Visible = false;
             // 
             // frmRemoveLinen
             // 
@@ -142,8 +142,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 367);
             this.Controls.Add(this.btnRemoveLinen);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblLinenName);
+            this.Controls.Add(this.cboLinenName);
             this.Controls.Add(this.lblLinenNames);
             this.Controls.Add(this.cboLinenNames);
             this.Controls.Add(this.btnGetLinen);
@@ -152,6 +152,7 @@
             this.Controls.Add(this.mnuUpdateLinen);
             this.Name = "frmRemoveLinen";
             this.Text = "RemoveLinen";
+            this.Load += new System.EventHandler(this.frmRemoveLinen_Load);
             this.mnuUpdateLinen.ResumeLayout(false);
             this.mnuUpdateLinen.PerformLayout();
             this.ResumeLayout(false);
@@ -169,7 +170,7 @@
         private System.Windows.Forms.Label lblLinenCode;
         private System.Windows.Forms.TextBox txtLinenCode;
         private System.Windows.Forms.Button btnRemoveLinen;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboLinenName;
+        private System.Windows.Forms.Label lblLinenName;
     }
 }
