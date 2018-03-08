@@ -27,19 +27,8 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            
-            txtLinenName.Clear();
-            txtHirePrice.Clear();
-            txtCleaningPrice.Clear();
-            txtRejectPrice.Clear();
-            txtPackSize.Clear();
-
-            for(int i = 0; i < numberOfItems; i++)
-            {
-                //cboLinenNames.Items.RemoveAt(i);
-                //MessageBox.Show("hi");
-            }
+            grpLinen.Visible = false;
+            cboLinenNames.Visible = false;
 
             if (txtLinenCode.Text.Equals(""))
             {
@@ -50,16 +39,16 @@ namespace LinenSys
             }
 
             /*cboLinenNames.ResetText();
-            cboLinenNames.DataSource = null;
-            cboLinenNames.Items.Clear();*/
-
+            cboLinenNames.DataSource = null;*/
+            cboLinenNames.Items.Clear();
+            dt.Clear();
             dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if(dt.Rows[i]["LINEN_STATUS"].ToString().Equals("A"))
                 {
-                    cboLinenNames.Items.Add(dt.Rows[i]["LINEN_NAME"]);
+                    cboLinenNames.Items.Add(dt.Rows[i]["LINEN_NAME"].ToString().Trim());
                 }
             }
 
@@ -71,6 +60,7 @@ namespace LinenSys
             }
 
             cboLinenNames.Visible = true;
+
             numberOfItems = cboLinenNames.Items.Count;
             //MessageBox.Show(numberOfItems + "");
 
@@ -155,7 +145,7 @@ namespace LinenSys
                 updatedLinen.updateLinen();
 
                 String updateLinen;
-                updateLinen = "\nLinen Name: " + txtLinenName.Text + "\nLinen Code: " + txtLinenCode.Text +
+                updateLinen = "\nLinen Name: " + txtLinenName.Text + "\nLinen Code: " + txtLinenCodeForUpdate.Text +
                              "\nHire Price: " + txtHirePrice.Text + "\nCleaning Price: " +
                              txtCleaningPrice.Text + "\nReject Price: " + txtRejectPrice.Text+ "\nPack Size: " +txtPackSize.Text;
 
@@ -174,9 +164,8 @@ namespace LinenSys
         private void cboLinenNames_SelectedIndexChanged(object sender, EventArgs e)
         {
             grpLinen.Visible = true;
-            //MessageBox.Show(cboLinenNames.Items.Count + "");
-            
-            txtLinenName.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["LINEN_NAME"].ToString();
+
+            txtLinenName.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["LINEN_NAME"].ToString().Trim();
             txtHirePrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["HIRE_PRICE"].ToString();
             txtCleaningPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["CLEANING_PRICE"].ToString();
             txtRejectPrice.Text = dt.Rows[Convert.ToInt32(cboLinenNames.SelectedIndex)]["REJECT_PRICE"].ToString();

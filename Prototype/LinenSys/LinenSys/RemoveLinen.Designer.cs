@@ -101,6 +101,7 @@
             // txtLinenCode
             // 
             this.txtLinenCode.Location = new System.Drawing.Point(167, 70);
+            this.txtLinenCode.MaxLength = 3;
             this.txtLinenCode.Name = "txtLinenCode";
             this.txtLinenCode.Size = new System.Drawing.Size(123, 20);
             this.txtLinenCode.TabIndex = 10;
@@ -113,6 +114,7 @@
             this.btnRemoveLinen.TabIndex = 15;
             this.btnRemoveLinen.Text = "Remove Linen";
             this.btnRemoveLinen.UseVisualStyleBackColor = true;
+            this.btnRemoveLinen.Visible = false;
             this.btnRemoveLinen.Click += new System.EventHandler(this.btnRemoveLinen_Click);
             // 
             // cboLinenName
@@ -125,6 +127,7 @@
             this.cboLinenName.Size = new System.Drawing.Size(123, 21);
             this.cboLinenName.TabIndex = 13;
             this.cboLinenName.Visible = false;
+            this.cboLinenName.SelectedIndexChanged += new System.EventHandler(this.cboLinenName_SelectedIndexChanged);
             // 
             // lblLinenName
             // 

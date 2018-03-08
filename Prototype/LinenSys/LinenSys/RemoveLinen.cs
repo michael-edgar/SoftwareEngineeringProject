@@ -29,8 +29,6 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-
             if (txtLinenCode.Text.Equals(""))
             {
                 MessageBox.Show("Linen Name must be entered", "Error");
@@ -62,8 +60,12 @@ namespace LinenSys
 
         private void btnRemoveLinen_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("" + (dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString()));
+            Linen linenToRemove = new Linen();
+            linenToRemove.setLinen_code(dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString());
+            linenToRemove.removeLinen();
+
             MessageBox.Show("Selected linen has been removed", "Removed");
-            
             cboLinenNames.Items.Clear();
             txtLinenCode.Clear();
             return;
@@ -72,6 +74,11 @@ namespace LinenSys
         private void frmRemoveLinen_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboLinenName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnRemoveLinen.Visible = true;
         }
     }
 }

@@ -171,6 +171,7 @@
             // txtLinenName
             // 
             this.txtLinenName.Location = new System.Drawing.Point(121, 13);
+            this.txtLinenName.MaxLength = 30;
             this.txtLinenName.Name = "txtLinenName";
             this.txtLinenName.Size = new System.Drawing.Size(146, 20);
             this.txtLinenName.TabIndex = 10;

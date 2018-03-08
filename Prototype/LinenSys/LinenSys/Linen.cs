@@ -165,9 +165,9 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.linen_name + "', Hire_Price = " +
-                this.hire_price + ", Cleaning_Price = " + this.cleaning_price + ", Reject_Price = " + 
-                this.reject_price + ", Pack_Size = " + this.pack_size + " WHERE Linen_Code = '" +this.linen_code+ "';"; 
+            String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
+                "','" + this.linen_name.ToString() + "'," + this.hire_price + "," + this.cleaning_price +
+                "," + this.reject_price + "," + this.pack_size + ",'" + this.linen_status.ToString() + "')";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -180,9 +180,22 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.linen_code.ToString() +
-                "','" + this.linen_name + "'," + this.hire_price + "," + this.cleaning_price +
-                "," + this.reject_price + "," + this.pack_size + ",'" + this.linen_status + "')";
+            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.linen_name.ToString() + "', Hire_Price = " +
+                this.hire_price + ", Cleaning_Price = " + this.cleaning_price + ", Reject_Price = " +
+                this.reject_price + ", Pack_Size = " + this.pack_size + " WHERE Linen_Code = '" + this.linen_code.ToString() + "'";
+
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
+        public void removeLinen()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "UPDATE Linen SET Linen_Status = 'I' WHERE Linen_Code = '" + this.linen_code.ToString() + "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
