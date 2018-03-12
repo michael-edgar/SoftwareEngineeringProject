@@ -85,6 +85,7 @@
     <Compile Include="CollectLaundry.Designer.cs">
       <DependentUpon>CollectLaundry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="DispatchDelivery.cs">
       <SubType>Form</SubType>

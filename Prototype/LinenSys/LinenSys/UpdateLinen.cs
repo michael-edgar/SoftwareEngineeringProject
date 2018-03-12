@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
@@ -16,7 +10,6 @@ namespace LinenSys
         OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
         DataTable dt = new DataTable();
-        int numberOfItems = 0;
 
 
         public frmUpdateLinen(frmMainMenu Parent)
@@ -35,13 +28,11 @@ namespace LinenSys
                 MessageBox.Show("Linen Name must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
-
             }
 
-            /*cboLinenNames.ResetText();
-            cboLinenNames.DataSource = null;*/
             cboLinenNames.Items.Clear();
             dt.Clear();
+
             dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -60,10 +51,6 @@ namespace LinenSys
             }
 
             cboLinenNames.Visible = true;
-
-            numberOfItems = cboLinenNames.Items.Count;
-            //MessageBox.Show(numberOfItems + "");
-
         }
 
         private void btnUpdateLinen_Click(object sender, EventArgs e)

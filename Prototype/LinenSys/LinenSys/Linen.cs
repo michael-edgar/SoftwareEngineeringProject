@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
@@ -147,7 +143,6 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            //String strSQL = "SELECT Linen_Name FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
             String strSQL = "SELECT * FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 

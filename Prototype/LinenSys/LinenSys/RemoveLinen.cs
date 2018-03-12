@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinenSys
@@ -29,13 +23,19 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
+            lblLinenName.Visible = false;
+            cboLinenName.Visible = false;
+            btnRemoveLinen.Visible = false;
+
             if (txtLinenCode.Text.Equals(""))
             {
-                MessageBox.Show("Linen Name must be entered", "Error");
+                MessageBox.Show("Linen Code must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
-
             }
+
+            cboLinenName.Items.Clear();
+            dt.Clear();
 
             dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
 
@@ -60,7 +60,6 @@ namespace LinenSys
 
         private void btnRemoveLinen_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("" + (dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString()));
             Linen linenToRemove = new Linen();
             linenToRemove.setLinen_code(dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString());
             linenToRemove.removeLinen();
