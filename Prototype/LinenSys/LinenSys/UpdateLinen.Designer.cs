@@ -47,6 +47,7 @@
             this.lblLinenName = new System.Windows.Forms.Label();
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtLinenCodeForUpdate = new System.Windows.Forms.TextBox();
             this.grpLinen.SuspendLayout();
             this.mnuUpdateLinen.SuspendLayout();
             this.SuspendLayout();
@@ -170,6 +171,7 @@
             // txtLinenName
             // 
             this.txtLinenName.Location = new System.Drawing.Point(121, 13);
+            this.txtLinenName.MaxLength = 30;
             this.txtLinenName.Name = "txtLinenName";
             this.txtLinenName.Size = new System.Drawing.Size(146, 20);
             this.txtLinenName.TabIndex = 10;
@@ -227,11 +229,20 @@
             this.backToolStripMenuItem.Text = "Back";
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
+            // txtLinenCodeForUpdate
+            // 
+            this.txtLinenCodeForUpdate.Location = new System.Drawing.Point(578, 360);
+            this.txtLinenCodeForUpdate.Name = "txtLinenCodeForUpdate";
+            this.txtLinenCodeForUpdate.Size = new System.Drawing.Size(146, 20);
+            this.txtLinenCodeForUpdate.TabIndex = 12;
+            this.txtLinenCodeForUpdate.Visible = false;
+            // 
             // frmUpdateLinen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 450);
+            this.Controls.Add(this.txtLinenCodeForUpdate);
             this.Controls.Add(this.mnuUpdateLinen);
             this.Controls.Add(this.grpLinen);
             this.Controls.Add(this.lblLinenNames);
@@ -272,5 +283,6 @@
         private System.Windows.Forms.Button btnUpdateLinen;
         private System.Windows.Forms.MenuStrip mnuUpdateLinen;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtLinenCodeForUpdate;
     }
 }

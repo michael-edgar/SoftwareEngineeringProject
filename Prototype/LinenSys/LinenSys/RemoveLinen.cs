@@ -12,6 +12,8 @@ namespace LinenSys
 {
     public partial class frmRemoveLinen : Form
     {
+        DataTable dt = new DataTable();
+
         frmMainMenu parent;
         public frmRemoveLinen(frmMainMenu Parent)
         {
@@ -27,74 +29,56 @@ namespace LinenSys
 
         private void btnGetLinen_Click(object sender, EventArgs e)
         {
-            String linenCode = txtLinenCode.Text;
-            linenCode = linenCode.ToLower();
-            cboLinenNames.Items.Clear();
-
-            if (linenCode.Equals(""))
+            if (txtLinenCode.Text.Equals(""))
             {
                 MessageBox.Show("Linen Name must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
+
             }
 
-            else if (linenCode.StartsWith("b"))
+            dt = Linen.getMatchingNames(dt, txtLinenCode.Text.ToUpper());
+
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Bath Mat");
-                cboLinenNames.Items.Add("Bath Sheet");
-                return;
+                if (dt.Rows[i]["LINEN_STATUS"].ToString().Equals("A"))
+                {
+                    cboLinenName.Items.Add(dt.Rows[i]["LINEN_NAME"]);
+                }
             }
 
-            else if (linenCode.StartsWith("h"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Hand Towel");
-                return;
-            }
-
-            else if (linenCode.StartsWith("s"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Single Sheet");
-                cboLinenNames.Items.Add("Single Duvet");
-                return;
-            }
-
-            else if (linenCode.StartsWith("k"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("King Sheet");
-                cboLinenNames.Items.Add("King Duvet");
-                return;
-            }
-
-            else if (linenCode.StartsWith("p"))
-            {
-                lblLinenNames.Visible = true;
-                cboLinenNames.Visible = true;
-                cboLinenNames.Items.Add("Pillow Slip");
-                return;
-            }
-
-            else
+            if (cboLinenName.Items.Count == 0)
             {
                 MessageBox.Show("No active linen matching linen code was found, please re-enter");
                 txtLinenCode.Focus();
                 return;
             }
+
+            cboLinenName.Visible = true;
+            lblLinenName.Visible = true;
         }
 
         private void btnRemoveLinen_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("" + (dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString()));
+            Linen linenToRemove = new Linen();
+            linenToRemove.setLinen_code(dt.Rows[Convert.ToInt32(cboLinenName.SelectedIndex)]["LINEN_CODE"].ToString());
+            linenToRemove.removeLinen();
+
             MessageBox.Show("Selected linen has been removed", "Removed");
             cboLinenNames.Items.Clear();
             txtLinenCode.Clear();
             return;
+        }
+
+        private void frmRemoveLinen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboLinenName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnRemoveLinen.Visible = true;
         }
     }
 }
