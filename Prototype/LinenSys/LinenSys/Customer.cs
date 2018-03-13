@@ -121,7 +121,7 @@ namespace LinenSys
             return ds;
         }
 
-        public static DataSet getLinen(DataSet ds, String SOrder)
+        public static DataSet getCustomer(DataSet ds, String SOrder)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
@@ -144,7 +144,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT * FROM Linen WHERE Customer_ID = '" + Code + "'";
+            String strSQL = "SELECT * FROM Customer WHERE Customer_ID = '" + Code + "'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -174,14 +174,15 @@ namespace LinenSys
             return ds;
         }
 
-        /*public void regLinen()
+        public void regCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.customerID.ToString() +
-                "','" + this.companyName.ToString() + "'," + this.contactNo + "," + this.customerName +
-                "," + this.email + "," + this.street + ",'" + this.customerStatus.ToString() + "')";
+            String strSQL = "INSERT INTO Customer VALUES(" +this.customerID+ ",'" +this.companyName.ToString()+
+                        "','" +this.contactNo.ToString()+ "','" +this.customerName.ToString()+ "','" +this.email.ToString()+
+                        "','" +this.street.ToString()+ "','" +this.town.ToString()+ "','" +this.county.ToString()+ 
+                        "','" +this.eircode.ToString()+ "','" +this.customerStatus.ToString()+ "'," +this.rejects+ ")";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -189,14 +190,16 @@ namespace LinenSys
             conn.Close();
         }
 
-        public void updateLinen()
+        public void updateCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.companyName.ToString() + "', Hire_Price = " +
-                this.contactNo + ", Cleaning_Price = " + this.customerName + ", Reject_Price = " +
-                this.email + ", Pack_Size = " + this.street + " WHERE Linen_Code = '" + this.customerID.ToString() + "'";
+            String strSQL = "UPDATE Customer SET Company_Name = '" +this.companyName.ToString()+ "', Contact_Number = '" +
+                this.contactNo+ "', Customer_Name = '" +this.customerName.ToString()+ "', Email = '" +this.email.ToString()+
+                "', Street = '" +this.street.ToString()+ "',Town = '" +this.town.ToString()+ "', County = '" +this.county.ToString()+
+                "',Eircode = '" +this.eircode.ToString()+ "',Customer_Status = '" +this.customerStatus.ToString()+ "',Rejects = " +this.rejects+ 
+                "WHERE Customer_ID = '" +this.customerID.ToString()+ "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -204,17 +207,17 @@ namespace LinenSys
             conn.Close();
         }
 
-        public void removeLinen()
+        public void removeCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE Linen SET Linen_Status = 'I' WHERE Linen_Code = '" + this.customerID.ToString() + "'";
+            String strSQL = "UPDATE Customer SET Customer_Status = 'I' WHERE Customer_ID = '" +this.customerID.ToString()+ "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 
             conn.Close();
-        }*/
+        }
     }
 }

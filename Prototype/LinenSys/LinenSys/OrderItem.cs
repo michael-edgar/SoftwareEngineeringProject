@@ -4,45 +4,37 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
 {
-    class Rejects
+    class OrderItem
     {
-        private int rejectID;
-        private String rejectDate;
-        private int rejectQty;
+        private int orderItem;
+        private double linenAmount;
         private String linenCode;
         private int orderID;
 
-        public Rejects()
+        public OrderItem()
         {
-            setRejectID(000000);
-            setRejectDate("00/00/0000");
-            setRejectQty(0);
+            setOrderItem(000000);
+            setLinenAmount(0.00f);
             setLinenCode("NA");
             setOrderID(000000);
         }
 
-        public Rejects(int rejectID, String rejectDate, int rejectQty, String linenCode, int OrderID)
+        public OrderItem(int orderItem, double linenAmount, String linenCode, int OrderID)
         {
-            setRejectID(rejectID);
-            setRejectDate(rejectDate);
-            setRejectQty(rejectQty);
+            setOrderItem(orderItem);
+            setLinenAmount(linenAmount);
             setLinenCode(linenCode);
             setOrderID(orderID);
         }
 
-        private void setRejectID(int rejectID)
+        private void setOrderItem(int orderItem)
         {
-            this.rejectID = rejectID;
+            this.orderItem = orderItem;
         }
 
-        private void setRejectDate(string rejectDate)
+        private void setLinenAmount(double linenAmount)
         {
-            this.rejectDate = rejectDate;
-        }
-
-        private void setRejectQty(int rejectQty)
-        {
-            this.rejectQty = rejectQty;
+            this.linenAmount = linenAmount;
         }
 
         private void setLinenCode(string linenCode)
@@ -55,11 +47,11 @@ namespace LinenSys
             this.orderID = orderID;
         }
 
-        public static DataSet getRejects(DataSet ds)
+        public static DataSet getOrderItem(DataSet ds)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Rejects ORDER BY Reject_ID";
+            String strSQL = "SELECT * FROM OrderItem ORDER BY Order_Item";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -71,11 +63,11 @@ namespace LinenSys
             return ds;
         }
 
-        public static DataSet getRejects(DataSet ds, String SOrder)
+        public static DataSet getOrderItem(DataSet ds, String SOrder)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Rejects ORDER BY " + SOrder;
+            String strSQL = "SELECT * FROM OrderItem ORDER BY " + SOrder;
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -94,7 +86,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT * FROM Rejects WHERE Reject_ID = '" + Code + "'";
+            String strSQL = "SELECT * FROM OrderItem WHERE Order_Item = '" + Code + "'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -112,7 +104,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Rejects WHERE Reject_ID LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM OrderItem WHERE Order_Item LIKE '%" + code + "%'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
