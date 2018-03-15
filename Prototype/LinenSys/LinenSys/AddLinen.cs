@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
 {
     public partial class frmAddLinen : Form
     {
-        OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
 
         public frmAddLinen(frmMainMenu Parent)

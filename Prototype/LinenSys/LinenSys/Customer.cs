@@ -8,7 +8,7 @@ namespace LinenSys
     {
         private int customerID;
         private String companyName;
-        private String contactNo;
+        private String contactNumber;
         private String customerName;
         private String email;
         private String street;
@@ -29,7 +29,7 @@ namespace LinenSys
             setTown("Not Given");
             setCounty("Not Given");
             setEircode("Not Given");
-            setCustomerStatus("A");
+            setCustomerStatus('A');
             setRejects(0.00f);
         }
 
@@ -50,59 +50,114 @@ namespace LinenSys
             setRejects(rejects);
         }
 
-        private void setCustomerID(int customerID)
+        public void setCustomerID(int customerID)
         {
             this.customerID = customerID;
         }
 
-        private void setCompanyName(string companyName)
+        public void setCompanyName(string companyName)
         {
             this.companyName = companyName;
         }
 
-        private void setContactNo(string contactNo)
+        public void setContactNo(string contactNo)
         {
-            this.contactNo = contactNo;
+            this.contactNumber = contactNo;
         }
 
-        private void setCustomerName(string customerName)
+        public void setCustomerName(string customerName)
         {
             this.customerName = customerName;
         }
 
-        private void setEmail(string email)
+        public void setEmail(string email)
         {
             this.email = email;
         }
 
-        private void setStreet(string street)
+        public void setStreet(string street)
         {
             this.street = street;
         }
 
-        private void setTown(string town)
+        public void setTown(string town)
         {
             this.town = town;
         }
 
-        private void setCounty(string county)
+        public void setCounty(string county)
         {
             this.county = county;
         }
 
-        private void setEircode(string eircode)
+        public void setEircode(string eircode)
         {
             this.eircode = eircode;
         }
 
-        private void setCustomerStatus(char customerStatus)
+        public void setCustomerStatus(char customerStatus)
         {
             this.customerStatus = customerStatus;
         }
 
-        private void setRejects(double rejects)
+        public void setRejects(double rejects)
         {
             this.rejects = rejects;
+        }
+
+        public int getCustomerID()
+        {
+            return customerID;
+        }
+
+        public String getCompanyName()
+        {
+            return companyName;
+        }
+
+        public String getCustomerName()
+        {
+            return customerName;
+        }
+
+        public String getEmail()
+        {
+            return email;
+        }
+
+        public String getContactNumber()
+        {
+            return contactNumber;
+        }
+
+        public String getStreet()
+        {
+            return street;
+        }
+
+        public String getTown()
+        {
+            return town;
+        }
+
+        public String getCounty()
+        {
+            return county;
+        }
+
+        public String getEircode()
+        {
+            return eircode;
+        }
+
+        public char getCustomerStatus()
+        {
+            return customerStatus;
+        }
+
+        public double getRejects()
+        {
+            return rejects;
         }
 
         public static DataSet getCustomer(DataSet ds)
@@ -158,6 +213,34 @@ namespace LinenSys
             return answer;
         }
 
+        public static int getNextCustomerID()
+        {
+            int nextCustomerID;
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT MAX(Customer_ID) FROM Customer";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                nextCustomerID = 1;
+            }
+            else
+            {
+                nextCustomerID = Convert.ToInt32(dr.GetValue(0)) + 1;
+            }
+
+            conn.Close();
+
+            return nextCustomerID;
+        }
+
         public static DataTable getMatchingNames(DataTable ds, String code)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -180,7 +263,7 @@ namespace LinenSys
             conn.Open();
 
             String strSQL = "INSERT INTO Customer VALUES(" +this.customerID+ ",'" +this.companyName.ToString()+
-                        "','" +this.contactNo.ToString()+ "','" +this.customerName.ToString()+ "','" +this.email.ToString()+
+                        "','" +this.contactNumber.ToString()+ "','" +this.customerName.ToString()+ "','" +this.email.ToString()+
                         "','" +this.street.ToString()+ "','" +this.town.ToString()+ "','" +this.county.ToString()+ 
                         "','" +this.eircode.ToString()+ "','" +this.customerStatus.ToString()+ "'," +this.rejects+ ")";
 
@@ -196,7 +279,7 @@ namespace LinenSys
             conn.Open();
 
             String strSQL = "UPDATE Customer SET Company_Name = '" +this.companyName.ToString()+ "', Contact_Number = '" +
-                this.contactNo+ "', Customer_Name = '" +this.customerName.ToString()+ "', Email = '" +this.email.ToString()+
+                this.contactNumber+ "', Customer_Name = '" +this.customerName.ToString()+ "', Email = '" +this.email.ToString()+
                 "', Street = '" +this.street.ToString()+ "',Town = '" +this.town.ToString()+ "', County = '" +this.county.ToString()+
                 "',Eircode = '" +this.eircode.ToString()+ "',Customer_Status = '" +this.customerStatus.ToString()+ "',Rejects = " +this.rejects+ 
                 "WHERE Customer_ID = '" +this.customerID.ToString()+ "'";

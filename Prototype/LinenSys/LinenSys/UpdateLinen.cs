@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
 {
     public partial class frmUpdateLinen : Form
     {
-        OracleConnection conn = new OracleConnection(DBConnect.oradb);
         frmMainMenu parent;
         DataTable dt = new DataTable();
 
