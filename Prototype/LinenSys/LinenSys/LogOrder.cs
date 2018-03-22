@@ -13,19 +13,48 @@ namespace LinenSys
     public partial class frmLogOrder : Form
     {
         frmMainMenu parent;
+        DataTable dt = new DataTable();
+
         public frmLogOrder(frmMainMenu Parent)
         {
             InitializeComponent();
             parent = Parent;
         }
 
+        private void backToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parent.Show();
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //add some dummy customers
-            grdCustomers.Rows.Add("0254","WALSH","ADAM","0871234567");
-            grdCustomers.Rows.Add("0114", "WALSH", "JOHN", "0871232227");
-            grdCustomers.Rows.Add("0202", "WILSON", "ANN", "0871244467");
-            grdCustomers.Rows.Add("0017", "WOODS", "KEN", "0872222267");
+            if (txtCustomerID.Text.Equals(""))
+            {
+                MessageBox.Show("Customer ID must be entered", "Error");
+                txtCustomerID.Focus();
+                return;
+            }
+
+            grdCustomers.DataSource = null;
+            dt.Clear();
+
+            dt = Customer.getMatchingNames(dt, txtCustomerID.Text.ToUpper());
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["CUSTOMER_STATUS"].ToString().Equals("A"))
+                {
+                    grdCustomers.Equals(dt);
+                }
+            }
+
+            if(grdCustomers.Rows.Count == 0)
+            {
+                MessageBox.Show("No active customers matching customer ID was found, please re-enter");
+                txtCustomerID.Focus();
+                return;
+            }
 
             //display customers
             grdCustomers.Visible = true;
@@ -36,7 +65,7 @@ namespace LinenSys
 
             //display selected customer
             grpCustomer.Visible = true;
-            txtCustomerID.Text = "114";
+            txtCustomerIDDisplay.Text = "114";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -47,12 +76,6 @@ namespace LinenSys
         private void btnDel_Click(object sender, EventArgs e)
         {
             lstItems.Items.RemoveAt(lstItems.SelectedIndex);
-        }
-
-        private void backToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            parent.Show();
         }
 
         private void btnCompleteOrder_Click(object sender, EventArgs e)

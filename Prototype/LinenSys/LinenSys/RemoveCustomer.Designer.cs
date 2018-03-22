@@ -64,6 +64,7 @@
             this.btnRemoveCustomer.TabIndex = 21;
             this.btnRemoveCustomer.Text = "Remove Customer";
             this.btnRemoveCustomer.UseVisualStyleBackColor = true;
+            this.btnRemoveCustomer.Visible = false;
             this.btnRemoveCustomer.Click += new System.EventHandler(this.btnRemoveCustomer_Click_1);
             // 
             // lblCompanyNames
@@ -86,6 +87,7 @@
             this.cboCompanyNames.Size = new System.Drawing.Size(123, 21);
             this.cboCompanyNames.TabIndex = 19;
             this.cboCompanyNames.Visible = false;
+            this.cboCompanyNames.SelectedIndexChanged += new System.EventHandler(this.cboCompanyNames_SelectedIndexChanged);
             // 
             // btnGetCustomer
             // 

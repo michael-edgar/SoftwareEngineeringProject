@@ -23,7 +23,7 @@ namespace LinenSys
 
             if (txtLinenCode.Text.Equals(""))
             {
-                MessageBox.Show("Linen Name must be entered", "Error");
+                MessageBox.Show("Linen Code must be entered", "Error");
                 txtLinenCode.Focus();
                 return;
             }

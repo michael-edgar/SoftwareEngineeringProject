@@ -91,8 +91,6 @@ namespace LinenSys
                 }
             }
 
-            //Fix down here
-
             if (txtStreet.Text.Equals(""))
             {
                 MessageBox.Show("Street must be entered", "Error");
@@ -151,14 +149,27 @@ namespace LinenSys
                 return;
             }
 
+            int count = 0;
+
             foreach (char item in txtEircode.Text)
             {
-                if (!char.IsLetter(item) && item != ' ')
+                if(count == 3 && item != ' ')
                 {
-                    MessageBox.Show("Eircode must only contain letters", "Error");
+                    MessageBox.Show("Invalid Eircode, Eircode must be in the form XXX XXXX where X is a letter or number other than O(the letter)" +count, "Error");
                     txtEircode.Focus();
+                    count = 0;
                     return;
                 }
+
+                else if (count != 3 && ((!char.IsLetter(item) && !char.IsDigit(item)) || (item == 'O' || item == 'o')))
+                {
+                    MessageBox.Show("Invalid Eircode, Eircode must be in the form XXX XXXX where X is a letter or number other than O(the letter)" +count, "Error");
+                    txtEircode.Focus();
+                    count = 0;
+                    return;
+                }
+
+                count++;
             }
 
             if (txtEircode.Text == "Bob")
@@ -181,7 +192,7 @@ namespace LinenSys
                 newCustomer.setStreet(txtStreet.Text);
                 newCustomer.setTown(txtTown.Text);
                 newCustomer.setCounty(txtCounty.Text);
-                newCustomer.setEircode(txtEircode.Text);
+                newCustomer.setEircode(txtEircode.Text.ToUpper());
 
                 newCustomer.regCustomer();
 

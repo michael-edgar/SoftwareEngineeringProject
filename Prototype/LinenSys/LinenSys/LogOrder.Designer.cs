@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtOrderId = new System.Windows.Forms.TextBox();
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
@@ -39,7 +39,7 @@
             this.Forename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
-            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.txtCustomerIDDisplay = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grpLinen = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -73,23 +73,22 @@
             this.txtOrderId.Name = "txtOrderId";
             this.txtOrderId.Size = new System.Drawing.Size(64, 20);
             this.txtOrderId.TabIndex = 1;
-            this.txtOrderId.Text = "0156";
             // 
-            // txtCustomerName
+            // txtCustomerID
             // 
-            this.txtCustomerName.Location = new System.Drawing.Point(222, 86);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(178, 20);
-            this.txtCustomerName.TabIndex = 3;
+            this.txtCustomerID.Location = new System.Drawing.Point(222, 86);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.Size = new System.Drawing.Size(178, 20);
+            this.txtCustomerID.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(42, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 13);
+            this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Enter Customer Name (or part of)";
+            this.label2.Text = "Enter Customer ID:";
             // 
             // btnSearch
             // 
@@ -138,7 +137,7 @@
             // 
             // grpCustomer
             // 
-            this.grpCustomer.Controls.Add(this.txtCustomerID);
+            this.grpCustomer.Controls.Add(this.txtCustomerIDDisplay);
             this.grpCustomer.Controls.Add(this.label3);
             this.grpCustomer.Location = new System.Drawing.Point(56, 243);
             this.grpCustomer.Name = "grpCustomer";
@@ -148,13 +147,13 @@
             this.grpCustomer.Text = "Selected Customer";
             this.grpCustomer.Visible = false;
             // 
-            // txtCustomerID
+            // txtCustomerIDDisplay
             // 
-            this.txtCustomerID.Enabled = false;
-            this.txtCustomerID.Location = new System.Drawing.Point(87, 23);
-            this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(64, 20);
-            this.txtCustomerID.TabIndex = 3;
+            this.txtCustomerIDDisplay.Enabled = false;
+            this.txtCustomerIDDisplay.Location = new System.Drawing.Point(87, 23);
+            this.txtCustomerIDDisplay.Name = "txtCustomerIDDisplay";
+            this.txtCustomerIDDisplay.Size = new System.Drawing.Size(64, 20);
+            this.txtCustomerIDDisplay.TabIndex = 3;
             // 
             // label3
             // 
@@ -275,7 +274,7 @@
             this.Controls.Add(this.grpCustomer);
             this.Controls.Add(this.grdCustomers);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtCustomerName);
+            this.Controls.Add(this.txtCustomerID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtOrderId);
             this.Controls.Add(this.label1);
@@ -297,7 +296,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtOrderId;
-        private System.Windows.Forms.TextBox txtCustomerName;
+        private System.Windows.Forms.TextBox txtCustomerID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView grdCustomers;
@@ -306,7 +305,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Forename;
         private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
         private System.Windows.Forms.GroupBox grpCustomer;
-        private System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.TextBox txtCustomerIDDisplay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox grpLinen;
         private System.Windows.Forms.Button btnAdd;
