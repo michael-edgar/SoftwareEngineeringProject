@@ -132,6 +132,34 @@ namespace LinenSys
             return ds;
         }
 
+        public static int getNextOrderID()
+        {
+            int nextOrderID;
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT MAX(Order_ID) FROM Orders";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                nextOrderID = 1;
+            }
+            else
+            {
+                nextOrderID = Convert.ToInt32(dr.GetValue(0)) + 1;
+            }
+
+            conn.Close();
+
+            return nextOrderID;
+        }
+
         /*public void regLinen()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

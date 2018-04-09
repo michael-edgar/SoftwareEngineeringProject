@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinenSys
@@ -29,6 +23,13 @@ namespace LinenSys
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            grdCustomers.Visible = false;
+            grpCustomer.Visible = false;
+            grpLinen.Visible = false;
+            lstItems.Visible = false;
+            btnDelete.Visible = false;
+            btnCompleteOrder.Visible = false;
+
             if (txtCustomerID.Text.Equals(""))
             {
                 MessageBox.Show("Customer ID must be entered", "Error");
@@ -45,7 +46,12 @@ namespace LinenSys
             {
                 if (dt.Rows[i]["CUSTOMER_STATUS"].ToString().Equals("A"))
                 {
-                    grdCustomers.Equals(dt);
+                    grdCustomers.DataSource = dt;
+                    /*MessageBox.Show(dt.Rows[i]["COMPANY_NAME"].ToString().Trim());
+                    grdCustomers.Rows[i].Cells[0].Equals(dt.Rows[i]["CUSTOMER_ID"].ToString().Trim());
+                    grdCustomers.Rows[i].Cells[1].Equals(dt.Rows[i]["COMPANY_NAME"].ToString().Trim());
+                    grdCustomers.Rows[i].Cells[2].Equals(dt.Rows[i]["CUSTOMER_NAME"].ToString().Trim());
+                    grdCustomers.Rows[i].Cells[3].Equals(dt.Rows[i]["REJECTS"].ToString().Trim());*/
                 }
             }
 
@@ -81,6 +87,11 @@ namespace LinenSys
         private void btnCompleteOrder_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Order has been made", "Completed Order");
+        }
+
+        private void frmLogOrder_Load(object sender, EventArgs e)
+        {
+            txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
         }
     }
 }

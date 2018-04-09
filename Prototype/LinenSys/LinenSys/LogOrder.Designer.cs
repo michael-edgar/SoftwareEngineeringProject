@@ -34,10 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
             this.txtCustomerIDDisplay = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,6 +47,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
@@ -69,16 +69,18 @@
             // txtOrderId
             // 
             this.txtOrderId.Enabled = false;
-            this.txtOrderId.Location = new System.Drawing.Point(95, 34);
+            this.txtOrderId.Location = new System.Drawing.Point(95, 38);
+            this.txtOrderId.MaxLength = 6;
             this.txtOrderId.Name = "txtOrderId";
             this.txtOrderId.Size = new System.Drawing.Size(64, 20);
             this.txtOrderId.TabIndex = 1;
             // 
             // txtCustomerID
             // 
-            this.txtCustomerID.Location = new System.Drawing.Point(222, 86);
+            this.txtCustomerID.Location = new System.Drawing.Point(144, 86);
+            this.txtCustomerID.MaxLength = 6;
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(178, 20);
+            this.txtCustomerID.Size = new System.Drawing.Size(79, 20);
             this.txtCustomerID.TabIndex = 3;
             // 
             // label2
@@ -92,7 +94,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(427, 86);
+            this.btnSearch.Location = new System.Drawing.Point(247, 84);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(74, 22);
             this.btnSearch.TabIndex = 4;
@@ -105,35 +107,15 @@
             this.grdCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustID,
-            this.Surname,
-            this.Forename,
-            this.Phone});
+            this.Company,
+            this.Customers,
+            this.Rejects});
             this.grdCustomers.Location = new System.Drawing.Point(45, 117);
             this.grdCustomers.Name = "grdCustomers";
-            this.grdCustomers.Size = new System.Drawing.Size(467, 109);
+            this.grdCustomers.Size = new System.Drawing.Size(531, 109);
             this.grdCustomers.TabIndex = 5;
             this.grdCustomers.Visible = false;
             this.grdCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCustomers_CellClick);
-            // 
-            // CustID
-            // 
-            this.CustID.HeaderText = "Cust ID";
-            this.CustID.Name = "CustID";
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            // 
-            // Forename
-            // 
-            this.Forename.HeaderText = "Forename";
-            this.Forename.Name = "Forename";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone No";
-            this.Phone.Name = "Phone";
             // 
             // grpCustomer
             // 
@@ -151,6 +133,7 @@
             // 
             this.txtCustomerIDDisplay.Enabled = false;
             this.txtCustomerIDDisplay.Location = new System.Drawing.Point(87, 23);
+            this.txtCustomerIDDisplay.MaxLength = 6;
             this.txtCustomerIDDisplay.Name = "txtCustomerIDDisplay";
             this.txtCustomerIDDisplay.Size = new System.Drawing.Size(64, 20);
             this.txtCustomerIDDisplay.TabIndex = 3;
@@ -176,6 +159,7 @@
             this.grpLinen.TabIndex = 11;
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
+            this.grpLinen.Visible = false;
             // 
             // btnAdd
             // 
@@ -190,6 +174,7 @@
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(294, 24);
+            this.txtQty.MaxLength = 3;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(64, 20);
             this.txtQty.TabIndex = 13;
@@ -223,6 +208,7 @@
             this.lstItems.Name = "lstItems";
             this.lstItems.Size = new System.Drawing.Size(211, 186);
             this.lstItems.TabIndex = 12;
+            this.lstItems.Visible = false;
             // 
             // btnCompleteOrder
             // 
@@ -232,6 +218,7 @@
             this.btnCompleteOrder.TabIndex = 15;
             this.btnCompleteOrder.Text = "Complete Order";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
+            this.btnCompleteOrder.Visible = false;
             this.btnCompleteOrder.Click += new System.EventHandler(this.btnCompleteOrder_Click);
             // 
             // btnDelete
@@ -242,6 +229,7 @@
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Del";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // mnuUpdateLinen
@@ -260,6 +248,26 @@
             this.backToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.backToolStripMenuItem.Text = "Back";
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // CustID
+            // 
+            this.CustID.HeaderText = "Cust ID";
+            this.CustID.Name = "CustID";
+            // 
+            // Company
+            // 
+            this.Company.HeaderText = "Company";
+            this.Company.Name = "Company";
+            // 
+            // Customers
+            // 
+            this.Customers.HeaderText = "Customer";
+            this.Customers.Name = "Customers";
+            // 
+            // Rejects
+            // 
+            this.Rejects.HeaderText = "Rejects";
+            this.Rejects.Name = "Rejects";
             // 
             // frmLogOrder
             // 
@@ -280,6 +288,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmLogOrder";
             this.Text = "LogOrder";
+            this.Load += new System.EventHandler(this.frmLogOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
             this.grpCustomer.ResumeLayout(false);
             this.grpCustomer.PerformLayout();
@@ -300,10 +309,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView grdCustomers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Forename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
         private System.Windows.Forms.GroupBox grpCustomer;
         private System.Windows.Forms.TextBox txtCustomerIDDisplay;
         private System.Windows.Forms.Label label3;
@@ -317,5 +322,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.MenuStrip mnuUpdateLinen;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Company;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rejects;
     }
 }
