@@ -40,22 +40,23 @@ namespace LinenSys
             grdCustomers.DataSource = null;
             dt.Clear();
 
-            dt = Customer.getMatchingNames(dt, txtCustomerID.Text.ToUpper());
+            dt = Customer.getCustomerForOrder(dt, txtCustomerID.Text.ToUpper());
 
-            for (int i = 0; i < dt.Rows.Count; i++)
+            foreach (DataColumn dc in dt.Columns)
             {
-                if (dt.Rows[i]["CUSTOMER_STATUS"].ToString().Equals("A"))
-                {
-                    grdCustomers.DataSource = dt;
-                    /*MessageBox.Show(dt.Rows[i]["COMPANY_NAME"].ToString().Trim());
-                    grdCustomers.Rows[i].Cells[0].Equals(dt.Rows[i]["CUSTOMER_ID"].ToString().Trim());
-                    grdCustomers.Rows[i].Cells[1].Equals(dt.Rows[i]["COMPANY_NAME"].ToString().Trim());
-                    grdCustomers.Rows[i].Cells[2].Equals(dt.Rows[i]["CUSTOMER_NAME"].ToString().Trim());
-                    grdCustomers.Rows[i].Cells[3].Equals(dt.Rows[i]["REJECTS"].ToString().Trim());*/
-                }
+
+                grdCustomers.Columns.Add(new DataGridViewTextBoxColumn());
+
             }
 
-            if(grdCustomers.Rows.Count == 0)
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                grdCustomers.Rows.Add(dr.ItemArray);
+
+            }
+
+            if (grdCustomers.Rows.Count == 0)
             {
                 MessageBox.Show("No active customers matching customer ID was found, please re-enter");
                 txtCustomerID.Focus();
@@ -71,27 +72,73 @@ namespace LinenSys
 
             //display selected customer
             grpCustomer.Visible = true;
-            txtCustomerIDDisplay.Text = "114";
+            String selectedCell;
+            int selectedRowIndex = grdCustomers.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = grdCustomers.Rows[selectedRowIndex];
+            selectedCell = Convert.ToString(selectedRow.Cells["CustID"].Value);
+            txtCustomerIDDisplay.Text = selectedCell.ToString();
+            grpLinen.Visible = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            lstItems.Items.Add(cboLinen.Text+ "       " +txtQty.Text);
+            if (cboLinen.Text == "")
+            {
+                MessageBox.Show("You must select a linen");
+                cboLinen.Focus();
+                return;
+            }
+            else if (txtQty.Text == "")
+            {
+                MessageBox.Show("You must enter a quantity of linen");
+                txtQty.Focus();
+                return;
+            }
+            else
+            {
+                lstItems.Items.Add(cboLinen.Text + "       " + txtQty.Text);
+            }
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            lstItems.Items.RemoveAt(lstItems.SelectedIndex);
+            if(lstItems.SelectedIndex == -1)
+            {
+                MessageBox.Show("Must Select Item To Remove");
+                return;
+            }
+            else
+            {
+                lstItems.Items.RemoveAt(lstItems.SelectedIndex);
+            }
+            
         }
 
         private void btnCompleteOrder_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Order has been made", "Completed Order");
+            MessageBox.Show("Order has been made " +lstItems.Items.Count, "Completed Order");
         }
 
         private void frmLogOrder_Load(object sender, EventArgs e)
         {
             txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
+        }
+
+        private void grpLinen_VisibleChanged(object sender, EventArgs e)
+        {
+            DataTable dl = new DataTable();
+            dl = Linen.getMatchingNames(dl, "");
+            cboLinen.Items.Clear();
+            for (int i = 0; i < dl.Rows.Count; i++)
+            {
+                if (dl.Rows[i]["LINEN_STATUS"].ToString().Equals("A"))
+                {
+                    cboLinen.Items.Add(dl.Rows[i]["LINEN_NAME"].ToString().Trim());
+                }
+            }
+            lstItems.Visible = true;
+            btnDelete.Visible = true;
+            btnCompleteOrder.Visible = true;
         }
     }
 }

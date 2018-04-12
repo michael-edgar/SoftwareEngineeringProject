@@ -257,6 +257,22 @@ namespace LinenSys
             return ds;
         }
 
+        public static DataTable getCustomerForOrder(DataTable ds, String code)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String strSQL = "SELECT CUSTOMER_ID, COMPANY_NAME, CUSTOMER_NAME, CONTACT_NUMBER, REJECTS FROM Customer WHERE CUSTOMER_ID LIKE '%" + code + "%'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            da.Fill(ds);
+
+            conn.Close();
+
+            return ds;
+        }
+
         public void regCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

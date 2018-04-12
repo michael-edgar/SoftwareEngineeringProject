@@ -37,7 +37,7 @@ namespace LinenSys
             dt.Clear();
 
             dt = Customer.getMatchingNames(dt, txtCustomerID.Text.ToUpper());
-
+            
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["CUSTOMER_STATUS"].ToString().Equals("A"))

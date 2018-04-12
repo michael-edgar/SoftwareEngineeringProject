@@ -50,6 +50,7 @@
             this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
@@ -109,10 +110,11 @@
             this.CustID,
             this.Company,
             this.Customers,
+            this.PhoneNo,
             this.Rejects});
             this.grdCustomers.Location = new System.Drawing.Point(45, 117);
             this.grdCustomers.Name = "grdCustomers";
-            this.grdCustomers.Size = new System.Drawing.Size(531, 109);
+            this.grdCustomers.Size = new System.Drawing.Size(546, 109);
             this.grdCustomers.TabIndex = 5;
             this.grdCustomers.Visible = false;
             this.grdCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCustomers_CellClick);
@@ -160,6 +162,7 @@
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
             this.grpLinen.Visible = false;
+            this.grpLinen.VisibleChanged += new System.EventHandler(this.grpLinen_VisibleChanged);
             // 
             // btnAdd
             // 
@@ -173,7 +176,7 @@
             // 
             // txtQty
             // 
-            this.txtQty.Location = new System.Drawing.Point(294, 24);
+            this.txtQty.Location = new System.Drawing.Point(311, 23);
             this.txtQty.MaxLength = 3;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(64, 20);
@@ -184,9 +187,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(265, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Qty";
+            this.label4.Text = "Packs:";
             // 
             // cboLinen
             // 
@@ -264,6 +267,11 @@
             this.Customers.HeaderText = "Customer";
             this.Customers.Name = "Customers";
             // 
+            // PhoneNo
+            // 
+            this.PhoneNo.HeaderText = "PhoneNo";
+            this.PhoneNo.Name = "PhoneNo";
+            // 
             // Rejects
             // 
             this.Rejects.HeaderText = "Rejects";
@@ -325,6 +333,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Company;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rejects;
     }
 }
