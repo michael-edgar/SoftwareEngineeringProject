@@ -34,6 +34,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
+            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
             this.txtCustomerIDDisplay = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,15 +52,16 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCurrentDate = new System.Windows.Forms.TextBox();
+            this.lblCurrentDate = new System.Windows.Forms.Label();
+            this.lblOrderDate = new System.Windows.Forms.Label();
+            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
+            this.grpOrder = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
             this.mnuUpdateLinen.SuspendLayout();
+            this.grpOrder.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -118,6 +124,31 @@
             this.grdCustomers.TabIndex = 5;
             this.grdCustomers.Visible = false;
             this.grdCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCustomers_CellClick);
+            // 
+            // CustID
+            // 
+            this.CustID.HeaderText = "Cust ID";
+            this.CustID.Name = "CustID";
+            // 
+            // Company
+            // 
+            this.Company.HeaderText = "Company";
+            this.Company.Name = "Company";
+            // 
+            // Customers
+            // 
+            this.Customers.HeaderText = "Customer";
+            this.Customers.Name = "Customers";
+            // 
+            // PhoneNo
+            // 
+            this.PhoneNo.HeaderText = "PhoneNo";
+            this.PhoneNo.Name = "PhoneNo";
+            // 
+            // Rejects
+            // 
+            this.Rejects.HeaderText = "Rejects";
+            this.Rejects.Name = "Rejects";
             // 
             // grpCustomer
             // 
@@ -207,32 +238,29 @@
             // lstItems
             // 
             this.lstItems.FormattingEnabled = true;
-            this.lstItems.Location = new System.Drawing.Point(56, 333);
+            this.lstItems.Location = new System.Drawing.Point(18, 19);
             this.lstItems.Name = "lstItems";
             this.lstItems.Size = new System.Drawing.Size(211, 186);
             this.lstItems.TabIndex = 12;
-            this.lstItems.Visible = false;
             // 
             // btnCompleteOrder
             // 
-            this.btnCompleteOrder.Location = new System.Drawing.Point(281, 529);
+            this.btnCompleteOrder.Location = new System.Drawing.Point(241, 207);
             this.btnCompleteOrder.Name = "btnCompleteOrder";
             this.btnCompleteOrder.Size = new System.Drawing.Size(211, 22);
             this.btnCompleteOrder.TabIndex = 15;
             this.btnCompleteOrder.Text = "Complete Order";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
-            this.btnCompleteOrder.Visible = false;
             this.btnCompleteOrder.Click += new System.EventHandler(this.btnCompleteOrder_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(273, 362);
+            this.btnDelete.Location = new System.Drawing.Point(235, 48);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(74, 22);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Del";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // mnuUpdateLinen
@@ -252,40 +280,65 @@
             this.backToolStripMenuItem.Text = "Back";
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
-            // CustID
+            // txtCurrentDate
             // 
-            this.CustID.HeaderText = "Cust ID";
-            this.CustID.Name = "CustID";
+            this.txtCurrentDate.Enabled = false;
+            this.txtCurrentDate.Location = new System.Drawing.Point(297, 38);
+            this.txtCurrentDate.MaxLength = 6;
+            this.txtCurrentDate.Name = "txtCurrentDate";
+            this.txtCurrentDate.Size = new System.Drawing.Size(76, 20);
+            this.txtCurrentDate.TabIndex = 19;
             // 
-            // Company
+            // lblCurrentDate
             // 
-            this.Company.HeaderText = "Company";
-            this.Company.Name = "Company";
+            this.lblCurrentDate.AutoSize = true;
+            this.lblCurrentDate.Location = new System.Drawing.Point(244, 41);
+            this.lblCurrentDate.Name = "lblCurrentDate";
+            this.lblCurrentDate.Size = new System.Drawing.Size(33, 13);
+            this.lblCurrentDate.TabIndex = 18;
+            this.lblCurrentDate.Text = "Date:";
             // 
-            // Customers
+            // lblOrderDate
             // 
-            this.Customers.HeaderText = "Customer";
-            this.Customers.Name = "Customers";
+            this.lblOrderDate.AutoSize = true;
+            this.lblOrderDate.Location = new System.Drawing.Point(253, 113);
+            this.lblOrderDate.Name = "lblOrderDate";
+            this.lblOrderDate.Size = new System.Drawing.Size(62, 13);
+            this.lblOrderDate.TabIndex = 20;
+            this.lblOrderDate.Text = "Order Date:";
             // 
-            // PhoneNo
+            // dtpOrderDate
             // 
-            this.PhoneNo.HeaderText = "PhoneNo";
-            this.PhoneNo.Name = "PhoneNo";
+            this.dtpOrderDate.Location = new System.Drawing.Point(321, 107);
+            this.dtpOrderDate.Name = "dtpOrderDate";
+            this.dtpOrderDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpOrderDate.TabIndex = 22;
+            this.dtpOrderDate.ValueChanged += new System.EventHandler(this.dtpOrderDate_ValueChanged);
             // 
-            // Rejects
+            // grpOrder
             // 
-            this.Rejects.HeaderText = "Rejects";
-            this.Rejects.Name = "Rejects";
+            this.grpOrder.Controls.Add(this.lstItems);
+            this.grpOrder.Controls.Add(this.dtpOrderDate);
+            this.grpOrder.Controls.Add(this.btnCompleteOrder);
+            this.grpOrder.Controls.Add(this.lblOrderDate);
+            this.grpOrder.Controls.Add(this.btnDelete);
+            this.grpOrder.Location = new System.Drawing.Point(56, 318);
+            this.grpOrder.Name = "grpOrder";
+            this.grpOrder.Size = new System.Drawing.Size(569, 233);
+            this.grpOrder.TabIndex = 23;
+            this.grpOrder.TabStop = false;
+            this.grpOrder.Text = "Order";
+            this.grpOrder.Visible = false;
             // 
             // frmLogOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 559);
+            this.Controls.Add(this.grpOrder);
+            this.Controls.Add(this.txtCurrentDate);
+            this.Controls.Add(this.lblCurrentDate);
             this.Controls.Add(this.mnuUpdateLinen);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnCompleteOrder);
-            this.Controls.Add(this.lstItems);
             this.Controls.Add(this.grpLinen);
             this.Controls.Add(this.grpCustomer);
             this.Controls.Add(this.grdCustomers);
@@ -304,6 +357,8 @@
             this.grpLinen.PerformLayout();
             this.mnuUpdateLinen.ResumeLayout(false);
             this.mnuUpdateLinen.PerformLayout();
+            this.grpOrder.ResumeLayout(false);
+            this.grpOrder.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,5 +390,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Customers;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rejects;
+        private System.Windows.Forms.TextBox txtCurrentDate;
+        private System.Windows.Forms.Label lblCurrentDate;
+        private System.Windows.Forms.Label lblOrderDate;
+        private System.Windows.Forms.DateTimePicker dtpOrderDate;
+        private System.Windows.Forms.GroupBox grpOrder;
     }
 }

@@ -8,6 +8,8 @@ namespace LinenSys
     {
         frmMainMenu parent;
         DataTable dt = new DataTable();
+        DateTime today;
+        DateTime orderDate;
 
         public frmLogOrder(frmMainMenu Parent)
         {
@@ -21,14 +23,19 @@ namespace LinenSys
             parent.Show();
         }
 
+        private void frmLogOrder_Load(object sender, EventArgs e)
+        {
+            txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
+            today = DateTime.UtcNow.Date;
+            txtCurrentDate.Text = today.ToString("dd/MMM/yyyy");
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             grdCustomers.Visible = false;
             grpCustomer.Visible = false;
             grpLinen.Visible = false;
-            lstItems.Visible = false;
-            btnDelete.Visible = false;
-            btnCompleteOrder.Visible = false;
+            grpOrder.Visible = false;
 
             if (txtCustomerID.Text.Equals(""))
             {
@@ -119,11 +126,6 @@ namespace LinenSys
             MessageBox.Show("Order has been made " +lstItems.Items.Count, "Completed Order");
         }
 
-        private void frmLogOrder_Load(object sender, EventArgs e)
-        {
-            txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
-        }
-
         private void grpLinen_VisibleChanged(object sender, EventArgs e)
         {
             DataTable dl = new DataTable();
@@ -136,9 +138,23 @@ namespace LinenSys
                     cboLinen.Items.Add(dl.Rows[i]["LINEN_NAME"].ToString().Trim());
                 }
             }
-            lstItems.Visible = true;
-            btnDelete.Visible = true;
-            btnCompleteOrder.Visible = true;
+            grpOrder.Visible = true;
+        }
+
+        private void dtpOrderDate_ValueChanged(object sender, EventArgs e)
+        {
+            today = DateTime.UtcNow.Date;
+            orderDate = dtpOrderDate.Value;
+
+            if (DateTime.Compare(orderDate, today) <= 0)
+            {
+                MessageBox.Show("Invalid Order Date; must be after current Date " + (DateTime.Compare(orderDate, today)));
+            }
+
+            else
+            {
+
+            }
         }
     }
 }
