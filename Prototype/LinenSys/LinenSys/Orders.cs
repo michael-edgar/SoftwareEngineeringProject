@@ -33,32 +33,32 @@ namespace LinenSys
             setCustomerID(customerID);
         }
 
-        private void setOrderID(int orderID)
+        public void setOrderID(int orderID)
         {
             this.orderID = orderID;
         }
 
-        private void setOrderDate(string orderDate)
+        public void setOrderDate(string orderDate)
         {
             this.orderDate = orderDate;
         }
 
-        private void setDeliveryDate(string deliveryDate)
+        public void setDeliveryDate(string deliveryDate)
         {
             this.deliveryDate = deliveryDate;
         }
 
-        private void setOrderStatus(char orderStatus)
+        public void setOrderStatus(char orderStatus)
         {
             this.orderStatus = orderStatus;
         }
 
-        private void setOrderType(char orderType)
+        public void setOrderType(char orderType)
         {
             this.orderType = orderType;
         }
 
-        private void setCustomerID(int customerID)
+        public void setCustomerID(int customerID)
         {
             this.customerID = customerID;
         }

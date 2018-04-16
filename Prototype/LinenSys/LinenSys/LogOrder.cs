@@ -83,7 +83,7 @@ namespace LinenSys
             int selectedRowIndex = grdCustomers.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRow = grdCustomers.Rows[selectedRowIndex];
             selectedCell = Convert.ToString(selectedRow.Cells["CustID"].Value);
-            txtCustomerIDDisplay.Text = selectedCell.ToString();
+            txtCustomerIDDisplay.Text = String.Format("{0: 0000000}",selectedCell.ToString()); //txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
             grpLinen.Visible = true;
         }
 
@@ -121,11 +121,6 @@ namespace LinenSys
             
         }
 
-        private void btnCompleteOrder_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Order has been made " +lstItems.Items.Count, "Completed Order");
-        }
-
         private void grpLinen_VisibleChanged(object sender, EventArgs e)
         {
             DataTable dl = new DataTable();
@@ -143,18 +138,20 @@ namespace LinenSys
 
         private void dtpOrderDate_ValueChanged(object sender, EventArgs e)
         {
-            today = DateTime.UtcNow.Date;
-            orderDate = dtpOrderDate.Value;
+            DateTime validStartDate = today.AddDays(2).Date;
+            orderDate = dtpOrderDate.Value.Date;
 
-            if (DateTime.Compare(orderDate, today) <= 0)
+            if (DateTime.Compare(orderDate, validStartDate) <= 0)
             {
-                MessageBox.Show("Invalid Order Date; must be after current Date " + (DateTime.Compare(orderDate, today)));
+                MessageBox.Show("Invalid Order Date; must be at least 3 days after the date of order");
             }
+        }
 
-            else
-            {
-
-            }
+        private void btnCompleteOrder_Click(object sender, EventArgs e)
+        {
+            Orders newOrder = new Orders();
+            newOrder.setOrderID(Convert.ToInt32(txtOrderId.Text));
+            MessageBox.Show("Order has been made " + lstItems.Items.Count, "Completed Order");
         }
     }
 }
