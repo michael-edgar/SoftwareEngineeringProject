@@ -27,22 +27,22 @@ namespace LinenSys
             setOrderID(orderID);
         }
 
-        private void setOrderItem(int orderItem)
+        public void setOrderItem(int orderItem)
         {
             this.orderItem = orderItem;
         }
 
-        private void setLinenAmount(double linenAmount)
+        public void setLinenAmount(double linenAmount)
         {
             this.linenAmount = linenAmount;
         }
 
-        private void setLinenCode(string linenCode)
+        public void setLinenCode(string linenCode)
         {
             this.linenCode = linenCode;
         }
 
-        private void setOrderID(int orderID)
+        public void setOrderID(int orderID)
         {
             this.orderID = orderID;
         }
@@ -77,6 +77,34 @@ namespace LinenSys
             conn.Close();
 
             return ds;
+        }
+
+        public static int getNextOrderItem()
+        {
+            int nextOrderItem;
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT MAX(Order_Item) FROM OrderItem";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                nextOrderItem = 1;
+            }
+            else
+            {
+                nextOrderItem = Convert.ToInt32(dr.GetValue(0)) + 1;
+            }
+
+            conn.Close();
+
+            return nextOrderItem;
         }
 
         public static Boolean alreadyExists(string Code)
@@ -116,14 +144,12 @@ namespace LinenSys
             return ds;
         }
 
-        /*public void regLinen()
+        public void regOrderItem()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.customerID.ToString() +
-                "','" + this.companyName.ToString() + "'," + this.contactNo + "," + this.customerName +
-                "," + this.email + "," + this.street + ",'" + this.customerStatus.ToString() + "')";
+            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+")";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -131,7 +157,7 @@ namespace LinenSys
             conn.Close();
         }
 
-        public void updateLinen()
+        /*public void updateLinen()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();

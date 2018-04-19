@@ -10,6 +10,7 @@ namespace LinenSys
         DataTable dt = new DataTable();
         DateTime today;
         DateTime deliveryDate;
+        DataTable dl = new DataTable();
 
         public frmLogOrder(frmMainMenu Parent)
         {
@@ -103,7 +104,8 @@ namespace LinenSys
             }
             else
             {
-                lstItems.Items.Add(cboLinen.Text + "       " + txtQty.Text);
+                lstItems.Items.Add(cboLinen.Text);
+                lstAmount.Items.Add(txtQty.Text);
             }
         }
 
@@ -123,7 +125,6 @@ namespace LinenSys
 
         private void grpLinen_VisibleChanged(object sender, EventArgs e)
         {
-            DataTable dl = new DataTable();
             dl = Linen.getMatchingNames(dl, "");
             cboLinen.Items.Clear();
             for (int i = 0; i < dl.Rows.Count; i++)
@@ -154,8 +155,24 @@ namespace LinenSys
             newOrder.setCustomerID(Convert.ToInt32(txtCustomerIDDisplay.Text));
             newOrder.setOrderDate(txtOrderDate.Text);
             newOrder.setDeliveryDate(deliveryDate.ToString());
-            newOrder.setOrderStatus('A');
+            newOrder.setOrderStatus('P');
             newOrder.setOrderType('D');
+            OrderItem orderItems = new OrderItem();
+            for(int item = 0; item < lstItems.Items.Count; item++)
+            {
+                orderItems.setOrderItem(OrderItem.getNextOrderItem());
+                orderItems.setOrderID(Convert.ToInt32(txtOrderId.Text));
+                orderItems.setLinenAmount(Convert.ToInt32(lstAmount.Items[item]));
+                for(int i = 0; i < dl.Rows.Count; i++)
+                {
+                    if(dl.Rows[i]["LINEN_NAME"].ToString().Trim().Equals(lstItems.Items[item].ToString()))
+                    {
+                        orderItems.setLinenCode(dl.Rows[i]["LINEN_CODE"].ToString().Trim());
+                    }
+                }
+
+                orderItems.regOrderItem();
+            }
             MessageBox.Show("Order has been made " + lstItems.Items.Count, "Completed Order");
         }
     }

@@ -160,6 +160,21 @@ namespace LinenSys
             return nextOrderID;
         }
 
+        public void regOrders()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderID+ ", " + this.orderDate + "," +
+                                                            this.deliveryDate + ",'" + this.orderStatus + "', '" +
+                                                            this.orderType+ "','"+this.customerID+"')";
+
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
         /*public void regLinen()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

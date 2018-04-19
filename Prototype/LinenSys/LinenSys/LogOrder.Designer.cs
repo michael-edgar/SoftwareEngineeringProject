@@ -57,6 +57,7 @@
             this.lblDeliveryDate = new System.Windows.Forms.Label();
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.grpOrder = new System.Windows.Forms.GroupBox();
+            this.lstAmount = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
@@ -240,7 +241,7 @@
             this.lstItems.FormattingEnabled = true;
             this.lstItems.Location = new System.Drawing.Point(18, 19);
             this.lstItems.Name = "lstItems";
-            this.lstItems.Size = new System.Drawing.Size(211, 186);
+            this.lstItems.Size = new System.Drawing.Size(85, 186);
             this.lstItems.TabIndex = 12;
             // 
             // btnCompleteOrder
@@ -317,6 +318,7 @@
             // 
             // grpOrder
             // 
+            this.grpOrder.Controls.Add(this.lstAmount);
             this.grpOrder.Controls.Add(this.lstItems);
             this.grpOrder.Controls.Add(this.dtpDeliveryDate);
             this.grpOrder.Controls.Add(this.btnCompleteOrder);
@@ -329,6 +331,14 @@
             this.grpOrder.TabStop = false;
             this.grpOrder.Text = "Order";
             this.grpOrder.Visible = false;
+            // 
+            // lstAmount
+            // 
+            this.lstAmount.FormattingEnabled = true;
+            this.lstAmount.Location = new System.Drawing.Point(109, 19);
+            this.lstAmount.Name = "lstAmount";
+            this.lstAmount.Size = new System.Drawing.Size(85, 186);
+            this.lstAmount.TabIndex = 23;
             // 
             // frmLogOrder
             // 
@@ -395,5 +405,6 @@
         private System.Windows.Forms.Label lblDeliveryDate;
         private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
         private System.Windows.Forms.GroupBox grpOrder;
+        private System.Windows.Forms.ListBox lstAmount;
     }
 }
