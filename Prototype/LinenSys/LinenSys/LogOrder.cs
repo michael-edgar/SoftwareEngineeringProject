@@ -9,7 +9,7 @@ namespace LinenSys
         frmMainMenu parent;
         DataTable dt = new DataTable();
         DateTime today;
-        DateTime orderDate;
+        DateTime deliveryDate;
 
         public frmLogOrder(frmMainMenu Parent)
         {
@@ -27,7 +27,7 @@ namespace LinenSys
         {
             txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
             today = DateTime.UtcNow.Date;
-            txtCurrentDate.Text = today.ToString("dd/MMM/yyyy");
+            txtOrderDate.Text = today.ToString("dd/MMM/yyyy");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace LinenSys
             int selectedRowIndex = grdCustomers.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRow = grdCustomers.Rows[selectedRowIndex];
             selectedCell = Convert.ToString(selectedRow.Cells["CustID"].Value);
-            txtCustomerIDDisplay.Text = String.Format("{0: 0000000}",selectedCell.ToString()); //txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
+            txtCustomerIDDisplay.Text = (Convert.ToInt32(selectedCell.ToString())).ToString("000000");
             grpLinen.Visible = true;
         }
 
@@ -136,12 +136,12 @@ namespace LinenSys
             grpOrder.Visible = true;
         }
 
-        private void dtpOrderDate_ValueChanged(object sender, EventArgs e)
+        private void dtpDeliveryDate_ValueChanged(object sender, EventArgs e)
         {
             DateTime validStartDate = today.AddDays(2).Date;
-            orderDate = dtpOrderDate.Value.Date;
+            deliveryDate = dtpDeliveryDate.Value.Date;
 
-            if (DateTime.Compare(orderDate, validStartDate) <= 0)
+            if (DateTime.Compare(deliveryDate, validStartDate) <= 0)
             {
                 MessageBox.Show("Invalid Order Date; must be at least 3 days after the date of order");
             }
@@ -151,6 +151,11 @@ namespace LinenSys
         {
             Orders newOrder = new Orders();
             newOrder.setOrderID(Convert.ToInt32(txtOrderId.Text));
+            newOrder.setCustomerID(Convert.ToInt32(txtCustomerIDDisplay.Text));
+            newOrder.setOrderDate(txtOrderDate.Text);
+            newOrder.setDeliveryDate(deliveryDate.ToString());
+            newOrder.setOrderStatus('A');
+            newOrder.setOrderType('D');
             MessageBox.Show("Order has been made " + lstItems.Items.Count, "Completed Order");
         }
     }

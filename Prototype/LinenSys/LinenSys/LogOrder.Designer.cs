@@ -52,10 +52,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtCurrentDate = new System.Windows.Forms.TextBox();
-            this.lblCurrentDate = new System.Windows.Forms.Label();
+            this.txtOrderDate = new System.Windows.Forms.TextBox();
             this.lblOrderDate = new System.Windows.Forms.Label();
-            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDeliveryDate = new System.Windows.Forms.Label();
+            this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.grpOrder = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
@@ -280,47 +280,47 @@
             this.backToolStripMenuItem.Text = "Back";
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
-            // txtCurrentDate
+            // txtOrderDate
             // 
-            this.txtCurrentDate.Enabled = false;
-            this.txtCurrentDate.Location = new System.Drawing.Point(297, 38);
-            this.txtCurrentDate.MaxLength = 6;
-            this.txtCurrentDate.Name = "txtCurrentDate";
-            this.txtCurrentDate.Size = new System.Drawing.Size(76, 20);
-            this.txtCurrentDate.TabIndex = 19;
-            // 
-            // lblCurrentDate
-            // 
-            this.lblCurrentDate.AutoSize = true;
-            this.lblCurrentDate.Location = new System.Drawing.Point(244, 41);
-            this.lblCurrentDate.Name = "lblCurrentDate";
-            this.lblCurrentDate.Size = new System.Drawing.Size(33, 13);
-            this.lblCurrentDate.TabIndex = 18;
-            this.lblCurrentDate.Text = "Date:";
+            this.txtOrderDate.Enabled = false;
+            this.txtOrderDate.Location = new System.Drawing.Point(307, 38);
+            this.txtOrderDate.MaxLength = 6;
+            this.txtOrderDate.Name = "txtOrderDate";
+            this.txtOrderDate.Size = new System.Drawing.Size(76, 20);
+            this.txtOrderDate.TabIndex = 19;
             // 
             // lblOrderDate
             // 
             this.lblOrderDate.AutoSize = true;
-            this.lblOrderDate.Location = new System.Drawing.Point(253, 113);
+            this.lblOrderDate.Location = new System.Drawing.Point(244, 41);
             this.lblOrderDate.Name = "lblOrderDate";
             this.lblOrderDate.Size = new System.Drawing.Size(62, 13);
-            this.lblOrderDate.TabIndex = 20;
+            this.lblOrderDate.TabIndex = 18;
             this.lblOrderDate.Text = "Order Date:";
             // 
-            // dtpOrderDate
+            // lblDeliveryDate
             // 
-            this.dtpOrderDate.Location = new System.Drawing.Point(321, 107);
-            this.dtpOrderDate.Name = "dtpOrderDate";
-            this.dtpOrderDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpOrderDate.TabIndex = 22;
-            this.dtpOrderDate.ValueChanged += new System.EventHandler(this.dtpOrderDate_ValueChanged);
+            this.lblDeliveryDate.AutoSize = true;
+            this.lblDeliveryDate.Location = new System.Drawing.Point(253, 113);
+            this.lblDeliveryDate.Name = "lblDeliveryDate";
+            this.lblDeliveryDate.Size = new System.Drawing.Size(74, 13);
+            this.lblDeliveryDate.TabIndex = 20;
+            this.lblDeliveryDate.Text = "Delivery Date:";
+            // 
+            // dtpDeliveryDate
+            // 
+            this.dtpDeliveryDate.Location = new System.Drawing.Point(333, 107);
+            this.dtpDeliveryDate.Name = "dtpDeliveryDate";
+            this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpDeliveryDate.TabIndex = 22;
+            this.dtpDeliveryDate.ValueChanged += new System.EventHandler(this.dtpDeliveryDate_ValueChanged);
             // 
             // grpOrder
             // 
             this.grpOrder.Controls.Add(this.lstItems);
-            this.grpOrder.Controls.Add(this.dtpOrderDate);
+            this.grpOrder.Controls.Add(this.dtpDeliveryDate);
             this.grpOrder.Controls.Add(this.btnCompleteOrder);
-            this.grpOrder.Controls.Add(this.lblOrderDate);
+            this.grpOrder.Controls.Add(this.lblDeliveryDate);
             this.grpOrder.Controls.Add(this.btnDelete);
             this.grpOrder.Location = new System.Drawing.Point(56, 318);
             this.grpOrder.Name = "grpOrder";
@@ -336,8 +336,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 559);
             this.Controls.Add(this.grpOrder);
-            this.Controls.Add(this.txtCurrentDate);
-            this.Controls.Add(this.lblCurrentDate);
+            this.Controls.Add(this.txtOrderDate);
+            this.Controls.Add(this.lblOrderDate);
             this.Controls.Add(this.mnuUpdateLinen);
             this.Controls.Add(this.grpLinen);
             this.Controls.Add(this.grpCustomer);
@@ -390,10 +390,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Customers;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rejects;
-        private System.Windows.Forms.TextBox txtCurrentDate;
-        private System.Windows.Forms.Label lblCurrentDate;
+        private System.Windows.Forms.TextBox txtOrderDate;
         private System.Windows.Forms.Label lblOrderDate;
-        private System.Windows.Forms.DateTimePicker dtpOrderDate;
+        private System.Windows.Forms.Label lblDeliveryDate;
+        private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
         private System.Windows.Forms.GroupBox grpOrder;
     }
 }
