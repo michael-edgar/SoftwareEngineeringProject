@@ -12,6 +12,7 @@ namespace LinenSys
 {
     public partial class frmCancelOrder : Form
     {
+        DataTable dt;
         frmMainMenu parent;
         public frmCancelOrder(frmMainMenu Parent)
         {
@@ -27,10 +28,69 @@ namespace LinenSys
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            grdOrders.Rows.Add("0254", "BATH MAT", "10", "21.50");
-            grdOrders.Rows.Add("0114", "BATH SHEET", "14", "22.00");
-            grdOrders.Rows.Add("0202", "HAND TOWEL", "20", "20.00");
-            grdOrders.Rows.Add("0017", "PILLOW SLIP", "5", "25.50");
+            dt.Clear();
+
+            if (txtOrderDate.Text == "" && txtOrderId.Text == "")
+            {
+                MessageBox.Show("Must enter search key");
+                return;
+            }
+            else if(txtOrderDate.Text == "" && txtOrderId.Text != "")
+            {
+                dt = Orders.getMatchingNames(dt, txtOrderId.Text);
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+
+                    grdOrders.Columns.Add(new DataGridViewTextBoxColumn());
+
+                }
+
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    grdOrders.Rows.Add(dr.ItemArray);
+
+                }
+
+                if (grdOrders.Rows.Count == 0)
+                {
+                    MessageBox.Show("No active orders matching order ID was found, please re-enter");
+                    txtOrderId.Focus();
+                    return;
+                }
+
+                //display customers
+                grdOrders.Visible = true;
+            }
+            else if(txtOrderId.Text == "" && txtOrderDate.Text != "")
+            {
+                dt = Orders.getOrders(dt, "Order_Date", txtOrderDate.Text);
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+
+                    grdOrders.Columns.Add(new DataGridViewTextBoxColumn());
+
+                }
+
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    grdOrders.Rows.Add(dr.ItemArray);
+
+                }
+
+                if (grdOrders.Rows.Count == 0)
+                {
+                    MessageBox.Show("No active orders matching order Date was found, please re-enter");
+                    txtOrderDate.Focus();
+                    return;
+                }
+
+                //display customers
+                grdOrders.Visible = true;
+            }
         }
 
         private void btnCancelOrder_Click(object sender, EventArgs e)

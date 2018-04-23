@@ -88,6 +88,11 @@ namespace LinenSys
             grpLinen.Visible = true;
         }
 
+        private void cboLinen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtQty.Clear();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cboLinen.Text == "")
@@ -137,7 +142,7 @@ namespace LinenSys
             grpOrder.Visible = true;
         }
 
-        private void dtpDeliveryDate_ValueChanged(object sender, EventArgs e)
+        private void btnCompleteOrder_Click(object sender, EventArgs e)
         {
             DateTime validStartDate = today.AddDays(2).Date;
             deliveryDate = dtpDeliveryDate.Value.Date;
@@ -146,17 +151,16 @@ namespace LinenSys
             {
                 MessageBox.Show("Invalid Order Date; must be at least 3 days after the date of order");
             }
-        }
 
-        private void btnCompleteOrder_Click(object sender, EventArgs e)
-        {
             Orders newOrder = new Orders();
             newOrder.setOrderID(Convert.ToInt32(txtOrderId.Text));
             newOrder.setCustomerID(Convert.ToInt32(txtCustomerIDDisplay.Text));
             newOrder.setOrderDate(txtOrderDate.Text);
-            newOrder.setDeliveryDate(deliveryDate.ToString());
+            newOrder.setDeliveryDate(deliveryDate.ToString("dd/MMM/yyyy"));
             newOrder.setOrderStatus('P');
             newOrder.setOrderType('D');
+            newOrder.regOrders();
+
             OrderItem orderItems = new OrderItem();
             for(int item = 0; item < lstItems.Items.Count; item++)
             {
@@ -170,10 +174,9 @@ namespace LinenSys
                         orderItems.setLinenCode(dl.Rows[i]["LINEN_CODE"].ToString().Trim());
                     }
                 }
-
                 orderItems.regOrderItem();
             }
-            MessageBox.Show("Order has been made " + lstItems.Items.Count, "Completed Order");
+            MessageBox.Show("Order has been made " + newOrder.ToString() + "" +orderItems.ToString(), "Completed Order");
         }
     }
 }

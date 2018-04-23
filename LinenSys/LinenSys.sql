@@ -28,6 +28,17 @@ CREATE TABLE Customer
  Rejects numeric (6,2),
  CONSTRAINT pk_customer PRIMARY KEY (Customer_ID));
  
+ /*CREATE TABLE Orders
+(Order_ID numeric (6) NOT NULL,
+ Order_Date date,
+ Delivery_Date date,
+ Order_Status char (1),
+ Order_Type char(1),
+ Customer_ID numeric (6),
+ Total_Price numeric (6,2),
+ CONSTRAINT pk_orders PRIMARY KEY (Order_ID),
+ CONSTRAINT fk_orders_customer FOREIGN KEY (Customer_ID) references Customer);*/
+ 
 CREATE TABLE Orders
 (Order_ID numeric (6) NOT NULL,
  Order_Date date,
@@ -37,6 +48,16 @@ CREATE TABLE Orders
  Customer_ID numeric (6),
  CONSTRAINT pk_orders PRIMARY KEY (Order_ID),
  CONSTRAINT fk_orders_customer FOREIGN KEY (Customer_ID) references Customer);
+ 
+ /*CREATE TABLE OrderItem
+(Order_Item numeric (6) NOT NULL,
+ Linen_Amount numeric (6,2),
+ Linen_Code char (3),
+ Order_ID numeric (6),
+ Price numeric (6,2),
+ CONSTRAINT pk_orderItem PRIMARY KEY (Order_Item),
+ CONSTRAINT fk_orderItem_orders FOREIGN KEY (Order_ID) references Orders,
+ CONSTRAINT fk_orderItem_linen FOREIGN KEY (Linen_code) references Linen);*/
 
 CREATE TABLE OrderItem
 (Order_Item numeric (6) NOT NULL,

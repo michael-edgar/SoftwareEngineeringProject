@@ -38,10 +38,11 @@
             this.btnCancelOrder = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.grdOrders = new System.Windows.Forms.DataGridView();
+            this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mnuUpdateLinen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
             this.SuspendLayout();
@@ -129,35 +130,41 @@
             // 
             this.grdOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustID,
-            this.Surname,
-            this.Forename,
-            this.Phone});
+            this.OrderID,
+            this.OrderDate,
+            this.DeliveryDate,
+            this.OrderType,
+            this.CustID});
             this.grdOrders.Location = new System.Drawing.Point(96, 205);
             this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(467, 109);
+            this.grdOrders.Size = new System.Drawing.Size(548, 109);
             this.grdOrders.TabIndex = 19;
             this.grdOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOrders_CellClick);
+            // 
+            // OrderID
+            // 
+            this.OrderID.HeaderText = "Order ID";
+            this.OrderID.Name = "OrderID";
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.HeaderText = "Order Date";
+            this.OrderDate.Name = "OrderDate";
+            // 
+            // DeliveryDate
+            // 
+            this.DeliveryDate.HeaderText = "Delivery Date";
+            this.DeliveryDate.Name = "DeliveryDate";
+            // 
+            // OrderType
+            // 
+            this.OrderType.HeaderText = "Order Type";
+            this.OrderType.Name = "OrderType";
             // 
             // CustID
             // 
             this.CustID.HeaderText = "Customer ID";
             this.CustID.Name = "CustID";
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Linen Name";
-            this.Surname.Name = "Surname";
-            // 
-            // Forename
-            // 
-            this.Forename.HeaderText = "Linen Amount";
-            this.Forename.Name = "Forename";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Price";
-            this.Phone.Name = "Phone";
             // 
             // frmCancelOrder
             // 
@@ -195,9 +202,10 @@
         private System.Windows.Forms.Button btnCancelOrder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView grdOrders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderType;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Forename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
     }
 }

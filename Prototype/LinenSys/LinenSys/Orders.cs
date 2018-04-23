@@ -79,41 +79,20 @@ namespace LinenSys
             return ds;
         }
 
-        public static DataSet getOrders(DataSet ds, String SOrder)
+        public static DataTable getOrders(DataTable ds, String SOrder, String code)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders ORDER BY " + SOrder;
+            String strSQL = "SELECT * FROM Orders WHERE " + SOrder+ "LIKE '%" +code+ "%'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
 
-            da.Fill(ds, "ss");
+            da.Fill(ds);
 
             conn.Close();
 
             return ds;
-        }
-
-        public static Boolean alreadyExists(string Code)
-        {
-            Boolean answer = false;
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "SELECT * FROM Orders WHERE Order_ID = '" + Code + "'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
-            {
-                answer = true;
-            }
-
-            conn.Close();
-            return answer;
         }
 
         public static DataTable getMatchingNames(DataTable ds, String code)
@@ -165,10 +144,10 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderID+ ", " + this.orderDate + "," +
-                                                            this.deliveryDate + ",'" + this.orderStatus + "', '" +
-                                                            this.orderType+ "','"+this.customerID+"')";
-
+            String strSQL = "INSERT INTO Orders VALUES(" +this.orderID+ ", '" + this.orderDate + "', '" +
+                                                            this.deliveryDate + "', '" + this.orderStatus + "', '" +
+                                                            this.orderType+ "', "+this.customerID+")";
+            //INSERT INTO Orders VALUES(000005, '23/APR/2018', '27/APR/2018', 'P', 'D', 000001);
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 

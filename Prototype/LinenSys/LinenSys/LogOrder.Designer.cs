@@ -235,6 +235,7 @@
             this.cboLinen.Name = "cboLinen";
             this.cboLinen.Size = new System.Drawing.Size(228, 21);
             this.cboLinen.TabIndex = 11;
+            this.cboLinen.SelectedIndexChanged += new System.EventHandler(this.cboLinen_SelectedIndexChanged);
             // 
             // lstItems
             // 
@@ -314,7 +315,6 @@
             this.dtpDeliveryDate.Name = "dtpDeliveryDate";
             this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDeliveryDate.TabIndex = 22;
-            this.dtpDeliveryDate.ValueChanged += new System.EventHandler(this.dtpDeliveryDate_ValueChanged);
             // 
             // grpOrder
             // 
