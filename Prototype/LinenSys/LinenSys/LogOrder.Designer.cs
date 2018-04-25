@@ -58,6 +58,7 @@
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.grpOrder = new System.Windows.Forms.GroupBox();
             this.lstAmount = new System.Windows.Forms.ListBox();
+            this.lstPrice = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
@@ -247,7 +248,7 @@
             // 
             // btnCompleteOrder
             // 
-            this.btnCompleteOrder.Location = new System.Drawing.Point(241, 207);
+            this.btnCompleteOrder.Location = new System.Drawing.Point(299, 205);
             this.btnCompleteOrder.Name = "btnCompleteOrder";
             this.btnCompleteOrder.Size = new System.Drawing.Size(211, 22);
             this.btnCompleteOrder.TabIndex = 15;
@@ -257,7 +258,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(235, 48);
+            this.btnDelete.Location = new System.Drawing.Point(422, 48);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(74, 22);
             this.btnDelete.TabIndex = 16;
@@ -303,7 +304,7 @@
             // lblDeliveryDate
             // 
             this.lblDeliveryDate.AutoSize = true;
-            this.lblDeliveryDate.Location = new System.Drawing.Point(253, 113);
+            this.lblDeliveryDate.Location = new System.Drawing.Point(342, 115);
             this.lblDeliveryDate.Name = "lblDeliveryDate";
             this.lblDeliveryDate.Size = new System.Drawing.Size(74, 13);
             this.lblDeliveryDate.TabIndex = 20;
@@ -311,13 +312,14 @@
             // 
             // dtpDeliveryDate
             // 
-            this.dtpDeliveryDate.Location = new System.Drawing.Point(333, 107);
+            this.dtpDeliveryDate.Location = new System.Drawing.Point(422, 109);
             this.dtpDeliveryDate.Name = "dtpDeliveryDate";
             this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDeliveryDate.TabIndex = 22;
             // 
             // grpOrder
             // 
+            this.grpOrder.Controls.Add(this.lstPrice);
             this.grpOrder.Controls.Add(this.lstAmount);
             this.grpOrder.Controls.Add(this.lstItems);
             this.grpOrder.Controls.Add(this.dtpDeliveryDate);
@@ -326,7 +328,7 @@
             this.grpOrder.Controls.Add(this.btnDelete);
             this.grpOrder.Location = new System.Drawing.Point(56, 318);
             this.grpOrder.Name = "grpOrder";
-            this.grpOrder.Size = new System.Drawing.Size(569, 233);
+            this.grpOrder.Size = new System.Drawing.Size(637, 233);
             this.grpOrder.TabIndex = 23;
             this.grpOrder.TabStop = false;
             this.grpOrder.Text = "Order";
@@ -339,6 +341,14 @@
             this.lstAmount.Name = "lstAmount";
             this.lstAmount.Size = new System.Drawing.Size(85, 186);
             this.lstAmount.TabIndex = 23;
+            // 
+            // lstPrice
+            // 
+            this.lstPrice.FormattingEnabled = true;
+            this.lstPrice.Location = new System.Drawing.Point(208, 19);
+            this.lstPrice.Name = "lstPrice";
+            this.lstPrice.Size = new System.Drawing.Size(85, 186);
+            this.lstPrice.TabIndex = 24;
             // 
             // frmLogOrder
             // 
@@ -406,5 +416,6 @@
         private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
         private System.Windows.Forms.GroupBox grpOrder;
         private System.Windows.Forms.ListBox lstAmount;
+        private System.Windows.Forms.ListBox lstPrice;
     }
 }

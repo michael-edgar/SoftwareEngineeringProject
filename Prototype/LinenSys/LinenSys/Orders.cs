@@ -12,6 +12,7 @@ namespace LinenSys
         private char orderStatus;
         private char orderType;
         private int customerID;
+        private double totalPrice;
 
         public Orders()
         {
@@ -21,9 +22,10 @@ namespace LinenSys
             setOrderStatus('N');
             setOrderType('N');
             setCustomerID(000000);
+            setTotalPrice(00.00);
         }
 
-        public Orders(int orderID, String orderDate, String deliveryDate, char orderStatus, char orderType, int customerID)
+        public Orders(int orderID, String orderDate, String deliveryDate, char orderStatus, char orderType, int customerID, double totalePrice)
         {
             setOrderID(orderID);
             setOrderDate(orderDate);
@@ -31,6 +33,7 @@ namespace LinenSys
             setOrderStatus(orderStatus);
             setOrderType(orderType);
             setCustomerID(customerID);
+            setTotalPrice(totalePrice);
         }
 
         public void setOrderID(int orderID)
@@ -61,6 +64,11 @@ namespace LinenSys
         public void setCustomerID(int customerID)
         {
             this.customerID = customerID;
+        }
+
+        public void setTotalPrice(double totalPrice)
+        {
+            this.totalPrice = totalPrice;
         }
 
         public static DataSet getOrders(DataSet ds)
@@ -146,8 +154,8 @@ namespace LinenSys
 
             String strSQL = "INSERT INTO Orders VALUES(" +this.orderID+ ", '" + this.orderDate + "', '" +
                                                             this.deliveryDate + "', '" + this.orderStatus + "', '" +
-                                                            this.orderType+ "', "+this.customerID+")";
-            //INSERT INTO Orders VALUES(000005, '23/APR/2018', '27/APR/2018', 'P', 'D', 000001);
+                                                            this.orderType+ "', "+this.customerID+", " +this.totalPrice+")";
+            
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 

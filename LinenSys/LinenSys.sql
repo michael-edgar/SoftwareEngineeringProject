@@ -1,8 +1,8 @@
-DROP TABLE Linen;
-DROP TABLE Customer;
-DROP TABLE Orders;
 DROP TABLE OrderItem;
 DROP TABLE Rejects;
+DROP TABLE Orders;
+DROP TABLE Linen;
+DROP TABLE Customer;
 
 CREATE TABLE Linen
 (Linen_Code char (3) NOT NULL,
@@ -60,42 +60,44 @@ CREATE TABLE Rejects
  CONSTRAINT fk_rejects_orders FOREIGN KEY (Order_ID) references Orders);
  
 INSERT INTO Linen
-Values("PS", "Pillow Slip", 34.99, 29.99, 24.99, 50, 'A');
+Values('PS', 'Pillow Slip', 34.99, 29.99, 24.99, 50, 'A');
 
 INSERT INTO Linen
-Values("KS", "King Sheet", 24.99, 19.99, 14.99, 5, 'A');
+Values('KS', 'King Sheet', 24.99, 19.99, 14.99, 5, 'A');
 
 INSERT INTO Linen
-Values("SD", "Single Duvet", 19.99, 14.99, 12.49, 10, 'A');
+Values('SD', 'Single Duvet', 19.99, 14.99, 12.49, 10, 'A');
 
 INSERT INTO Linen
-Values("KD", "King Duvet", 29.99, 24.99, 14.99, 5, 'A');
+Values('KD', 'King Duvet', 29.99, 24.99, 14.99, 5, 'A');
 
 INSERT INTO Linen
-Values("SS", "Single Sheet", 14.99, 12.49, 9.99, 10, 'A');
+Values('SS', 'Single Sheet', 14.99, 12.49, 9.99, 10, 'A');
 
 INSERT INTO Customer
-Values(1, "The Ashe Hotel", "0859764238", "Justin O Shea", "JustinOShea@AsheHotel.ie",
-"Ashe Street", "Tralee", "Kerry", "V92 YV9D", 'A', 0);
+Values(1, 'The Ashe Hotel', '0859764238', 'Justin O Shea', 'JustinOShea@AsheHotel.ie',
+'Ashe Street', 'Tralee', 'Kerry', 'V92 YV9D', 'A', 0);
 
 INSERT INTO Customer
-Values(2, "The Grand Hotel", "0865493215", "Grainne Mangan", "GrainneMangan@GrandHotel.ie",
-"Denny Street", "Tralee", "Kerry", "V92 YX5F", 'A', 0);
+Values(2, 'The Grand Hotel', '0865493215', 'Grainne Mangan', 'GrainneMangan@GrandHotel.ie',
+'Denny Street', 'Tralee', 'Kerry', 'V92 YX5F', 'A', 0);
 
 INSERT INTO Orders
-Values(1, "23-APR-18", "26-APR-18", "P", "D",1);
+Values(1, '23-APR-18', '26-APR-18', 'P', 'D',1, 194.94);
 
 INSERT INTO Orders
-Values(1, "23-APR-18", "27-APR-18", "P", "D",1);
+Values(2, '23-APR-18', '27-APR-18', 'P', 'D',1, 449.86);
 
 INSERT INTO Orderitem
-Values(1, 5, "PS",1);
+Values(1, 5, 'PS',1, 174.95);
 
 INSERT INTO Orderitem
-Values(2, 1, "SD",1);
+Values(2, 1, 'SD',1, 19.99);
 
 INSERT INTO Orderitem
-Values(3, 10, "PS",2);
+Values(3, 10, 'PS',2, 349.90);
 
 INSERT INTO Orderitem
-Values(4, 4, "KS",2);
+Values(4, 4, 'KS',2, 99.96);
+
+COMMIT;

@@ -10,6 +10,7 @@ namespace LinenSys
         private double linenAmount;
         private String linenCode;
         private int orderID;
+        private double price;
 
         public OrderItem()
         {
@@ -17,14 +18,16 @@ namespace LinenSys
             setLinenAmount(0.00f);
             setLinenCode("NA");
             setOrderID(000000);
+            setPrice(00.00);
         }
 
-        public OrderItem(int orderItem, double linenAmount, String linenCode, int OrderID)
+        public OrderItem(int orderItem, double linenAmount, String linenCode, int OrderID, double price)
         {
             setOrderItem(orderItem);
             setLinenAmount(linenAmount);
             setLinenCode(linenCode);
             setOrderID(orderID);
+            setPrice(price);
         }
 
         public void setOrderItem(int orderItem)
@@ -45,6 +48,11 @@ namespace LinenSys
         public void setOrderID(int orderID)
         {
             this.orderID = orderID;
+        }
+
+        public void setPrice(double price)
+        {
+            this.price = price;
         }
 
         public static DataSet getOrderItem(DataSet ds)
@@ -149,7 +157,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+")";
+            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+")";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
