@@ -45,6 +45,7 @@ CREATE TABLE Customer
  Linen_Code char (3),
  Order_ID numeric (6),
  Price numeric (6,2),
+ ItemStatus char (1),
  CONSTRAINT pk_orderItem PRIMARY KEY (Order_Item),
  CONSTRAINT fk_orderItem_orders FOREIGN KEY (Order_ID) references Orders,
  CONSTRAINT fk_orderItem_linen FOREIGN KEY (Linen_code) references Linen);
@@ -89,15 +90,15 @@ INSERT INTO Orders
 Values(2, '23-APR-18', '27-APR-18', 'P', 'D',1, 449.86);
 
 INSERT INTO Orderitem
-Values(1, 5, 'PS',1, 174.95);
+Values(1, 5, 'PS',1, 174.95, 'A');
 
 INSERT INTO Orderitem
-Values(2, 1, 'SD',1, 19.99);
+Values(2, 1, 'SD',1, 19.99, 'A');
 
 INSERT INTO Orderitem
-Values(3, 10, 'PS',2, 349.90);
+Values(3, 10, 'PS',2, 349.90, 'A');
 
 INSERT INTO Orderitem
-Values(4, 4, 'KS',2, 99.96);
+Values(4, 4, 'KS',2, 99.96, 'A');
 
 COMMIT;

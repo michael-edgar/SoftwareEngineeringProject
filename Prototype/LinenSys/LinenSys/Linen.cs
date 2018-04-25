@@ -123,20 +123,33 @@ namespace LinenSys
             return ds;
         }
 
-        public static DataSet getLinen(DataSet ds, String SOrder)
+        public static double getPrice(String priceType, String linenName)
         {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            double price;
 
-            String strSQL = "SELECT * FROM Linen ORDER BY " +SOrder;
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT "+priceType+" FROM Linen WHERE Linen_Name = '" +linenName+ "'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            OracleDataReader dr = cmd.ExecuteReader();
 
-            da.Fill(ds, "ss");
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                price = -1;
+            }
+            else
+            {
+                price = Convert.ToDouble(dr.GetValue(0));
+                price = Math.Round(price, 2);
+            }
 
             conn.Close();
 
-            return ds;
+            return price;
         }
 
         public static DataTable getMatchingNames(DataTable ds, String code)

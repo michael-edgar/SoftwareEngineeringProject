@@ -57,8 +57,10 @@
             this.lblDeliveryDate = new System.Windows.Forms.Label();
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.grpOrder = new System.Windows.Forms.GroupBox();
-            this.lstAmount = new System.Windows.Forms.ListBox();
             this.lstPrice = new System.Windows.Forms.ListBox();
+            this.lstAmount = new System.Windows.Forms.ListBox();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
@@ -319,6 +321,8 @@
             // 
             // grpOrder
             // 
+            this.grpOrder.Controls.Add(this.txtTotalPrice);
+            this.grpOrder.Controls.Add(this.lblTotal);
             this.grpOrder.Controls.Add(this.lstPrice);
             this.grpOrder.Controls.Add(this.lstAmount);
             this.grpOrder.Controls.Add(this.lstItems);
@@ -334,6 +338,14 @@
             this.grpOrder.Text = "Order";
             this.grpOrder.Visible = false;
             // 
+            // lstPrice
+            // 
+            this.lstPrice.FormattingEnabled = true;
+            this.lstPrice.Location = new System.Drawing.Point(208, 19);
+            this.lstPrice.Name = "lstPrice";
+            this.lstPrice.Size = new System.Drawing.Size(85, 186);
+            this.lstPrice.TabIndex = 24;
+            // 
             // lstAmount
             // 
             this.lstAmount.FormattingEnabled = true;
@@ -342,13 +354,22 @@
             this.lstAmount.Size = new System.Drawing.Size(85, 186);
             this.lstAmount.TabIndex = 23;
             // 
-            // lstPrice
+            // txtTotalPrice
             // 
-            this.lstPrice.FormattingEnabled = true;
-            this.lstPrice.Location = new System.Drawing.Point(208, 19);
-            this.lstPrice.Name = "lstPrice";
-            this.lstPrice.Size = new System.Drawing.Size(85, 186);
-            this.lstPrice.TabIndex = 24;
+            this.txtTotalPrice.Location = new System.Drawing.Point(393, 161);
+            this.txtTotalPrice.MaxLength = 3;
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.Size = new System.Drawing.Size(64, 20);
+            this.txtTotalPrice.TabIndex = 26;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(326, 164);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(61, 13);
+            this.lblTotal.TabIndex = 25;
+            this.lblTotal.Text = "Total Price:";
             // 
             // frmLogOrder
             // 
@@ -417,5 +438,7 @@
         private System.Windows.Forms.GroupBox grpOrder;
         private System.Windows.Forms.ListBox lstAmount;
         private System.Windows.Forms.ListBox lstPrice;
+        private System.Windows.Forms.TextBox txtTotalPrice;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

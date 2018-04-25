@@ -11,6 +11,8 @@ namespace LinenSys
         DateTime today;
         DateTime deliveryDate;
         DataTable dl = new DataTable();
+        double totalPrice;
+        double price;
 
         public frmLogOrder(frmMainMenu Parent)
         {
@@ -111,6 +113,10 @@ namespace LinenSys
             {
                 lstItems.Items.Add(cboLinen.Text);
                 lstAmount.Items.Add(txtQty.Text);
+                price = (Linen.getPrice("Hire_Price", cboLinen.Text)*(Convert.ToDouble(txtQty.Text)));
+                lstPrice.Items.Add((price));
+                totalPrice += price;
+                txtTotalPrice.Text = totalPrice.ToString();
             }
         }
 
@@ -140,6 +146,7 @@ namespace LinenSys
                 }
             }
             grpOrder.Visible = true;
+            txtTotalPrice.Text = totalPrice.ToString();
         }
 
         private void btnCompleteOrder_Click(object sender, EventArgs e)
@@ -159,6 +166,7 @@ namespace LinenSys
             newOrder.setDeliveryDate(deliveryDate.ToString("dd/MMM/yyyy"));
             newOrder.setOrderStatus('P');
             newOrder.setOrderType('D');
+            newOrder.setTotalPrice(Convert.ToDouble(txtTotalPrice.Text));
             newOrder.regOrders();
 
             OrderItem orderItems = new OrderItem();
@@ -167,6 +175,7 @@ namespace LinenSys
                 orderItems.setOrderItem(OrderItem.getNextOrderItem());
                 orderItems.setOrderID(Convert.ToInt32(txtOrderId.Text));
                 orderItems.setLinenAmount(Convert.ToInt32(lstAmount.Items[item]));
+                orderItems.setPrice(Convert.ToDouble(lstPrice.Items[item]));
                 for(int i = 0; i < dl.Rows.Count; i++)
                 {
                     if(dl.Rows[i]["LINEN_NAME"].ToString().Trim().Equals(lstItems.Items[item].ToString()))
