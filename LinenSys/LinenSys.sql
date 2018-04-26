@@ -90,15 +90,15 @@ INSERT INTO Orders
 Values(2, '23-APR-18', '27-APR-18', 'P', 'D',1, 449.86);
 
 INSERT INTO Orderitem
-Values(1, 5, 'PS',1, 174.95, 'A');
+Values(1, 5, 'PS',1, 174.95, 'P');
 
 INSERT INTO Orderitem
-Values(2, 1, 'SD',1, 19.99, 'A');
+Values(2, 1, 'SD',1, 19.99, 'P');
 
 INSERT INTO Orderitem
-Values(3, 10, 'PS',2, 349.90, 'A');
+Values(3, 10, 'PS',2, 349.90, 'P');
 
 INSERT INTO Orderitem
-Values(4, 4, 'KS',2, 99.96, 'A');
+Values(4, 4, 'KS',2, 99.96, 'P');
 
 COMMIT;

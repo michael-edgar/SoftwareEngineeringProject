@@ -57,10 +57,10 @@
             this.lblDeliveryDate = new System.Windows.Forms.Label();
             this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.grpOrder = new System.Windows.Forms.GroupBox();
-            this.lstPrice = new System.Windows.Forms.ListBox();
-            this.lstAmount = new System.Windows.Forms.ListBox();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.lstPrice = new System.Windows.Forms.ListBox();
+            this.lstAmount = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             this.grpCustomer.SuspendLayout();
             this.grpLinen.SuspendLayout();
@@ -247,6 +247,7 @@
             this.lstItems.Name = "lstItems";
             this.lstItems.Size = new System.Drawing.Size(85, 186);
             this.lstItems.TabIndex = 12;
+            this.lstItems.SelectedIndexChanged += new System.EventHandler(this.lstItems_SelectedIndexChanged);
             // 
             // btnCompleteOrder
             // 
@@ -256,6 +257,7 @@
             this.btnCompleteOrder.TabIndex = 15;
             this.btnCompleteOrder.Text = "Complete Order";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
+            this.btnCompleteOrder.Visible = false;
             this.btnCompleteOrder.Click += new System.EventHandler(this.btnCompleteOrder_Click);
             // 
             // btnDelete
@@ -318,6 +320,7 @@
             this.dtpDeliveryDate.Name = "dtpDeliveryDate";
             this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDeliveryDate.TabIndex = 22;
+            this.dtpDeliveryDate.ValueChanged += new System.EventHandler(this.dtpDeliveryDate_ValueChanged);
             // 
             // grpOrder
             // 
@@ -338,24 +341,9 @@
             this.grpOrder.Text = "Order";
             this.grpOrder.Visible = false;
             // 
-            // lstPrice
-            // 
-            this.lstPrice.FormattingEnabled = true;
-            this.lstPrice.Location = new System.Drawing.Point(208, 19);
-            this.lstPrice.Name = "lstPrice";
-            this.lstPrice.Size = new System.Drawing.Size(85, 186);
-            this.lstPrice.TabIndex = 24;
-            // 
-            // lstAmount
-            // 
-            this.lstAmount.FormattingEnabled = true;
-            this.lstAmount.Location = new System.Drawing.Point(109, 19);
-            this.lstAmount.Name = "lstAmount";
-            this.lstAmount.Size = new System.Drawing.Size(85, 186);
-            this.lstAmount.TabIndex = 23;
-            // 
             // txtTotalPrice
             // 
+            this.txtTotalPrice.Enabled = false;
             this.txtTotalPrice.Location = new System.Drawing.Point(393, 161);
             this.txtTotalPrice.MaxLength = 3;
             this.txtTotalPrice.Name = "txtTotalPrice";
@@ -370,6 +358,24 @@
             this.lblTotal.Size = new System.Drawing.Size(61, 13);
             this.lblTotal.TabIndex = 25;
             this.lblTotal.Text = "Total Price:";
+            // 
+            // lstPrice
+            // 
+            this.lstPrice.FormattingEnabled = true;
+            this.lstPrice.Location = new System.Drawing.Point(208, 19);
+            this.lstPrice.Name = "lstPrice";
+            this.lstPrice.Size = new System.Drawing.Size(85, 186);
+            this.lstPrice.TabIndex = 24;
+            this.lstPrice.SelectedIndexChanged += new System.EventHandler(this.lstPrice_SelectedIndexChanged);
+            // 
+            // lstAmount
+            // 
+            this.lstAmount.FormattingEnabled = true;
+            this.lstAmount.Location = new System.Drawing.Point(109, 19);
+            this.lstAmount.Name = "lstAmount";
+            this.lstAmount.Size = new System.Drawing.Size(85, 186);
+            this.lstAmount.TabIndex = 23;
+            this.lstAmount.SelectedIndexChanged += new System.EventHandler(this.lstAmount_SelectedIndexChanged);
             // 
             // frmLogOrder
             // 

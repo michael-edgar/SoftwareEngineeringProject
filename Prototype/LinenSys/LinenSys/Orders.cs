@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
 namespace LinenSys
@@ -103,6 +104,32 @@ namespace LinenSys
             return ds;
         }
 
+        public static Orders getMatchingOrder(String code)
+        {
+            Orders newOrder = new Orders();
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            newOrder.setOrderID(Convert.ToInt32(dr.GetValue(0)));
+            newOrder.setOrderDate(Convert.ToString(Convert.ToDateTime(dr.GetValue(1)).Date));
+            newOrder.setDeliveryDate(Convert.ToString(dr.GetValue(2)));
+            newOrder.setOrderStatus(Convert.ToChar(dr.GetValue(3)));
+            newOrder.setOrderType(Convert.ToChar(dr.GetValue(4)));
+            newOrder.setCustomerID(Convert.ToChar(dr.GetValue(5)));
+            newOrder.setTotalPrice(Math.Round(Convert.ToDouble(dr.GetValue(6)), 2));
+
+            conn.Close();
+
+            return newOrder;
+        }
+
         public static DataTable getMatchingNames(DataTable ds, String code)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -162,14 +189,12 @@ namespace LinenSys
             conn.Close();
         }
 
-        /*public void regLinen()
+        public void cancelOrder()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.customerID.ToString() +
-                "','" + this.companyName.ToString() + "'," + this.contactNo + "," + this.customerName +
-                "," + this.email + "," + this.street + ",'" + this.customerStatus.ToString() + "')";
+            String strSQL = "UPDATE Orders SET Order_Status = 'C' WHERE Order_ID = '" + this.orderID.ToString() + "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -177,32 +202,17 @@ namespace LinenSys
             conn.Close();
         }
 
-        public void updateLinen()
+        public void deliverOrder()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.companyName.ToString() + "', Hire_Price = " +
-                this.contactNo + ", Cleaning_Price = " + this.customerName + ", Reject_Price = " +
-                this.email + ", Pack_Size = " + this.street + " WHERE Linen_Code = '" + this.customerID.ToString() + "'";
+            String strSQL = "UPDATE Orders SET Order_Status = 'D', Delivery_Date = '"+this.deliveryDate.ToString()+"' WHERE Order_ID = '" + this.orderID.ToString() + "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 
             conn.Close();
         }
-
-        public void removeLinen()
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "UPDATE Linen SET Linen_Status = 'I' WHERE Linen_Code = '" + this.customerID.ToString() + "'";
-
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-            cmd.ExecuteNonQuery();
-
-            conn.Close();
-        }*/
     }
 }

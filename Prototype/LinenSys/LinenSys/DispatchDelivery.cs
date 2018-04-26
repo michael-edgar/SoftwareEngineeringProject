@@ -12,7 +12,9 @@ namespace LinenSys
 {
     public partial class frmDispatchDelivery : Form
     {
+        DataTable dt = new DataTable();
         frmMainMenu parent;
+        String selectedCell;
         public frmDispatchDelivery(frmMainMenu Parent)
         {
             InitializeComponent();
@@ -25,22 +27,60 @@ namespace LinenSys
             parent.Show();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnSearch_Click_1(object sender, EventArgs e)
         {
-            grdOrders.Rows.Add("0254", "BATH MAT", "10", "21.50");
-            grdOrders.Rows.Add("0114", "BATH SHEET", "14", "22.00");
-            grdOrders.Rows.Add("0202", "HAND TOWEL", "20", "20.00");
-            grdOrders.Rows.Add("0017", "PILLOW SLIP", "5", "25.50");
-        }
+            dt.Clear();
 
-        private void btnCancelOrder_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Order has been Cancelled");
+            if (txtOrderId.Text == "")
+            {
+                MessageBox.Show("Must enter search key");
+                return;
+            }
+            else
+            {
+                dt = Orders.getMatchingNames(dt, txtOrderId.Text);
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    grdOrders.Columns.Add(new DataGridViewTextBoxColumn());
+                }
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    grdOrders.Rows.Add(dr.ItemArray);
+                }
+
+                if (grdOrders.Rows.Count == 0)
+                {
+                    MessageBox.Show("No active orders matching order ID was found, please re-enter");
+                    txtOrderId.Focus();
+                    return;
+                }
+
+                //display customers
+                grdOrders.Visible = true;
+            }
+            //display customers
+            grdOrders.Visible = true;
+            lblOrders.Visible = true;
         }
 
         private void grdOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnDispatchDelivery.Visible = true;
+            int selectedRowIndex = grdOrders.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = grdOrders.Rows[selectedRowIndex];
+            selectedCell = Convert.ToString(selectedRow.Cells["OrderID"].Value);
+        }
+
+        private void btnDispatchDelivery_Click(object sender, EventArgs e)
+        {
+            Orders dispatchOrder = Orders.getMatchingOrder(selectedCell);
+            dispatchOrder.setDeliveryDate(DateTime.UtcNow.Date.ToString("dd/MMM/yyyy"));
+            dispatchOrder.deliverOrder();
+            MessageBox.Show("Order has been Delivered");
         }
     }
 }
+
+        

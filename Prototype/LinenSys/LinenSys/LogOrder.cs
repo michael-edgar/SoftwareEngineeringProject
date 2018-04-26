@@ -113,25 +113,66 @@ namespace LinenSys
             {
                 lstItems.Items.Add(cboLinen.Text);
                 lstAmount.Items.Add(txtQty.Text);
-                price = (Linen.getPrice("Hire_Price", cboLinen.Text)*(Convert.ToDouble(txtQty.Text)));
+                price = Math.Round((Linen.getPrice("Hire_Price", cboLinen.Text)*(Convert.ToDouble(txtQty.Text))), 2);
                 lstPrice.Items.Add((price));
                 totalPrice += price;
                 txtTotalPrice.Text = totalPrice.ToString();
             }
         }
 
+        private void lstPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lstPrice.SelectedIndex != -1)
+            {
+                lstItems.SelectedIndex = -1;
+                lstAmount.SelectedIndex = -1;
+            }
+            
+        }
+
+        private void lstAmount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstAmount.SelectedIndex != -1)
+            {
+                lstItems.SelectedIndex = -1;
+                lstPrice.SelectedIndex = -1;
+            }
+        }
+
+        private void lstItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstItems.SelectedIndex != -1)
+            {
+                lstAmount.SelectedIndex = -1;
+                lstPrice.SelectedIndex = -1;
+            }
+        }
+
         private void btnDel_Click(object sender, EventArgs e)
         {
-            if(lstItems.SelectedIndex == -1)
+            if(lstItems.SelectedIndex == -1 && lstAmount.SelectedIndex == -1 && lstPrice.SelectedIndex == -1)
             {
                 MessageBox.Show("Must Select Item To Remove");
                 return;
             }
+            else if(lstItems.SelectedIndex == -1 && lstAmount.SelectedIndex == -1)
+            {
+                lstItems.Items.RemoveAt(lstPrice.SelectedIndex);
+                lstAmount.Items.RemoveAt(lstPrice.SelectedIndex);
+                lstPrice.Items.RemoveAt(lstPrice.SelectedIndex);
+            }
+            else if (lstItems.SelectedIndex == -1 && lstPrice.SelectedIndex == -1)
+            {
+                lstItems.Items.RemoveAt(lstAmount.SelectedIndex);
+                lstPrice.Items.RemoveAt(lstAmount.SelectedIndex);
+                lstAmount.Items.RemoveAt(lstAmount.SelectedIndex);
+            }
             else
             {
+                lstAmount.Items.RemoveAt(lstItems.SelectedIndex);
+                lstPrice.Items.RemoveAt(lstItems.SelectedIndex);
                 lstItems.Items.RemoveAt(lstItems.SelectedIndex);
             }
-            
         }
 
         private void grpLinen_VisibleChanged(object sender, EventArgs e)
@@ -147,6 +188,11 @@ namespace LinenSys
             }
             grpOrder.Visible = true;
             txtTotalPrice.Text = totalPrice.ToString();
+        }
+
+        private void dtpDeliveryDate_ValueChanged(object sender, EventArgs e)
+        {
+            btnCompleteOrder.Visible = true;
         }
 
         private void btnCompleteOrder_Click(object sender, EventArgs e)
@@ -185,7 +231,7 @@ namespace LinenSys
                 }
                 orderItems.regOrderItem();
             }
-            MessageBox.Show("Order has been made " + newOrder.ToString() + "" +orderItems.ToString(), "Completed Order");
+            MessageBox.Show("Order has been made", "Completed Order");
         }
     }
 }

@@ -30,16 +30,17 @@
         {
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdOrders = new System.Windows.Forms.DataGridView();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDispatchDelivery = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblOrders = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtOrderId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.grdOrders = new System.Windows.Forms.DataGridView();
+            this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mnuUpdateLinen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             this.backToolStripMenuItem});
             this.mnuUpdateLinen.Location = new System.Drawing.Point(0, 0);
             this.mnuUpdateLinen.Name = "mnuUpdateLinen";
-            this.mnuUpdateLinen.Size = new System.Drawing.Size(589, 24);
+            this.mnuUpdateLinen.Size = new System.Drawing.Size(651, 24);
             this.mnuUpdateLinen.TabIndex = 9;
             this.mnuUpdateLinen.Text = "mnuUpdateLinen";
             // 
@@ -61,57 +62,26 @@
             this.backToolStripMenuItem.Text = "Back";
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
-            // grdOrders
-            // 
-            this.grdOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustID,
-            this.Surname,
-            this.Forename,
-            this.Phone});
-            this.grdOrders.Location = new System.Drawing.Point(101, 143);
-            this.grdOrders.Name = "grdOrders";
-            this.grdOrders.Size = new System.Drawing.Size(467, 109);
-            this.grdOrders.TabIndex = 25;
-            // 
-            // CustID
-            // 
-            this.CustID.HeaderText = "Customer ID";
-            this.CustID.Name = "CustID";
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Linen Name";
-            this.Surname.Name = "Surname";
-            // 
-            // Forename
-            // 
-            this.Forename.HeaderText = "Linen Amount";
-            this.Forename.Name = "Forename";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Price";
-            this.Phone.Name = "Phone";
-            // 
             // btnDispatchDelivery
             // 
-            this.btnDispatchDelivery.Location = new System.Drawing.Point(228, 310);
+            this.btnDispatchDelivery.Location = new System.Drawing.Point(265, 310);
             this.btnDispatchDelivery.Name = "btnDispatchDelivery";
             this.btnDispatchDelivery.Size = new System.Drawing.Size(123, 23);
             this.btnDispatchDelivery.TabIndex = 24;
             this.btnDispatchDelivery.Text = "Dispatch Delivery";
             this.btnDispatchDelivery.UseVisualStyleBackColor = true;
             this.btnDispatchDelivery.Visible = false;
+            this.btnDispatchDelivery.Click += new System.EventHandler(this.btnDispatchDelivery_Click);
             // 
-            // label3
+            // lblOrders
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 143);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Order Details";
+            this.lblOrders.AutoSize = true;
+            this.lblOrders.Location = new System.Drawing.Point(17, 143);
+            this.lblOrders.Name = "lblOrders";
+            this.lblOrders.Size = new System.Drawing.Size(68, 13);
+            this.lblOrders.TabIndex = 23;
+            this.lblOrders.Text = "Order Details";
+            this.lblOrders.Visible = false;
             // 
             // btnSearch
             // 
@@ -121,6 +91,7 @@
             this.btnSearch.TabIndex = 22;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click_1);
             // 
             // txtOrderId
             // 
@@ -138,14 +109,55 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Order ID";
             // 
+            // grdOrders
+            // 
+            this.grdOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OrderID,
+            this.OrderDate,
+            this.DeliveryDate,
+            this.OrderType,
+            this.dataGridViewTextBoxColumn1});
+            this.grdOrders.Location = new System.Drawing.Point(91, 117);
+            this.grdOrders.Name = "grdOrders";
+            this.grdOrders.Size = new System.Drawing.Size(548, 109);
+            this.grdOrders.TabIndex = 26;
+            this.grdOrders.Visible = false;
+            this.grdOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOrders_CellClick);
+            // 
+            // OrderID
+            // 
+            this.OrderID.HeaderText = "Order ID";
+            this.OrderID.Name = "OrderID";
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.HeaderText = "Order Date";
+            this.OrderDate.Name = "OrderDate";
+            // 
+            // DeliveryDate
+            // 
+            this.DeliveryDate.HeaderText = "Delivery Date";
+            this.DeliveryDate.Name = "DeliveryDate";
+            // 
+            // OrderType
+            // 
+            this.OrderType.HeaderText = "Order Type";
+            this.OrderType.Name = "OrderType";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Customer ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
             // frmDispatchDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 345);
+            this.ClientSize = new System.Drawing.Size(651, 345);
             this.Controls.Add(this.grdOrders);
             this.Controls.Add(this.btnDispatchDelivery);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblOrders);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtOrderId);
             this.Controls.Add(this.label1);
@@ -164,15 +176,16 @@
 
         private System.Windows.Forms.MenuStrip mnuUpdateLinen;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
-        private System.Windows.Forms.DataGridView grdOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Forename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
         private System.Windows.Forms.Button btnDispatchDelivery;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblOrders;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtOrderId;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView grdOrders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

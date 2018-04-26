@@ -12,8 +12,9 @@ namespace LinenSys
 {
     public partial class frmCancelOrder : Form
     {
-        DataTable dt;
+        DataTable dt = new DataTable();
         frmMainMenu parent;
+        String selectedCell;
         public frmCancelOrder(frmMainMenu Parent)
         {
             InitializeComponent();
@@ -41,16 +42,12 @@ namespace LinenSys
 
                 foreach (DataColumn dc in dt.Columns)
                 {
-
                     grdOrders.Columns.Add(new DataGridViewTextBoxColumn());
-
                 }
 
                 foreach (DataRow dr in dt.Rows)
                 {
-
                     grdOrders.Rows.Add(dr.ItemArray);
-
                 }
 
                 if (grdOrders.Rows.Count == 0)
@@ -59,9 +56,6 @@ namespace LinenSys
                     txtOrderId.Focus();
                     return;
                 }
-
-                //display customers
-                grdOrders.Visible = true;
             }
             else if(txtOrderId.Text == "" && txtOrderDate.Text != "")
             {
@@ -87,20 +81,24 @@ namespace LinenSys
                     txtOrderDate.Focus();
                     return;
                 }
-
-                //display customers
-                grdOrders.Visible = true;
             }
+            //display customers
+            grdOrders.Visible = true;
+            lblOrders.Visible = true;
+        }
+        private void grdOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnCancelOrder.Visible = true;
+            int selectedRowIndex = grdOrders.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = grdOrders.Rows[selectedRowIndex];
+            selectedCell = Convert.ToString(selectedRow.Cells["OrderID"].Value);
         }
 
         private void btnCancelOrder_Click(object sender, EventArgs e)
         {
+            Orders cancelOrder = Orders.getMatchingOrder(selectedCell);
+            cancelOrder.cancelOrder();
             MessageBox.Show("Order has been Cancelled");
-        }
-
-        private void grdOrders_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            btnCancelOrder.Visible = true;
         }
     }
 }

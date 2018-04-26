@@ -157,7 +157,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+")";
+            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+", 'P')";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -165,32 +165,17 @@ namespace LinenSys
             conn.Close();
         }
 
-        /*public void updateLinen()
+        public void cancelOrderItem()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.companyName.ToString() + "', Hire_Price = " +
-                this.contactNo + ", Cleaning_Price = " + this.customerName + ", Reject_Price = " +
-                this.email + ", Pack_Size = " + this.street + " WHERE Linen_Code = '" + this.customerID.ToString() + "'";
+            String strSQL = "UPDATE OrderItem SET Item_Status = 'C' WHERE Order_ID = '" + this.orderID.ToString() + "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 
             conn.Close();
         }
-
-        public void removeLinen()
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "UPDATE Linen SET Linen_Status = 'I' WHERE Linen_Code = '" + this.customerID.ToString() + "'";
-
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-            cmd.ExecuteNonQuery();
-
-            conn.Close();
-        }*/
     }
 }

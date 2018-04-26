@@ -36,7 +36,7 @@
             this.txtOrderId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelOrder = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblOrders = new System.Windows.Forms.Label();
             this.grdOrders = new System.Windows.Forms.DataGridView();
             this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,14 +117,15 @@
             this.btnCancelOrder.Visible = false;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
             // 
-            // label3
+            // lblOrders
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 205);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Order Details";
+            this.lblOrders.AutoSize = true;
+            this.lblOrders.Location = new System.Drawing.Point(12, 205);
+            this.lblOrders.Name = "lblOrders";
+            this.lblOrders.Size = new System.Drawing.Size(68, 13);
+            this.lblOrders.TabIndex = 17;
+            this.lblOrders.Text = "Order Details";
+            this.lblOrders.Visible = false;
             // 
             // grdOrders
             // 
@@ -139,6 +140,7 @@
             this.grdOrders.Name = "grdOrders";
             this.grdOrders.Size = new System.Drawing.Size(548, 109);
             this.grdOrders.TabIndex = 19;
+            this.grdOrders.Visible = false;
             this.grdOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOrders_CellClick);
             // 
             // OrderID
@@ -173,7 +175,7 @@
             this.ClientSize = new System.Drawing.Size(656, 482);
             this.Controls.Add(this.grdOrders);
             this.Controls.Add(this.btnCancelOrder);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblOrders);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtOrderDate);
             this.Controls.Add(this.label2);
@@ -200,7 +202,7 @@
         private System.Windows.Forms.TextBox txtOrderId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelOrder;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblOrders;
         private System.Windows.Forms.DataGridView grdOrders;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderID;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
