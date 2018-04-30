@@ -164,7 +164,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Customer ORDER BY Company_name";
+            String strSQL = "SELECT * FROM Customer WHERE Customer_Status = 'A' ORDER BY Company_name";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -180,7 +180,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Customer ORDER BY " + SOrder;
+            String strSQL = "SELECT * FROM Customer WHERE Customer_Status = 'A' ORDER BY " + SOrder;
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -245,7 +245,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Customer WHERE Customer_ID LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM Customer WHERE Customer_ID LIKE '%" + code + "%' AND Customer_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -261,7 +261,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT CUSTOMER_ID, COMPANY_NAME, CUSTOMER_NAME, CONTACT_NUMBER, REJECTS FROM Customer WHERE CUSTOMER_ID LIKE '%" + code + "%'";
+            String strSQL = "SELECT CUSTOMER_ID, COMPANY_NAME, CUSTOMER_NAME, CONTACT_NUMBER, REJECTS FROM Customer WHERE CUSTOMER_ID LIKE '%" + code + "%' AND Customer_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);

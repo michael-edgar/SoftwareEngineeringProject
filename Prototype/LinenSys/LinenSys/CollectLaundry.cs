@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinenSys
@@ -13,40 +7,17 @@ namespace LinenSys
     public partial class frmCollectLaundry : Form
     {
         frmMainMenu parent;
+        DataTable dt = new DataTable();
+        DateTime today;
+        DateTime deliveryDate;
+        DataTable dl = new DataTable();
+        double totalPrice;
+        double price;
+
         public frmCollectLaundry(frmMainMenu Parent)
         {
             InitializeComponent();
             parent = Parent;
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            //add some dummy customers
-            grdCustomers.Rows.Add("0254", "WALSH", "ADAM", "0871234567");
-            grdCustomers.Rows.Add("0114", "WALSH", "JOHN", "0871232227");
-            grdCustomers.Rows.Add("0202", "WILSON", "ANN", "0871244467");
-            grdCustomers.Rows.Add("0017", "WOODS", "KEN", "0872222267");
-
-            //display customers
-            grdCustomers.Visible = true;
-        }
-
-        private void grdCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            //display selected customer
-            grpCustomer.Visible = true;
-            txtCustomerID.Text = "114";
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            lstItems.Items.Add(cboLinen.Text + "       " + txtQty.Text);
-        }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            lstItems.Items.RemoveAt(lstItems.SelectedIndex);
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,9 +26,51 @@ namespace LinenSys
             parent.Show();
         }
 
-        private void btnCompleteOrder_Click(object sender, EventArgs e)
+        private void frmCollectLaundry_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Laundry Order has been made", "Completed Order");
+            txtOrderId.Text = Orders.getNextOrderID().ToString("000000");
+            today = DateTime.UtcNow.Date;
+            txtOrderDate.Text = today.ToString("dd/MMM/yyyy");
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            grdCustomers.Visible = false;
+            grpCustomer.Visible = false;
+            grpLinen.Visible = false;
+            grpOrder.Visible = false;
+
+            if(txtCustomerID.Text.Equals(""))
+            {
+                MessageBox.Show("Customer ID must be entered", "Error");
+                txtCustomerID.Focus();
+                return;
+            }
+
+            grdCustomers.DataSource = null;
+            dt.Clear();
+
+            dt = Customer.getCustomerForOrder(dt, txtCustomerID.Text.ToUpper());
+
+            foreach (DataColumn dc in dt.Columns)
+            {
+                grdCustomers.Columns.Add(new DataGridViewTextBoxColumn());
+            }
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                grdCustomers.Rows.Add(dr.ItemArray);
+            }
+
+            if(grdCustomers.Rows.Count == 0)
+            {
+                MessageBox.Show("No active customers matching customer ID was found, please re-enter");
+                txtCustomerID.Focus();
+                return;
+            }
+
+            //display customers
+            grdCustomers.Visible = true;
         }
     }
 }

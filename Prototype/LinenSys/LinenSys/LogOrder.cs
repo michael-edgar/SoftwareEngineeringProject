@@ -54,16 +54,12 @@ namespace LinenSys
 
             foreach (DataColumn dc in dt.Columns)
             {
-
                 grdCustomers.Columns.Add(new DataGridViewTextBoxColumn());
-
             }
 
             foreach (DataRow dr in dt.Rows)
             {
-
                 grdCustomers.Rows.Add(dr.ItemArray);
-
             }
 
             if (grdCustomers.Rows.Count == 0)

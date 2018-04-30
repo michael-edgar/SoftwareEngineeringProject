@@ -39,22 +39,33 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboLinen = new System.Windows.Forms.ComboBox();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
-            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.txtCustomerIDDisplay = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Forename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtOrderId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtOrderDate = new System.Windows.Forms.TextBox();
+            this.lblOrderDate = new System.Windows.Forms.Label();
+            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpOrder = new System.Windows.Forms.GroupBox();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lstPrice = new System.Windows.Forms.ListBox();
+            this.lstAmount = new System.Windows.Forms.ListBox();
+            this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDeliveryDate = new System.Windows.Forms.Label();
             this.mnuUpdateLinen.SuspendLayout();
             this.grpLinen.SuspendLayout();
             this.grpCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
+            this.grpOrder.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuUpdateLinen
@@ -76,7 +87,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(243, 355);
+            this.btnDelete.Location = new System.Drawing.Point(310, 36);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(74, 22);
             this.btnDelete.TabIndex = 38;
@@ -85,7 +96,7 @@
             // 
             // btnCompleteOrder
             // 
-            this.btnCompleteOrder.Location = new System.Drawing.Point(251, 522);
+            this.btnCompleteOrder.Location = new System.Drawing.Point(349, 184);
             this.btnCompleteOrder.Name = "btnCompleteOrder";
             this.btnCompleteOrder.Size = new System.Drawing.Size(211, 22);
             this.btnCompleteOrder.TabIndex = 37;
@@ -95,9 +106,9 @@
             // lstItems
             // 
             this.lstItems.FormattingEnabled = true;
-            this.lstItems.Location = new System.Drawing.Point(26, 326);
+            this.lstItems.Location = new System.Drawing.Point(17, 29);
             this.lstItems.Name = "lstItems";
-            this.lstItems.Size = new System.Drawing.Size(211, 186);
+            this.lstItems.Size = new System.Drawing.Size(83, 186);
             this.lstItems.TabIndex = 36;
             // 
             // grpLinen
@@ -124,7 +135,7 @@
             // 
             // txtQty
             // 
-            this.txtQty.Location = new System.Drawing.Point(294, 24);
+            this.txtQty.Location = new System.Drawing.Point(308, 24);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(64, 20);
             this.txtQty.TabIndex = 13;
@@ -134,9 +145,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(265, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Qty";
+            this.label4.Text = "Packs";
             // 
             // cboLinen
             // 
@@ -153,7 +164,7 @@
             // 
             // grpCustomer
             // 
-            this.grpCustomer.Controls.Add(this.txtCustomerID);
+            this.grpCustomer.Controls.Add(this.txtCustomerIDDisplay);
             this.grpCustomer.Controls.Add(this.label3);
             this.grpCustomer.Location = new System.Drawing.Point(26, 236);
             this.grpCustomer.Name = "grpCustomer";
@@ -163,13 +174,13 @@
             this.grpCustomer.Text = "Selected Customer";
             this.grpCustomer.Visible = false;
             // 
-            // txtCustomerID
+            // txtCustomerIDDisplay
             // 
-            this.txtCustomerID.Enabled = false;
-            this.txtCustomerID.Location = new System.Drawing.Point(87, 23);
-            this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(64, 20);
-            this.txtCustomerID.TabIndex = 3;
+            this.txtCustomerIDDisplay.Enabled = false;
+            this.txtCustomerIDDisplay.Location = new System.Drawing.Point(87, 23);
+            this.txtCustomerIDDisplay.Name = "txtCustomerIDDisplay";
+            this.txtCustomerIDDisplay.Size = new System.Drawing.Size(64, 20);
+            this.txtCustomerIDDisplay.TabIndex = 3;
             // 
             // label3
             // 
@@ -185,97 +196,191 @@
             this.grdCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustID,
-            this.Surname,
-            this.Forename,
-            this.Phone});
+            this.Company,
+            this.Customers,
+            this.Phone,
+            this.Rejects});
             this.grdCustomers.Location = new System.Drawing.Point(15, 110);
             this.grdCustomers.Name = "grdCustomers";
-            this.grdCustomers.Size = new System.Drawing.Size(467, 109);
+            this.grdCustomers.Size = new System.Drawing.Size(549, 109);
             this.grdCustomers.TabIndex = 33;
             this.grdCustomers.Visible = false;
             // 
-            // CustID
-            // 
-            this.CustID.HeaderText = "Cust ID";
-            this.CustID.Name = "CustID";
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            // 
-            // Forename
-            // 
-            this.Forename.HeaderText = "Forename";
-            this.Forename.Name = "Forename";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone No";
-            this.Phone.Name = "Phone";
-            // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(397, 79);
+            this.btnSearch.Location = new System.Drawing.Point(217, 77);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(74, 22);
             this.btnSearch.TabIndex = 32;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtCustomerName
+            // txtCustomerID
             // 
-            this.txtCustomerName.Location = new System.Drawing.Point(192, 79);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(178, 20);
-            this.txtCustomerName.TabIndex = 31;
+            this.txtCustomerID.Location = new System.Drawing.Point(113, 79);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.Size = new System.Drawing.Size(80, 20);
+            this.txtCustomerID.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 13);
+            this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 30;
-            this.label2.Text = "Enter Customer Name (or part of)";
+            this.label2.Text = "Enter Customer ID";
             // 
             // txtOrderId
             // 
             this.txtOrderId.Enabled = false;
-            this.txtOrderId.Location = new System.Drawing.Point(65, 27);
+            this.txtOrderId.Location = new System.Drawing.Point(90, 34);
             this.txtOrderId.Name = "txtOrderId";
             this.txtOrderId.Size = new System.Drawing.Size(64, 20);
             this.txtOrderId.TabIndex = 29;
-            this.txtOrderId.Text = "0156";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(23, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 28;
             this.label1.Text = "Order ID";
+            // 
+            // txtOrderDate
+            // 
+            this.txtOrderDate.Enabled = false;
+            this.txtOrderDate.Location = new System.Drawing.Point(267, 34);
+            this.txtOrderDate.MaxLength = 6;
+            this.txtOrderDate.Name = "txtOrderDate";
+            this.txtOrderDate.Size = new System.Drawing.Size(76, 20);
+            this.txtOrderDate.TabIndex = 40;
+            // 
+            // lblOrderDate
+            // 
+            this.lblOrderDate.AutoSize = true;
+            this.lblOrderDate.Location = new System.Drawing.Point(204, 37);
+            this.lblOrderDate.Name = "lblOrderDate";
+            this.lblOrderDate.Size = new System.Drawing.Size(62, 13);
+            this.lblOrderDate.TabIndex = 39;
+            this.lblOrderDate.Text = "Order Date:";
+            // 
+            // CustID
+            // 
+            this.CustID.HeaderText = "Cust ID";
+            this.CustID.Name = "CustID";
+            // 
+            // Company
+            // 
+            this.Company.HeaderText = "Company";
+            this.Company.Name = "Company";
+            // 
+            // Customers
+            // 
+            this.Customers.HeaderText = "Customer";
+            this.Customers.Name = "Customers";
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Phone No";
+            this.Phone.Name = "Phone";
+            // 
+            // Rejects
+            // 
+            this.Rejects.HeaderText = "Rejects";
+            this.Rejects.Name = "Rejects";
+            // 
+            // grpOrder
+            // 
+            this.grpOrder.Controls.Add(this.txtTotalPrice);
+            this.grpOrder.Controls.Add(this.lblTotal);
+            this.grpOrder.Controls.Add(this.lstPrice);
+            this.grpOrder.Controls.Add(this.lstAmount);
+            this.grpOrder.Controls.Add(this.dtpDeliveryDate);
+            this.grpOrder.Controls.Add(this.lblDeliveryDate);
+            this.grpOrder.Controls.Add(this.lstItems);
+            this.grpOrder.Controls.Add(this.btnDelete);
+            this.grpOrder.Controls.Add(this.btnCompleteOrder);
+            this.grpOrder.Location = new System.Drawing.Point(26, 312);
+            this.grpOrder.Name = "grpOrder";
+            this.grpOrder.Size = new System.Drawing.Size(631, 223);
+            this.grpOrder.TabIndex = 41;
+            this.grpOrder.TabStop = false;
+            this.grpOrder.Text = "Order";
+            this.grpOrder.Visible = false;
+            // 
+            // txtTotalPrice
+            // 
+            this.txtTotalPrice.Enabled = false;
+            this.txtTotalPrice.Location = new System.Drawing.Point(417, 140);
+            this.txtTotalPrice.MaxLength = 3;
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.Size = new System.Drawing.Size(64, 20);
+            this.txtTotalPrice.TabIndex = 44;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(346, 143);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(61, 13);
+            this.lblTotal.TabIndex = 43;
+            this.lblTotal.Text = "Total Price:";
+            // 
+            // lstPrice
+            // 
+            this.lstPrice.FormattingEnabled = true;
+            this.lstPrice.Location = new System.Drawing.Point(219, 29);
+            this.lstPrice.Name = "lstPrice";
+            this.lstPrice.Size = new System.Drawing.Size(85, 186);
+            this.lstPrice.TabIndex = 42;
+            // 
+            // lstAmount
+            // 
+            this.lstAmount.FormattingEnabled = true;
+            this.lstAmount.Location = new System.Drawing.Point(120, 29);
+            this.lstAmount.Name = "lstAmount";
+            this.lstAmount.Size = new System.Drawing.Size(85, 186);
+            this.lstAmount.TabIndex = 41;
+            // 
+            // dtpDeliveryDate
+            // 
+            this.dtpDeliveryDate.Location = new System.Drawing.Point(417, 103);
+            this.dtpDeliveryDate.Name = "dtpDeliveryDate";
+            this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpDeliveryDate.TabIndex = 40;
+            // 
+            // lblDeliveryDate
+            // 
+            this.lblDeliveryDate.AutoSize = true;
+            this.lblDeliveryDate.Location = new System.Drawing.Point(337, 109);
+            this.lblDeliveryDate.Name = "lblDeliveryDate";
+            this.lblDeliveryDate.Size = new System.Drawing.Size(74, 13);
+            this.lblDeliveryDate.TabIndex = 39;
+            this.lblDeliveryDate.Text = "Delivery Date:";
             // 
             // frmCollectLaundry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 561);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnCompleteOrder);
-            this.Controls.Add(this.lstItems);
+            this.Controls.Add(this.grpOrder);
+            this.Controls.Add(this.txtOrderDate);
+            this.Controls.Add(this.lblOrderDate);
             this.Controls.Add(this.grpLinen);
             this.Controls.Add(this.grpCustomer);
             this.Controls.Add(this.grdCustomers);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtCustomerName);
+            this.Controls.Add(this.txtCustomerID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtOrderId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mnuUpdateLinen);
             this.Name = "frmCollectLaundry";
             this.Text = "CollectLaundry";
+            this.Load += new System.EventHandler(this.frmCollectLaundry_Load);
             this.mnuUpdateLinen.ResumeLayout(false);
             this.mnuUpdateLinen.PerformLayout();
             this.grpLinen.ResumeLayout(false);
@@ -283,6 +388,8 @@
             this.grpCustomer.ResumeLayout(false);
             this.grpCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
+            this.grpOrder.ResumeLayout(false);
+            this.grpOrder.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,17 +408,27 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboLinen;
         private System.Windows.Forms.GroupBox grpCustomer;
-        private System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.TextBox txtCustomerIDDisplay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView grdCustomers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Forename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtCustomerName;
+        private System.Windows.Forms.TextBox txtCustomerID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtOrderId;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtOrderDate;
+        private System.Windows.Forms.Label lblOrderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Company;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rejects;
+        private System.Windows.Forms.GroupBox grpOrder;
+        private System.Windows.Forms.TextBox txtTotalPrice;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.ListBox lstPrice;
+        private System.Windows.Forms.ListBox lstAmount;
+        private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
+        private System.Windows.Forms.Label lblDeliveryDate;
     }
 }

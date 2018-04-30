@@ -59,7 +59,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM OrderItem ORDER BY Order_Item";
+            String strSQL = "SELECT * FROM OrderItem WHERE ItemStatus = 'P' ORDER BY Order_Item";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -75,7 +75,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM OrderItem ORDER BY " + SOrder;
+            String strSQL = "SELECT * FROM OrderItem WHERE ItemStatus = 'P' ORDER BY " + SOrder;
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -94,7 +94,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT MAX(Order_Item) FROM OrderItem";
+            String strSQL = "SELECT MAX(Order_Item) FROM OrderItem WHERE ItemStatus = 'P'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -140,7 +140,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM OrderItem WHERE Order_Item LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM OrderItem WHERE Order_Item LIKE '%" + code + "%' AND ItemStatus = 'P'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);

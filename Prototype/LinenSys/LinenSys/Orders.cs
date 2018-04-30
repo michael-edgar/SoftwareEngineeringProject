@@ -76,7 +76,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders ORDER BY Order_ID";
+            String strSQL = "SELECT * FROM Orders WHERE Order_Status = 'P' ORDER BY Order_ID";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -92,7 +92,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders WHERE " + SOrder+ "LIKE '%" +code+ "%'";
+            String strSQL = "SELECT * FROM Orders WHERE " + SOrder+ "LIKE '%" +code+ "%' AND Order_Status = 'P'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -110,7 +110,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' ABD Order_Status = 'P'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -134,7 +134,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' AND Order_Status = 'P'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);

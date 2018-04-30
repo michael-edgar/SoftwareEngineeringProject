@@ -111,7 +111,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Linen ORDER BY linen_name";
+            String strSQL = "SELECT * FROM Linen WHERE Linen_Status = 'A' ORDER BY linen_name";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -130,7 +130,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT "+priceType+" FROM Linen WHERE Linen_Name = '" +linenName+ "'";
+            String strSQL = "SELECT "+priceType+" FROM Linen WHERE Linen_Name = '" +linenName+ "' AND Linen_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -156,7 +156,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Linen WHERE Linen_Code LIKE '%" + code + "%'";
+            String strSQL = "SELECT * FROM Linen WHERE Linen_Code LIKE '%" + code + "%' AND Linen_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -217,7 +217,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT * FROM Linen WHERE Linen_Code = '" + Code + "'";
+            String strSQL = "SELECT * FROM Linen WHERE Linen_Code = '" + Code + "' AND Linen_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
