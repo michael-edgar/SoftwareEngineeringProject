@@ -97,6 +97,9 @@ namespace LinenSys
         private void btnCancelOrder_Click(object sender, EventArgs e)
         {
             Orders cancelOrder = Orders.getMatchingOrder(selectedCell);
+            OrderItem cancelItems = new OrderItem();
+            cancelItems.setOrderID(cancelOrder.getOrderID());
+            cancelItems.cancelOrderItem();
             cancelOrder.cancelOrder();
             MessageBox.Show("Order has been Cancelled");
         }

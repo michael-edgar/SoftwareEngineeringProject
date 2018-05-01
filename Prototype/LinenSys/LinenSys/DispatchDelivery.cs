@@ -76,7 +76,10 @@ namespace LinenSys
         private void btnDispatchDelivery_Click(object sender, EventArgs e)
         {
             Orders dispatchOrder = Orders.getMatchingOrder(selectedCell);
+            OrderItem dispatchItems = new OrderItem();
+            dispatchItems.setOrderID(dispatchOrder.getOrderID());
             dispatchOrder.setDeliveryDate(DateTime.UtcNow.Date.ToString("dd/MMM/yyyy"));
+            dispatchItems.deliverOrderItems();
             dispatchOrder.deliverOrder();
             MessageBox.Show("Order has been Delivered");
         }

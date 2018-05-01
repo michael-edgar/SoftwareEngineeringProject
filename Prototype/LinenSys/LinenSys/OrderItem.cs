@@ -157,7 +157,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+", 'P')";
+            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+", 'A')";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
@@ -170,7 +170,20 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "UPDATE OrderItem SET Item_Status = 'C' WHERE Order_ID = '" + this.orderID.ToString() + "'";
+            String strSQL = "UPDATE OrderItem SET ItemStatus = 'C' WHERE Order_ID = '" + this.orderID.ToString() + "'";
+
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
+        public void deliverOrderItems()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "UPDATE OrderItem SET ItemStatus = 'D' WHERE Order_ID = '" + this.orderID.ToString() + "'";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();

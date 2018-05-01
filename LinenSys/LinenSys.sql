@@ -84,21 +84,21 @@ Values(2, 'The Grand Hotel', '0865493215', 'Grainne Mangan', 'GrainneMangan@Gran
 'Denny Street', 'Tralee', 'Kerry', 'V92 YX5F', 'A', 0);
 
 INSERT INTO Orders
-Values(1, '23-APR-18', '26-APR-18', 'P', 'D',1, 194.94);
+Values(1, '23-APR-18', '26-APR-18', 'A', 'D',1, 194.94);
 
 INSERT INTO Orders
-Values(2, '23-APR-18', '27-APR-18', 'P', 'D',1, 449.86);
+Values(2, '23-APR-18', '27-APR-18', 'A', 'D',1, 449.86);
 
 INSERT INTO Orderitem
-Values(1, 5, 'PS',1, 174.95, 'P');
+Values(1, 5, 'PS',1, 174.95, 'A');
 
 INSERT INTO Orderitem
-Values(2, 1, 'SD',1, 19.99, 'P');
+Values(2, 1, 'SD',1, 19.99, 'A');
 
 INSERT INTO Orderitem
-Values(3, 10, 'PS',2, 349.90, 'P');
+Values(3, 10, 'PS',2, 349.90, 'A');
 
 INSERT INTO Orderitem
-Values(4, 4, 'KS',2, 99.96, 'P');
+Values(4, 4, 'KS',2, 99.96, 'A');
 
 COMMIT;

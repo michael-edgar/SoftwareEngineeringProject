@@ -75,7 +75,6 @@ namespace LinenSys
 
         private void grdCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
             //display selected customer
             grpCustomer.Visible = true;
             String selectedCell;
@@ -123,7 +122,6 @@ namespace LinenSys
                 lstItems.SelectedIndex = -1;
                 lstAmount.SelectedIndex = -1;
             }
-            
         }
 
         private void lstAmount_SelectedIndexChanged(object sender, EventArgs e)
@@ -206,7 +204,7 @@ namespace LinenSys
             newOrder.setCustomerID(Convert.ToInt32(txtCustomerIDDisplay.Text));
             newOrder.setOrderDate(txtOrderDate.Text);
             newOrder.setDeliveryDate(deliveryDate.ToString("dd/MMM/yyyy"));
-            newOrder.setOrderStatus('P');
+            newOrder.setOrderStatus('A');
             newOrder.setOrderType('D');
             newOrder.setTotalPrice(Convert.ToDouble(txtTotalPrice.Text));
             newOrder.regOrders();

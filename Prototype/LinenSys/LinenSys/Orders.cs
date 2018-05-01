@@ -72,6 +72,11 @@ namespace LinenSys
             this.totalPrice = totalPrice;
         }
 
+        public int getOrderID()
+        {
+            return this.orderID;
+        }
+
         public static DataSet getOrders(DataSet ds)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

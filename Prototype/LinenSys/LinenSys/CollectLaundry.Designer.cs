@@ -42,6 +42,11 @@
             this.txtCustomerIDDisplay = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
+            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,11 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtOrderDate = new System.Windows.Forms.TextBox();
             this.lblOrderDate = new System.Windows.Forms.Label();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Company = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rejects = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpOrder = new System.Windows.Forms.GroupBox();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -93,6 +93,7 @@
             this.btnDelete.TabIndex = 38;
             this.btnDelete.Text = "Del";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnCompleteOrder
             // 
@@ -102,6 +103,8 @@
             this.btnCompleteOrder.TabIndex = 37;
             this.btnCompleteOrder.Text = "Complete Order";
             this.btnCompleteOrder.UseVisualStyleBackColor = true;
+            this.btnCompleteOrder.Visible = false;
+            this.btnCompleteOrder.Click += new System.EventHandler(this.btnCompleteOrder_Click);
             // 
             // lstItems
             // 
@@ -110,6 +113,7 @@
             this.lstItems.Name = "lstItems";
             this.lstItems.Size = new System.Drawing.Size(83, 186);
             this.lstItems.TabIndex = 36;
+            this.lstItems.SelectedIndexChanged += new System.EventHandler(this.lstItems_SelectedIndexChanged);
             // 
             // grpLinen
             // 
@@ -123,6 +127,7 @@
             this.grpLinen.TabIndex = 35;
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
+            this.grpLinen.VisibleChanged += new System.EventHandler(this.grpLinen_VisibleChanged);
             // 
             // btnAdd
             // 
@@ -132,6 +137,7 @@
             this.btnAdd.TabIndex = 14;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtQty
             // 
@@ -161,6 +167,7 @@
             this.cboLinen.Name = "cboLinen";
             this.cboLinen.Size = new System.Drawing.Size(228, 21);
             this.cboLinen.TabIndex = 11;
+            this.cboLinen.SelectedIndexChanged += new System.EventHandler(this.cboLinen_SelectedIndexChanged);
             // 
             // grpCustomer
             // 
@@ -205,6 +212,32 @@
             this.grdCustomers.Size = new System.Drawing.Size(549, 109);
             this.grdCustomers.TabIndex = 33;
             this.grdCustomers.Visible = false;
+            this.grdCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCustomers_CellClick);
+            // 
+            // CustID
+            // 
+            this.CustID.HeaderText = "Cust ID";
+            this.CustID.Name = "CustID";
+            // 
+            // Company
+            // 
+            this.Company.HeaderText = "Company";
+            this.Company.Name = "Company";
+            // 
+            // Customers
+            // 
+            this.Customers.HeaderText = "Customer";
+            this.Customers.Name = "Customers";
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Phone No";
+            this.Phone.Name = "Phone";
+            // 
+            // Rejects
+            // 
+            this.Rejects.HeaderText = "Rejects";
+            this.Rejects.Name = "Rejects";
             // 
             // btnSearch
             // 
@@ -267,31 +300,6 @@
             this.lblOrderDate.TabIndex = 39;
             this.lblOrderDate.Text = "Order Date:";
             // 
-            // CustID
-            // 
-            this.CustID.HeaderText = "Cust ID";
-            this.CustID.Name = "CustID";
-            // 
-            // Company
-            // 
-            this.Company.HeaderText = "Company";
-            this.Company.Name = "Company";
-            // 
-            // Customers
-            // 
-            this.Customers.HeaderText = "Customer";
-            this.Customers.Name = "Customers";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone No";
-            this.Phone.Name = "Phone";
-            // 
-            // Rejects
-            // 
-            this.Rejects.HeaderText = "Rejects";
-            this.Rejects.Name = "Rejects";
-            // 
             // grpOrder
             // 
             this.grpOrder.Controls.Add(this.txtTotalPrice);
@@ -336,6 +344,7 @@
             this.lstPrice.Name = "lstPrice";
             this.lstPrice.Size = new System.Drawing.Size(85, 186);
             this.lstPrice.TabIndex = 42;
+            this.lstPrice.SelectedIndexChanged += new System.EventHandler(this.lstPrice_SelectedIndexChanged);
             // 
             // lstAmount
             // 
@@ -344,6 +353,7 @@
             this.lstAmount.Name = "lstAmount";
             this.lstAmount.Size = new System.Drawing.Size(85, 186);
             this.lstAmount.TabIndex = 41;
+            this.lstAmount.SelectedIndexChanged += new System.EventHandler(this.lstAmount_SelectedIndexChanged);
             // 
             // dtpDeliveryDate
             // 
@@ -351,6 +361,7 @@
             this.dtpDeliveryDate.Name = "dtpDeliveryDate";
             this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDeliveryDate.TabIndex = 40;
+            this.dtpDeliveryDate.ValueChanged += new System.EventHandler(this.dtpDeliveryDate_ValueChanged);
             // 
             // lblDeliveryDate
             // 
