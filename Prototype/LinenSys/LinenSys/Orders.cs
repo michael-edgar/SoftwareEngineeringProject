@@ -94,6 +94,33 @@ namespace LinenSys
             return total;
         }
 
+        public static double getOrdersFromACustomer(int customerID)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT SUM(total_Price) FROM Orders WHERE Customer_ID LIKE '%" + customerID + "'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader da = cmd.ExecuteReader();
+            double total;
+
+            da.Read();
+
+            if (da.IsDBNull(0))
+            {
+                total = -1;
+            }
+            else
+            {
+                total = Convert.ToDouble(da.GetValue(0));
+            }
+            
+            conn.Close();
+
+            return total;
+        }
+
         public static DataTable getOrders(DataTable ds, String SOrder, String code)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

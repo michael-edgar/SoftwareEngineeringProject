@@ -21,7 +21,6 @@ namespace LinenSys
 
         private void btnCalculateEarnings_Click(object sender, EventArgs e)
         {
-            double earnings;
             DateTime thisYear = DateTime.UtcNow;
             String year = thisYear.ToString("yy");
             int currentYear = Convert.ToInt32(year);

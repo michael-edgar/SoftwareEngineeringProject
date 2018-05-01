@@ -45,18 +45,28 @@ namespace LinenSys
         private void grdOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            grpDetails.Visible = true;
+            //grpDetails.Visible = true;
         }
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            lstItems.Items.Add(cboLinen.Text + "       " + txtQty.Text);
+            //lstRejectItems.Items.Add(cboLinen.Text + "       " + txtQty.Text);
            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstItems.Items.RemoveAt(lstItems.SelectedIndex);
+            lstRejectItems.Items.RemoveAt(lstRejectItems.SelectedIndex);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtOrderID_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

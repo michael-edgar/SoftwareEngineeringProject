@@ -50,7 +50,7 @@ namespace LinenSys
             grdCustomers.DataSource = null;
             dt.Clear();
 
-            dt = Customer.getCustomerForOrder(dt, txtCustomerID.Text.ToUpper());
+            dt = Customer.getCustomerForOrder(dt, txtCustomerID.Text);
 
             foreach (DataColumn dc in dt.Columns)
             {
