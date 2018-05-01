@@ -77,20 +77,21 @@ namespace LinenSys
             return this.orderID;
         }
 
-        public static DataSet getOrders(DataSet ds)
+        public static double getOrdersInAYear(int year)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
 
-            String strSQL = "SELECT * FROM Orders WHERE Order_Status = 'P' ORDER BY Order_ID";
+            String strSQL = "SELECT SUM(total_Price) FROM Orders WHERE Order_Date LIKE '%"+year+"'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            OracleDataReader da = cmd.ExecuteReader();
 
-            da.Fill(ds, "ss");
-
+            da.Read();
+            double total = Convert.ToDouble(da.GetValue(0));
             conn.Close();
 
-            return ds;
+            return total;
         }
 
         public static DataTable getOrders(DataTable ds, String SOrder, String code)

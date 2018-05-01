@@ -78,7 +78,7 @@
             this.txtEarnings.Enabled = false;
             this.txtEarnings.Location = new System.Drawing.Point(113, 151);
             this.txtEarnings.Name = "txtEarnings";
-            this.txtEarnings.Size = new System.Drawing.Size(136, 20);
+            this.txtEarnings.Size = new System.Drawing.Size(85, 20);
             this.txtEarnings.TabIndex = 12;
             this.txtEarnings.Visible = false;
             // 
