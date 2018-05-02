@@ -31,7 +31,7 @@
             this.mnuUpdateLinen = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtCost = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTotalCost = new System.Windows.Forms.Label();
             this.btnCalculateRejectCost = new System.Windows.Forms.Button();
             this.mnuUpdateLinen.SuspendLayout();
             this.SuspendLayout();
@@ -62,15 +62,15 @@
             this.txtCost.TabIndex = 15;
             this.txtCost.Visible = false;
             // 
-            // label1
+            // lblTotalCost
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 170);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Total Cost:";
-            this.label1.Visible = false;
+            this.lblTotalCost.AutoSize = true;
+            this.lblTotalCost.Location = new System.Drawing.Point(24, 170);
+            this.lblTotalCost.Name = "lblTotalCost";
+            this.lblTotalCost.Size = new System.Drawing.Size(58, 13);
+            this.lblTotalCost.TabIndex = 14;
+            this.lblTotalCost.Text = "Total Cost:";
+            this.lblTotalCost.Visible = false;
             // 
             // btnCalculateRejectCost
             // 
@@ -88,7 +88,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.txtCost);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTotalCost);
             this.Controls.Add(this.btnCalculateRejectCost);
             this.Controls.Add(this.mnuUpdateLinen);
             this.Name = "frmTrackRejectCost";
@@ -105,7 +105,7 @@
         private System.Windows.Forms.MenuStrip mnuUpdateLinen;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
         private System.Windows.Forms.TextBox txtCost;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotalCost;
         private System.Windows.Forms.Button btnCalculateRejectCost;
     }
 }

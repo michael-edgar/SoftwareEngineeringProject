@@ -94,6 +94,24 @@ namespace LinenSys
             return total;
         }
 
+        public static int getCustomerIDFromOrder(int orderID)
+        {
+            int customerID;
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT Customer_ID FROM Orders WHERE Order_ID = '%" +orderID+ "'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader da = cmd.ExecuteReader();
+
+            da.Read();
+            customerID = Convert.ToInt32(da.GetValue(0));
+            conn.Close();
+
+            return customerID;
+        }
+
         public static double getOrdersFromACustomer(int customerID)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -125,7 +143,23 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders WHERE " + SOrder+ "LIKE '%" +code+ "%' AND Order_Status = 'P'";
+            String strSQL = "SELECT * FROM Orders WHERE " + SOrder+ "LIKE '%" +code+ "%' AND Order_Status = 'A'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+
+            da.Fill(ds);
+
+            conn.Close();
+
+            return ds;
+        }
+
+        public static DataTable getOrdersForReject(DataTable ds, String code)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String strSQL = "SELECT Order_ID, Customer_ID, Order_Status, Order_Type, Total_Price FROM Orders WHERE ORDER_ID LIKE '%" + code + "%' AND Order_Status = 'D'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -143,7 +177,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' ABD Order_Status = 'P'";
+            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' AND Order_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataReader dr = cmd.ExecuteReader();
@@ -167,7 +201,7 @@ namespace LinenSys
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' AND Order_Status = 'P'";
+            String strSQL = "SELECT * FROM Orders WHERE Order_ID LIKE '%" + code + "%' AND Order_Status = 'A'";
             OracleCommand cmd = new OracleCommand(strSQL, conn);
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);

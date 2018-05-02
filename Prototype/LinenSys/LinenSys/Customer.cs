@@ -33,23 +33,6 @@ namespace LinenSys
             setRejects(0.00f);
         }
 
-        public Customer(int customerID, String companyName, String contactNo, String customerName, 
-                        String email, String street, String town, String county, 
-                        String eircode, char customerStatus, double rejects)
-        {
-            setCustomerID(customerID);
-            setCompanyName(companyName);
-            setContactNo(contactNo);
-            setCustomerName(customerName);
-            setEmail(email);
-            setStreet(street);
-            setTown(town);
-            setCounty(county);
-            setEircode(eircode);
-            setCustomerStatus(customerStatus);
-            setRejects(rejects);
-        }
-
         public void setCustomerID(int customerID)
         {
             this.customerID = customerID;
@@ -239,6 +222,17 @@ namespace LinenSys
             conn.Close();
 
             return nextCustomerID;
+        }
+
+        public static void updateRejects(int customerID, double reject)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String strSQL = "UPDATE Customer SET Rejects = Rejects + "+reject+" WHERE customer_ID = "+customerID;
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         public static DataTable getMatchingNames(DataTable ds, String code)

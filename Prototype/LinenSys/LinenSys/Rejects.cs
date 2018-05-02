@@ -11,6 +11,7 @@ namespace LinenSys
         private int rejectQty;
         private String linenCode;
         private int orderID;
+        private double totalPrice;
 
         public Rejects()
         {
@@ -19,40 +20,47 @@ namespace LinenSys
             setRejectQty(0);
             setLinenCode("NA");
             setOrderID(000000);
+            setTotalPrice(00.00);
         }
 
-        public Rejects(int rejectID, String rejectDate, int rejectQty, String linenCode, int OrderID)
+        public Rejects(int rejectID, String rejectDate, int rejectQty, String linenCode, int OrderID, double totalPrice)
         {
             setRejectID(rejectID);
             setRejectDate(rejectDate);
             setRejectQty(rejectQty);
             setLinenCode(linenCode);
             setOrderID(orderID);
+            setTotalPrice(totalPrice);
         }
 
-        private void setRejectID(int rejectID)
+        public void setRejectID(int rejectID)
         {
             this.rejectID = rejectID;
         }
 
-        private void setRejectDate(string rejectDate)
+        public void setRejectDate(string rejectDate)
         {
             this.rejectDate = rejectDate;
         }
 
-        private void setRejectQty(int rejectQty)
+        public void setRejectQty(int rejectQty)
         {
             this.rejectQty = rejectQty;
         }
 
-        private void setLinenCode(string linenCode)
+        public void setLinenCode(string linenCode)
         {
             this.linenCode = linenCode;
         }
 
-        private void setOrderID(int orderID)
+        public void setOrderID(int orderID)
         {
             this.orderID = orderID;
+        }
+
+        public void setTotalPrice(double totalPrice)
+        {
+            this.totalPrice = totalPrice;
         }
 
         public static DataSet getRejects(DataSet ds)
@@ -124,47 +132,64 @@ namespace LinenSys
             return ds;
         }
 
-        /*public void regLinen()
+        public static int getNextRejectID()
+        {
+            int nextRejectID;
+
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "SELECT MAX(Reject_ID) FROM Rejects";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                nextRejectID = 1;
+            }
+            else
+            {
+                nextRejectID = Convert.ToInt32(dr.GetValue(0)) + 1;
+            }
+
+            conn.Close();
+
+            return nextRejectID;
+        }
+
+        public static double getRejectCost(int year)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO Linen VALUES('" + this.customerID.ToString() +
-                "','" + this.companyName.ToString() + "'," + this.contactNo + "," + this.customerName +
-                "," + this.email + "," + this.street + ",'" + this.customerStatus.ToString() + "')";
+            String strSQL = "SELECT SUM(Total_Price) FROM Rejects WHERE Reject_Date LIKE '%" + year + "'";
+            OracleCommand cmd = new OracleCommand(strSQL, conn);
+
+            OracleDataReader da = cmd.ExecuteReader();
+
+            da.Read();
+            double total = Convert.ToDouble(da.GetValue(0));
+            conn.Close();
+
+            return total;
+        }
+
+        public void regReject()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            conn.Open();
+
+            String strSQL = "INSERT INTO Rejects VALUES(" + this.rejectID +
+                ",'" + this.rejectDate.ToString() + "'," + this.rejectQty + ",'" + this.linenCode +
+                "'," + this.orderID+ ", "+this.totalPrice+")";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();
 
             conn.Close();
         }
-
-        public void updateLinen()
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "UPDATE Linen SET Linen_Name = '" + this.companyName.ToString() + "', Hire_Price = " +
-                this.contactNo + ", Cleaning_Price = " + this.customerName + ", Reject_Price = " +
-                this.email + ", Pack_Size = " + this.street + " WHERE Linen_Code = '" + this.customerID.ToString() + "'";
-
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-            cmd.ExecuteNonQuery();
-
-            conn.Close();
-        }
-
-        public void removeLinen()
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "UPDATE Linen SET Linen_Status = 'I' WHERE Linen_Code = '" + this.customerID.ToString() + "'";
-
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-            cmd.ExecuteNonQuery();
-
-            conn.Close();
-        }*/
     }
 }

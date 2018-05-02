@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LinenSys
@@ -27,9 +20,12 @@ namespace LinenSys
 
         private void btnCalculateRejectCost_Click(object sender, EventArgs e)
         {
-            label1.Visible = true;
+            DateTime thisYear = DateTime.UtcNow;
+            String year = thisYear.ToString("yy");
+            int currentYear = Convert.ToInt32(year);
+            txtCost.Text = (Orders.getOrdersInAYear(currentYear)).ToString();
+            lblTotalCost.Visible = true;
             txtCost.Visible = true;
-            txtCost.Text = "2000";
         }
     }
 }

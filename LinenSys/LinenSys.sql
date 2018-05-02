@@ -56,6 +56,7 @@ CREATE TABLE Rejects
  Reject_Qty numeric (3),
  Linen_Code char (3),
  Order_ID numeric (6),
+ Total_Price numeric (6,2),
  CONSTRAINT pk_rejects PRIMARY KEY (Reject_ID),
  CONSTRAINT fk_rejects_linen FOREIGN KEY (Linen_Code) references Linen,
  CONSTRAINT fk_rejects_orders FOREIGN KEY (Order_ID) references Orders);
@@ -93,12 +94,15 @@ INSERT INTO Orderitem
 Values(1, 5, 'PS',1, 174.95, 'A');
 
 INSERT INTO Orderitem
-Values(2, 1, 'SD',1, 19.99, 'A');
+Values(2, 8, 'SD',1, 19.99, 'A');
 
 INSERT INTO Orderitem
 Values(3, 10, 'PS',2, 349.90, 'A');
 
 INSERT INTO Orderitem
 Values(4, 4, 'KS',2, 99.96, 'A');
+
+INSERT INTO Rejects
+Values (1, '02-MAY-18', 1, 'SD', 1, 12.49);
 
 COMMIT;
