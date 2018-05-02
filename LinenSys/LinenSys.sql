@@ -78,7 +78,7 @@ Values('SS', 'Single Sheet', 14.99, 12.49, 9.99, 10, 'A');
 
 INSERT INTO Customer
 Values(1, 'The Ashe Hotel', '0859764238', 'Justin O Shea', 'JustinOShea@AsheHotel.ie',
-'Ashe Street', 'Tralee', 'Kerry', 'V92 YV9D', 'A', 0);
+'Ashe Street', 'Tralee', 'Kerry', 'V92 YV9D', 'A', 12.49);
 
 INSERT INTO Customer
 Values(2, 'The Grand Hotel', '0865493215', 'Grainne Mangan', 'GrainneMangan@GrandHotel.ie',

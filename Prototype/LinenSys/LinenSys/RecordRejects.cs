@@ -179,7 +179,8 @@ namespace LinenSys
                 newReject.setLinenCode(lstRejectItems.Items[count].ToString());
                 newReject.setOrderID(Convert.ToInt32(txtOrderIDDisplay.Text));
                 newReject.setTotalPrice(Math.Round((Linen.getPrice("Reject_Price", lstRejectItems.Items[count].ToString()) * (Convert.ToDouble(lstRejectAmount.Items[count]))), 2));
-                Customer.updateRejects(Orders.getCustomerIDFromOrder(Convert.ToInt32(txtOrderIDDisplay.Text)), (Math.Round((Linen.getPrice("Reject_Price", lstRejectItems.Items[count].ToString()) * (Convert.ToDouble(lstRejectAmount.Items[count]))), 2)));
+                Customer.updateRejects(Orders.getCustomerIDFromOrder(Convert.ToInt32(txtOrderIDDisplay.Text)), 
+                                        (Math.Round((Linen.getPrice("Reject_Price", lstRejectItems.Items[count].ToString()) * (Convert.ToDouble(lstRejectAmount.Items[count]))), 2)));
                 newReject.regReject();
                 count++;
             }

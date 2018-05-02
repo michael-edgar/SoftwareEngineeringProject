@@ -23,7 +23,7 @@ namespace LinenSys
             DateTime thisYear = DateTime.UtcNow;
             String year = thisYear.ToString("yy");
             int currentYear = Convert.ToInt32(year);
-            txtCost.Text = (Orders.getOrdersInAYear(currentYear)).ToString();
+            txtCost.Text = (Rejects.getRejectCost(currentYear)).ToString();
             lblTotalCost.Visible = true;
             txtCost.Visible = true;
         }
