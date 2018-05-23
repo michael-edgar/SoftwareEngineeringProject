@@ -40,13 +40,12 @@ CREATE TABLE Customer
  CONSTRAINT fk_orders_customer FOREIGN KEY (Customer_ID) references Customer);
  
  CREATE TABLE OrderItem
-(Order_Item numeric (6) NOT NULL,
+(Order_ID numeric (6) NOT NULL,
+ Linen_Code char (3) NOT NULL,
  Linen_Amount numeric (6,2),
- Linen_Code char (3),
- Order_ID numeric (6),
  Price numeric (6,2),
  ItemStatus char (1),
- CONSTRAINT pk_orderItem PRIMARY KEY (Order_Item),
+ CONSTRAINT pk_orderItem PRIMARY KEY (Linen_Code, Order_ID),
  CONSTRAINT fk_orderItem_orders FOREIGN KEY (Order_ID) references Orders,
  CONSTRAINT fk_orderItem_linen FOREIGN KEY (Linen_code) references Linen);
  
@@ -91,18 +90,18 @@ INSERT INTO Orders
 Values(2, '23-APR-18', '27-APR-18', 'A', 'D',1, 449.86);
 
 INSERT INTO Orderitem
-Values(1, 5, 'PS',1, 174.95, 'A');
+Values(1, 'PS',250, 174.95, 'A');
 
 INSERT INTO Orderitem
-Values(2, 8, 'SD',1, 19.99, 'A');
+Values(1, 'SD',80, 19.99, 'A');
 
 INSERT INTO Orderitem
-Values(3, 10, 'PS',2, 349.90, 'A');
+Values(2, 'PS',500, 349.90, 'A');
 
 INSERT INTO Orderitem
-Values(4, 4, 'KS',2, 99.96, 'A');
+Values(2, 'KS',20, 99.96, 'A');
 
 INSERT INTO Rejects
-Values (1, '02-MAY-18', 1, 'SD', 1, 12.49);
+Values (1, '02-MAY-18',1 ,'SD', 1, 12.49);
 
 COMMIT;

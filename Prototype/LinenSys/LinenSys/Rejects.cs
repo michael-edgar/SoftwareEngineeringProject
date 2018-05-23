@@ -23,16 +23,6 @@ namespace LinenSys
             setTotalPrice(00.00);
         }
 
-        public Rejects(int rejectID, String rejectDate, int rejectQty, String linenCode, int OrderID, double totalPrice)
-        {
-            setRejectID(rejectID);
-            setRejectDate(rejectDate);
-            setRejectQty(rejectQty);
-            setLinenCode(linenCode);
-            setOrderID(orderID);
-            setTotalPrice(totalPrice);
-        }
-
         public void setRejectID(int rejectID)
         {
             this.rejectID = rejectID;
@@ -61,75 +51,6 @@ namespace LinenSys
         public void setTotalPrice(double totalPrice)
         {
             this.totalPrice = totalPrice;
-        }
-
-        public static DataSet getRejects(DataSet ds)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Rejects ORDER BY Reject_ID";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static DataSet getRejects(DataSet ds, String SOrder)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Rejects ORDER BY " + SOrder;
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static Boolean alreadyExists(string Code)
-        {
-            Boolean answer = false;
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "SELECT * FROM Rejects WHERE Reject_ID = '" + Code + "'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
-            {
-                answer = true;
-            }
-
-            conn.Close();
-            return answer;
-        }
-
-        public static DataTable getMatchingNames(DataTable ds, String code)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Rejects WHERE Reject_ID LIKE '%" + code + "%'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds);
-
-            conn.Close();
-
-            return ds;
         }
 
         public static int getNextRejectID()

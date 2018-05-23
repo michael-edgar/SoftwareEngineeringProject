@@ -6,33 +6,19 @@ namespace LinenSys
 {
     class OrderItem
     {
-        private int orderItem;
-        private double linenAmount;
-        private String linenCode;
         private int orderID;
+        private String linenCode;
+        private double linenAmount;
         private double price;
+        private char itemStatus;
 
         public OrderItem()
         {
-            setOrderItem(000000);
             setLinenAmount(0.00f);
             setLinenCode("NA");
             setOrderID(000000);
             setPrice(00.00);
-        }
-
-        public OrderItem(int orderItem, double linenAmount, String linenCode, int OrderID, double price)
-        {
-            setOrderItem(orderItem);
-            setLinenAmount(linenAmount);
-            setLinenCode(linenCode);
-            setOrderID(orderID);
-            setPrice(price);
-        }
-
-        public void setOrderItem(int orderItem)
-        {
-            this.orderItem = orderItem;
+            setItemStatus('A');
         }
 
         public void setLinenAmount(double linenAmount)
@@ -55,85 +41,9 @@ namespace LinenSys
             this.price = price;
         }
 
-        public static DataSet getOrderItem(DataSet ds)
+        public void setItemStatus(char itemStatus)
         {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM OrderItem WHERE ItemStatus = 'A' ORDER BY Order_Item";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static DataSet getOrderItem(DataSet ds, String SOrder)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM OrderItem WHERE ItemStatus = 'A' ORDER BY " + SOrder;
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static int getNextOrderItem()
-        {
-            int nextOrderItem;
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "SELECT MAX(Order_Item) FROM OrderItem WHERE ItemStatus = 'A'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataReader dr = cmd.ExecuteReader();
-
-            dr.Read();
-
-            if (dr.IsDBNull(0))
-            {
-                nextOrderItem = 1;
-            }
-            else
-            {
-                nextOrderItem = Convert.ToInt32(dr.GetValue(0)) + 1;
-            }
-
-            conn.Close();
-
-            return nextOrderItem;
-        }
-
-        public static Boolean alreadyExists(string Code)
-        {
-            Boolean answer = false;
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "SELECT * FROM OrderItem WHERE Order_Item = '" + Code + "'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
-            {
-                answer = true;
-            }
-
-            conn.Close();
-            return answer;
+            this.itemStatus = itemStatus;
         }
 
         public static DataTable getItemsAndAmount(DataTable ds, String code)
@@ -157,7 +67,7 @@ namespace LinenSys
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             conn.Open();
 
-            String strSQL = "INSERT INTO OrderItem VALUES(" +this.orderItem+", "+this.linenAmount+",'"+this.linenCode+"'," +this.orderID+", "+this.price+", 'A')";
+            String strSQL = "INSERT INTO OrderItem VALUES("+this.orderID+",'"+this.linenCode+"'," +this.linenAmount+", "+this.price+", 'A')";
 
             OracleCommand cmd = new OracleCommand(strSQL, conn);
             cmd.ExecuteNonQuery();

@@ -143,59 +143,6 @@ namespace LinenSys
             return rejects;
         }
 
-        public static DataSet getCustomer(DataSet ds)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Customer WHERE Customer_Status = 'A' ORDER BY Company_name";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static DataSet getCustomer(DataSet ds, String SOrder)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Customer WHERE Customer_Status = 'A' ORDER BY " + SOrder;
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
-        }
-
-        public static Boolean alreadyExists(string Code)
-        {
-            Boolean answer = false;
-
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            conn.Open();
-
-            String strSQL = "SELECT * FROM Customer WHERE Customer_ID = '" + Code + "'";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
-            {
-                answer = true;
-            }
-
-            conn.Close();
-            return answer;
-        }
-
         public static int getNextCustomerID()
         {
             int nextCustomerID;

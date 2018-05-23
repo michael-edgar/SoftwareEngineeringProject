@@ -47,14 +47,17 @@ namespace LinenSys
                 return;
             }
 
-            grdCustomers.DataSource = null;
             dt.Clear();
+            grdCustomers.Rows.Clear();
 
             dt = Customer.getCustomerForOrder(dt, txtCustomerID.Text.ToUpper());
 
             foreach (DataColumn dc in dt.Columns)
             {
-                grdCustomers.Columns.Add(new DataGridViewTextBoxColumn());
+                if (grdCustomers.Columns.Count < dt.Columns.Count)
+                {
+                    grdCustomers.Columns.Add(new DataGridViewTextBoxColumn());
+                }
             }
 
             foreach (DataRow dr in dt.Rows)
@@ -151,18 +154,24 @@ namespace LinenSys
             }
             else if (lstItems.SelectedIndex == -1 && lstAmount.SelectedIndex == -1)
             {
+                totalPrice -= Convert.ToDouble(lstPrice.Items[lstPrice.SelectedIndex]);
+                txtTotalPrice.Text = totalPrice.ToString();
                 lstItems.Items.RemoveAt(lstPrice.SelectedIndex);
                 lstAmount.Items.RemoveAt(lstPrice.SelectedIndex);
                 lstPrice.Items.RemoveAt(lstPrice.SelectedIndex);
             }
             else if (lstItems.SelectedIndex == -1 && lstPrice.SelectedIndex == -1)
             {
+                totalPrice -= Convert.ToDouble(lstPrice.Items[lstAmount.SelectedIndex]);
+                txtTotalPrice.Text = totalPrice.ToString();
                 lstItems.Items.RemoveAt(lstAmount.SelectedIndex);
                 lstPrice.Items.RemoveAt(lstAmount.SelectedIndex);
                 lstAmount.Items.RemoveAt(lstAmount.SelectedIndex);
             }
             else
             {
+                totalPrice -= Convert.ToDouble(lstPrice.Items[lstItems.SelectedIndex]);
+                txtTotalPrice.Text = totalPrice.ToString();
                 lstAmount.Items.RemoveAt(lstItems.SelectedIndex);
                 lstPrice.Items.RemoveAt(lstItems.SelectedIndex);
                 lstItems.Items.RemoveAt(lstItems.SelectedIndex);
@@ -212,7 +221,6 @@ namespace LinenSys
             OrderItem orderItems = new OrderItem();
             for (int item = 0; item < lstItems.Items.Count; item++)
             {
-                orderItems.setOrderItem(OrderItem.getNextOrderItem());
                 orderItems.setOrderID(Convert.ToInt32(txtOrderId.Text));
                 orderItems.setLinenAmount(Convert.ToInt32(lstAmount.Items[item]));
                 orderItems.setPrice(Convert.ToDouble(lstPrice.Items[item]));

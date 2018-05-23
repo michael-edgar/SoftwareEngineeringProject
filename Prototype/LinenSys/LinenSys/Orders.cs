@@ -26,17 +26,6 @@ namespace LinenSys
             setTotalPrice(00.00);
         }
 
-        public Orders(int orderID, String orderDate, String deliveryDate, char orderStatus, char orderType, int customerID, double totalePrice)
-        {
-            setOrderID(orderID);
-            setOrderDate(orderDate);
-            setDeliveryDate(deliveryDate);
-            setOrderStatus(orderStatus);
-            setOrderType(orderType);
-            setCustomerID(customerID);
-            setTotalPrice(totalePrice);
-        }
-
         public void setOrderID(int orderID)
         {
             this.orderID = orderID;

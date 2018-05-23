@@ -50,10 +50,10 @@
             this.lstAmount = new System.Windows.Forms.ListBox();
             this.lblQty = new System.Windows.Forms.Label();
             this.grpAddReject = new System.Windows.Forms.GroupBox();
-            this.grpRejects = new System.Windows.Forms.GroupBox();
+            this.cboQty = new System.Windows.Forms.ComboBox();
             this.txtOrderIDDisplay = new System.Windows.Forms.TextBox();
             this.lblOrderIDDisplay = new System.Windows.Forms.Label();
-            this.cboQty = new System.Windows.Forms.ComboBox();
+            this.grpRejects = new System.Windows.Forms.GroupBox();
             this.lstRejectAmount = new System.Windows.Forms.ListBox();
             this.mnuUpdateLinen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdOrders)).BeginInit();
@@ -67,7 +67,7 @@
             this.backToolStripMenuItem});
             this.mnuUpdateLinen.Location = new System.Drawing.Point(0, 0);
             this.mnuUpdateLinen.Name = "mnuUpdateLinen";
-            this.mnuUpdateLinen.Size = new System.Drawing.Size(1100, 24);
+            this.mnuUpdateLinen.Size = new System.Drawing.Size(889, 24);
             this.mnuUpdateLinen.TabIndex = 9;
             this.mnuUpdateLinen.Text = "mnuUpdateLinen";
             // 
@@ -255,19 +255,18 @@
             this.grpAddReject.Text = "AddReject";
             this.grpAddReject.Visible = false;
             // 
-            // grpRejects
+            // cboQty
             // 
-            this.grpRejects.Controls.Add(this.lstRejectAmount);
-            this.grpRejects.Controls.Add(this.lstRejectItems);
-            this.grpRejects.Controls.Add(this.btnDelete);
-            this.grpRejects.Controls.Add(this.btnSaveRejects);
-            this.grpRejects.Location = new System.Drawing.Point(487, 248);
-            this.grpRejects.Name = "grpRejects";
-            this.grpRejects.Size = new System.Drawing.Size(352, 299);
-            this.grpRejects.TabIndex = 42;
-            this.grpRejects.TabStop = false;
-            this.grpRejects.Text = "Rejects";
-            this.grpRejects.Visible = false;
+            this.cboQty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboQty.FormattingEnabled = true;
+            this.cboQty.Items.AddRange(new object[] {
+            "BM Bath Mat",
+            "BS Bath Sheet",
+            "HT Hand Towel"});
+            this.cboQty.Location = new System.Drawing.Point(276, 113);
+            this.cboQty.Name = "cboQty";
+            this.cboQty.Size = new System.Drawing.Size(92, 21);
+            this.cboQty.TabIndex = 43;
             // 
             // txtOrderIDDisplay
             // 
@@ -286,18 +285,19 @@
             this.lblOrderIDDisplay.TabIndex = 41;
             this.lblOrderIDDisplay.Text = "Order ID:";
             // 
-            // cboQty
+            // grpRejects
             // 
-            this.cboQty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboQty.FormattingEnabled = true;
-            this.cboQty.Items.AddRange(new object[] {
-            "BM Bath Mat",
-            "BS Bath Sheet",
-            "HT Hand Towel"});
-            this.cboQty.Location = new System.Drawing.Point(276, 113);
-            this.cboQty.Name = "cboQty";
-            this.cboQty.Size = new System.Drawing.Size(92, 21);
-            this.cboQty.TabIndex = 43;
+            this.grpRejects.Controls.Add(this.lstRejectAmount);
+            this.grpRejects.Controls.Add(this.lstRejectItems);
+            this.grpRejects.Controls.Add(this.btnDelete);
+            this.grpRejects.Controls.Add(this.btnSaveRejects);
+            this.grpRejects.Location = new System.Drawing.Point(487, 248);
+            this.grpRejects.Name = "grpRejects";
+            this.grpRejects.Size = new System.Drawing.Size(352, 299);
+            this.grpRejects.TabIndex = 42;
+            this.grpRejects.TabStop = false;
+            this.grpRejects.Text = "Rejects";
+            this.grpRejects.Visible = false;
             // 
             // lstRejectAmount
             // 
@@ -312,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 559);
+            this.ClientSize = new System.Drawing.Size(889, 559);
             this.Controls.Add(this.grpRejects);
             this.Controls.Add(this.grpAddReject);
             this.Controls.Add(this.txtRejectID);

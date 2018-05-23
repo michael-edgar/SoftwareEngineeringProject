@@ -127,6 +127,7 @@
             this.grpLinen.TabIndex = 35;
             this.grpLinen.TabStop = false;
             this.grpLinen.Text = "Linen";
+            this.grpLinen.Visible = false;
             this.grpLinen.VisibleChanged += new System.EventHandler(this.grpLinen_VisibleChanged);
             // 
             // btnAdd

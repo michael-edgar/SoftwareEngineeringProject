@@ -18,6 +18,7 @@ namespace LinenSys
             parent.Show();
         }
 
+
         private void btnCalculateRejectCost_Click(object sender, EventArgs e)
         {
             DateTime thisYear = DateTime.UtcNow;

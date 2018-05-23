@@ -24,18 +24,6 @@ namespace LinenSys
             setPack_size(0);
             setLinen_status('A');
         }
-
-        public Linen(String linen_code, String linen_name, double hire_price, double cleaning_price,
-                     double reject_price, int pack_size, char linen_status)
-        {
-            setLinen_code(linen_code);
-            setLinen_name(linen_name);
-            setHire_price(hire_price);
-            setCleaning_price(cleaning_price);
-            setReject_price(reject_price);
-            setPack_size(pack_size);
-            setLinen_status(linen_status);
-        }
         
         public void setLinen_code(String linen_code)
         {
@@ -70,57 +58,6 @@ namespace LinenSys
         public void setLinen_status(char linen_status)
         {
             this.linen_status = linen_status;
-        }
-
-        public String getLinen_code()
-        {
-            return linen_code;
-        }
-
-        public String getLinen_name()
-        {
-            return linen_name;
-        }
-
-        public double getHire_price()
-        {
-            return hire_price;
-        }
-
-        public double getCleaning_price()
-        {
-            return cleaning_price;
-        }
-
-        public double getReject_price()
-        {
-            return reject_price;
-        }
-
-        public int getPack_size()
-        {
-            return pack_size;
-        }
-
-        public char getLinen_status()
-        {
-            return linen_status;
-        }
-
-        public static DataSet getLinen(DataSet ds)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String strSQL = "SELECT * FROM Linen WHERE Linen_Status = 'A' ORDER BY linen_name";
-            OracleCommand cmd = new OracleCommand(strSQL, conn);
-
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-
-            da.Fill(ds, "ss");
-
-            conn.Close();
-
-            return ds;
         }
 
         public static double getPrice(String priceType, String linenName)
@@ -210,6 +147,7 @@ namespace LinenSys
 
             conn.Close();
         }
+
         public static Boolean alreadyExists(string Code)
         {
             Boolean answer = false;
